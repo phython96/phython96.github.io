@@ -1,6 +1,6 @@
 ---
 title:          "ROCKET-1: Mastering Open-World Interaction with Visual-Temporal Context Prompting"
-date:           2024-10-17 00:01:00 +0800
+date:           2025-02-27 00:01:00 +0800
 selected:       true
 pub:            "IEEE/CVF Computer Vision and Pattern Recognition (CVPR)"
 # pub_pre:        "Submitted to "
