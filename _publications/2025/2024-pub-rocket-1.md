@@ -10,7 +10,7 @@ pub_date:       "2025"
 
 abstract: >-
   We aim to develop a goal specification method that is semantically clear, spatially sensitive, and intuitive for human users to guide agent interactions in embodied environments. Specifically, we propose a novel cross-view goal alignment framework that allows users to specify target objects using segmentation masks from their own camera views rather than the agent's observations. 
-cover: https://raw.githubusercontent.com/phython96/Images/master/rocket-2-logo.png
+cover: https://i.meee.com.tw/e7xQt0C.gif
 authors:
   - Shaofei Cai
   - Zhancun Mu
