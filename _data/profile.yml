@@ -19,8 +19,14 @@ orcid: 0000-0002-1195-7276
 
 short_bio_text_justify: false
 short_bio: >-
-  <p><b>My dream is to witness the emergence of artificial general intelligence and to contribute my own efforts toward it.</b></p>
-  <p> During my undergraduate years, I was passionate about studying classical algorithms and participated in algorithm competitions. This not only honed my programming skills but also taught me to approach problems using <b>computational thinking</b>. In graduate school, I delved into deep learning and conducted research in areas such as neural architecture search and computer vision. These experiences allowed me to appreciate the fascinating world of artificial intelligence and marked the beginning of my journey as a researcher. During my doctoral studies, I focused on open-world instruction-following agents as my research topic, diving deep into both the technical and theoretical aspects of this field. Over time, I have developed the ability to examine problems in machine learning from a broader and more unified perspective, often through the lens of probability and learning. I am deeply passionate about the theory and application of general-purpose foundational decision-making models and am committed to advancing research in this area. 
+  <p><b>My dream is to witness the emergence of artificial general intelligence and to contribute my efforts.</b></p>
+  <p> My doctoral research centered on <b>multi-task agents operating within open-world settings</b>. 
+  A core aspect of this work involved identifying and developing a <b>task representation method characterized by high expressiveness, low ambiguity, and scalability for efficient training</b>. 
+  In the realm of 3D video games, I spearheaded the development of the <b>GROOT<b/> and <b>ROCKET<b/> series as the first author. 
+  These projects empower AI agents to execute intricate tasks in Minecraft based on human instructions, consistently <b>pushing the frontiers of AI agent capabilities within the Minecraft environment<b/>. 
+  Concurrently, I've delved into applying <b>reinforcement learning techniques to bolster the visual reasoning abilities of visuomotor agents<b/>. 
+  I'm particularly enthusiastic about creating intelligent agents that can <b>perceive and retain information with the fluidity and coherence akin to human cognition<b/>. 
+  Furthermore, I actively track the progress in <b>general agents<b/>, holding a strong belief that the <b>scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving Artificial General Intelligence (AGI)<b/>.
   </p>
   <p><b>Research Interests</b>: Machine Learning, Computer Vision, Reinforcement Learning, Agents, Robotics</p>
 
