@@ -10,7 +10,7 @@ pub_date:       "2025"
 
 abstract: >-
   The first reinforcement learning trained multi-task policy in the Minecraft world, demonstrating zero-shot generalization capability to other 3D domains. 
-cover: https://meee.com.tw/BMSHUYx
+cover: https://meee.com.tw/BMSHUYx.gif
 authors:
   - Shaofei Cai*
   - Zhancun Mu*
