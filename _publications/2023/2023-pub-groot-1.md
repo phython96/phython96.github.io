@@ -2,7 +2,7 @@
 title:          "GROOT: Learning to Follow Instructions by Watching Gameplay Videos"
 date:           2023-10-08 00:01:00 +0800
 selected:       true
-pub:            "International Conference on Learning Representations (ICLR)"
+pub:            "International Conference on Learning Representations (ICLR'24)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span> <span class="badge badge-pill badge-publication badge-success">Top 6.2% </span>'

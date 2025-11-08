@@ -2,7 +2,7 @@
 title:          "ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment"
 date:           2025-03-05 00:01:00 +0800
 selected:       true
-pub:            "arxiv"
+pub:            "Proceedings of the AAAI Conference on Artificial Intelligence (AAAI'26)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'

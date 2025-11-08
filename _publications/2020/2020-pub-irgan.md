@@ -2,7 +2,7 @@
 title:          "IR-GAN: Image Manipulation with Linguistic Instruction by Increment Reasoning"
 date:           2020-04-14 00:01:00 +0800
 selected:       false
-pub:            "ACM International Conference on Multimedia (MM)"
+pub:            "ACM International Conference on Multimedia (MM'20)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Oral</span>'

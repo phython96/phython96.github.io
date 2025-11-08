@@ -2,7 +2,7 @@
 title:          "DyStyle: Dynamic Neural Network for Multi-Attribute-Conditioned Style Editing"
 date:           2023-03-04 00:01:00 +0800
 selected:       false 
-pub:            "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+pub:            "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV'23)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'

@@ -2,7 +2,7 @@
 title:          "Describe, Explain, Plan and Select: Interactive Planning with Large Language Models Enables Open-World Multi-Task Agents"
 date:           2023-02-01 00:01:00 +0800
 selected:       false 
-pub:            "Neural Information Processing Systems (NeurIPS)"
+pub:            "Neural Information Processing Systems (NeurIPS'23)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'

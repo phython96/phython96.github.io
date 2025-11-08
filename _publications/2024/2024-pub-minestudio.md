@@ -1,7 +1,7 @@
 ---
 title:          "MineStudio: A Streamlined Package for Minecraft AI Agent Development"
 date:           2024-12-18 00:01:00 +0800
-selected:       true
+selected:       false
 pub:            "arxiv"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'

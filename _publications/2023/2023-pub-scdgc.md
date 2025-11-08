@@ -2,7 +2,7 @@
 title:          "Semantic and Correlation Disentangled Graph Convolutions for Multilabel Image Recognition"
 date:           2023-03-03 00:01:00 +0800
 selected:       false 
-pub:            "IEEE Transactions on Neural Networks and Learning Systems (TNNLS)"
+pub:            "IEEE Transactions on Neural Networks and Learning Systems (TNNLS'23)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'

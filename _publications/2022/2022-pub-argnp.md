@@ -2,7 +2,7 @@
 title:          "Automatic Relation-aware Graph Network Proliferation"
 date:           2022-05-15 00:01:00 +0800
 selected:       true
-pub:            "IEEE/CVF Computer Vision and Pattern Recognition (CVPR)"
+pub:            "IEEE/CVF Computer Vision and Pattern Recognition (CVPR'22)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Oral</span> <span class="badge badge-pill badge-publication badge-success">Top 4.2%</span>'
