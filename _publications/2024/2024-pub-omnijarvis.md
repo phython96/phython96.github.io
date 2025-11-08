@@ -2,7 +2,7 @@
 title:          "OmniJARVIS: Unified Vision-Language-Action Tokenization Enables Open-World Instruction Following Agents"
 date:           2024-07-10 00:01:00 +0800
 selected:       false
-pub:            "Neural Information Processing Systems (NeurIPS)"
+pub:            "Neural Information Processing Systems (NeurIPS'24)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge/ badge-pill badge-publication badge-success">Spotlight</span>'
