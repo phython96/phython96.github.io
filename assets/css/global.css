@@ -280,9 +280,99 @@ h6 .fas, h6 .fab, h6 .far {
 }
 
 /* ============================================================
-   Experience / education entries
+   Experience / Education / Awards — refined list
    ============================================================ */
-.media .media-body > div:first-child { font-weight: 600; color: var(--heading); }
+.exp-section-title {
+    position: relative;
+    padding-left: 0.7rem;
+    margin-bottom: 0.85rem;
+    font-weight: 700;
+    color: var(--heading);
+}
+.exp-section-title::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.18em; bottom: 0.18em;
+    width: 4px;
+    border-radius: 4px;
+    background: var(--accent-gradient);
+}
+
+.exp-list { list-style: none; padding: 0; margin: 0; }
+.exp-list-fill, .award-list-fill {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.exp-item {
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.7rem;
+    transition: background-color 0.18s ease;
+}
+.exp-item:hover { background-color: var(--accent-soft); }
+.exp-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex: 0 0 30px;
+    margin-top: 0.15rem;
+}
+.exp-body { flex: 1 1 auto; min-width: 0; }
+.exp-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+.exp-name { font-weight: 700; color: var(--heading); }
+.exp-date {
+    flex: 0 0 auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--badge-text);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.12rem 0.6rem;
+    white-space: nowrap;
+}
+.exp-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.45; }
+
+.award-list { list-style: none; padding: 0; margin: 0; }
+.award-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+    position: relative;
+    padding: 0.4rem 0.6rem 0.4rem 1.15rem;
+    border-radius: 0.6rem;
+    transition: background-color 0.18s ease;
+}
+.award-item:hover { background-color: var(--accent-soft); }
+.award-item::before {
+    content: "";
+    position: absolute;
+    left: 0.4rem; top: 0.8rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+}
+.award-name { color: var(--text); line-height: 1.5; }
+.award-date {
+    flex: 0 0 auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--badge-text);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.12rem 0.6rem;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 0.15rem;
+}
 
 /* ============================================================
    Badges

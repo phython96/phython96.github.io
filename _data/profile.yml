@@ -4,7 +4,7 @@ navbar_name: "Shaofei Cai"
 
 positions:
 - logo: /assets/images/badges/deepseek.png
-  name: AGI Researcher at DeepSeek AI
+  name: Deep Learning Researcher at DeepSeek AI
 - logo: /assets/images/badges/PKU_red.png  # Logo is optional
   name: Ph.D. in AI, Peking University
 
@@ -22,7 +22,7 @@ orcid: 0000-0002-1195-7276
 short_bio_text_justify: false
 short_bio: >-
   <p><b>My dream is to witness the emergence of AGI and to contribute my efforts.</b></p>
-  <p>I am currently an AGI Researcher at <b>DeepSeek AI</b>, where I focus on <b>post-training large language models to strengthen their agentic capabilities</b>, with an emphasis on <b>coding agents</b>.
+  <p>I am currently a Deep Learning Researcher at <b>DeepSeek AI</b>, where I focus on <b>post-training large language models to strengthen their agentic capabilities</b>, with an emphasis on <b>coding agents</b>.
   I'm fascinated by how scalable training can turn a language model into an agent that reliably plans, acts, and self-corrects while solving real-world software engineering tasks.</p>
   <p>This builds on my doctoral research at <b>Peking University</b>, which centered on <b>multi-task agents operating within open-world settings</b>.
   As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently <b>pushing the frontiers of AI agent capabilities in 3D video games</b>.
@@ -45,25 +45,25 @@ education:
   logo: /assets/images/badges/PKU_red.png
   position: >-
     School of Intelligence Science and Technology · Institute for Artificial Intelligence <br />
-    Computer Science and Technology (Intelligence Science and Technology) · Ph.D.
+    Ph.D. · Computer Science and Technology (Intelligence Science and Technology)
   date: Sep. 2022 - Jul. 2026
 - name: University of Chinese Academy of Sciences
   logo: /assets/images/badges/UCAS_blue.jpg
-  position: >- 
+  position: >-
     Institute of Computing Technology, Chinese Academy of Sciences <br />
-    M.S. in Computer Science
+    M.S. · Computer Technology
   date: Sep. 2019 - Jul. 2022
 - name: Xi'an Jiaotong University
   logo: /assets/images/badges/XJTU_red.png
-  position: >- 
+  position: >-
     Software College <br />
-    B.Eng. in Software Engineering
+    B.Eng. · Software Engineering
   date: Sep. 2015 - Jul. 2019
 
 experience:
 - name: DeepSeek AI
   logo: /assets/images/badges/deepseek.png
-  position: AGI Researcher
+  position: Deep Learning Researcher
   date: Oct. 2025 - now
 
 # - name: Beijing Bytedance technology company Limited
@@ -72,16 +72,11 @@ experience:
 #   date: Oct. 2020 - May 2021
 
 awards:
-- name: <b>Gold Medal 🏅 </b> <span class="badge badge-pill badge-info">Top 3.3%</span>  <br />
-        at International Collegiate Programming Contest (ACM-ICPC) Asia Regional
+- name: <b>Gold Medal</b> · ICPC Asia Regional <span class="badge badge-pill badge-info">Top 3.3%</span>
   date: 2018
-- name: <b>Outstanding Student Award</b> <br />
-        at Xi’an Jiaotong University for undergraduate students
-  date: 2019
-- name: <b>3rd Academic Star Award (Top 5 Students)</b> at Peking University
+- name: <b>Winner</b> · ATEC 2025 Robotics &amp; AI Challenge (Software)
   date: 2025
-- name: <b>Winner, 1st</b> at ATEC 2025 Robotics and AI Challenge, Software Track
-  date: 2025
-- name: <b>Outstanding Graduate</b> <br />
-        of Beijing Municipality &amp; Peking University
+- name: <b>Outstanding Graduate of Beijing</b>
+  date: 2026
+- name: <b>Outstanding Graduate of Peking University</b>
   date: 2026

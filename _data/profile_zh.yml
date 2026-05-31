@@ -4,7 +4,7 @@ navbar_name: "Shaofei Cai"
 
 positions:
 - logo: /assets/images/badges/deepseek.png
-  name: DeepSeek AI · AGI 研究员
+  name: DeepSeek AI · 深度学习研究员
 - logo: /assets/images/badges/PKU_red.png  # Logo is optional
   name: 北京大学 · 人工智能博士
 
@@ -22,7 +22,7 @@ orcid: 0000-0002-1195-7276
 short_bio_text_justify: false
 short_bio: >-
   <p><b>我的梦想是见证 AGI 的诞生,并为之贡献一份力量。</b></p>
-  <p>我目前是 <b>DeepSeek AI</b> 的 AGI 研究员,主要从事<b>大语言模型的后训练(post-training)以增强其智能体(agentic)能力</b>,重点方向是 <b>Coding Agent</b>。
+  <p>我目前是 <b>DeepSeek AI</b> 的深度学习研究员,主要从事<b>大语言模型的后训练(post-training)以增强其智能体(agentic)能力</b>,重点方向是 <b>Coding Agent</b>。
   我着迷于:如何通过可扩展的训练,让语言模型成长为一个在解决真实软件工程任务时能够稳定地规划、执行并自我纠错的智能体。</p>
   <p>这一方向延续自我在<b>北京大学</b>的博士研究——围绕<b>开放世界环境中的多任务智能体</b>展开。
   作为第一作者,我主导了 <b>GROOT 与 ROCKET 系列</b>工作,让 AI 智能体能够遵循人类指令、在 Minecraft 中完成复杂任务,持续<b>推动 3D 游戏环境中智能体能力的前沿</b>。
@@ -45,37 +45,33 @@ education:
   logo: /assets/images/badges/PKU_red.png
   position: >-
     智能学院 · 人工智能研究院 <br />
-    计算机科学与技术(智能科学与技术) · 博士
+    博士 · 计算机科学与技术(智能科学与技术)
   date: 2022.09 - 2026.07
 - name: 中国科学院大学
   logo: /assets/images/badges/UCAS_blue.jpg
   position: >-
     中国科学院计算技术研究所 <br />
-    计算机科学硕士
+    硕士 · 计算机技术
   date: 2019.09 - 2022.07
 - name: 西安交通大学
   logo: /assets/images/badges/XJTU_red.png
   position: >-
     软件学院 <br />
-    软件工程学士
+    学士 · 软件工程
   date: 2015.09 - 2019.07
 
 experience:
 - name: DeepSeek AI
   logo: /assets/images/badges/deepseek.png
-  position: AGI 研究员
+  position: 深度学习研究员
   date: 2025.10 - 至今
 
 awards:
-- name: <b>金牌 🏅 </b> <span class="badge badge-pill badge-info">前 3.3%</span>  <br />
-        国际大学生程序设计竞赛(ACM-ICPC)亚洲区域赛
+- name: <b>金牌</b> · ACM-ICPC 亚洲区域赛 <span class="badge badge-pill badge-info">前 3.3%</span>
   date: 2018
-- name: <b>优秀毕业生</b> <br />
-        西安交通大学本科生
-  date: 2019
-- name: <b>北京大学第三届"学术之星"(全校前 5 名)</b>
+- name: <b>冠军</b> · ATEC 2025 机器人与人工智能挑战赛 · 软件赛道
   date: 2025
-- name: <b>冠军(第一名)</b> ATEC 2025 机器人与人工智能挑战赛 · 软件赛道
-  date: 2025
-- name: <b>北京市普通高等学校优秀毕业生</b> 与 <b>北京大学优秀毕业生</b>
+- name: <b>北京市普通高等学校优秀毕业生</b>
+  date: 2026
+- name: <b>北京大学优秀毕业生</b>
   date: 2026
