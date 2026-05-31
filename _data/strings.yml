@@ -1,0 +1,33 @@
+# UI string dictionary for bilingual rendering (jekyll-polyglot).
+# Usage in templates: {% assign t = site.data.strings[site.active_lang] %} then {{ t.education }}
+en:
+  menu: "Menu"
+  education: "Education"
+  experience: "Experience"
+  awards: "Honors & Awards"
+  news: "News"
+  selected_publications: "Selected Publications"
+  view_all: "view all"
+  all_publications: "All publications"
+  cv: "Curriculum Vitae"
+  last_updated: "Last updated"
+  equal_contribution: "equal contribution"
+  corresponding_author: "corresponding author"
+  not_found_body: "The requested page could not be found."
+  go_home: "Go home"
+
+zh:
+  menu: "菜单"
+  education: "教育经历"
+  experience: "工作经历"
+  awards: "荣誉与奖项"
+  news: "动态"
+  selected_publications: "精选论文"
+  view_all: "查看全部"
+  all_publications: "全部论文"
+  cv: "简历"
+  last_updated: "最近更新"
+  equal_contribution: "共同贡献"
+  corresponding_author: "通讯作者"
+  not_found_body: "你访问的页面不存在。"
+  go_home: "返回首页"

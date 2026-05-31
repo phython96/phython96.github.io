@@ -22,19 +22,17 @@ orcid: 0000-0002-1195-7276
 short_bio_text_justify: false
 short_bio: >-
   <p><b>My dream is to witness the emergence of AGI and to contribute my efforts.</b></p>
-  <p> My doctoral research centered on <b>multi-task agents operating within open-world settings</b>. 
-  A core aspect of this work involved identifying and developing a <b>task representation method characterized by high expressiveness, low ambiguity, and scalability for efficient training</b>. 
-  In the realm of 3D video games, I spearheaded the development of the <b>GROOT and ROCKET series</b> as the first author. 
-  These projects empower AI agents to execute intricate tasks in Minecraft based on human instructions, consistently <b>pushing the frontiers of AI agent capabilities within the Minecraft environment</b>. 
-  Concurrently, I've delved into applying <b>reinforcement learning techniques to bolster the visual reasoning abilities of visuomotor agents</b>. 
-  I'm particularly enthusiastic about creating intelligent agents that can <b>perceive and retain information with the fluidity and coherence akin to human cognition</b>. 
-  Furthermore, I actively track the progress in <b>general agents</b>, holding a strong belief that the <b>scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI</b>.
-  </p>
-  <p><b>Research Interests</b>: Machine Learning, Computer Vision, Reinforcement Learning, Embodied Intelligence, LLM Agents</p>
+  <p>I am currently an AGI Researcher at <b>DeepSeek AI</b>, where I focus on <b>post-training large language models to strengthen their agentic capabilities</b>, with an emphasis on <b>coding agents</b>.
+  I'm fascinated by how scalable training can turn a language model into an agent that reliably plans, acts, and self-corrects while solving real-world software engineering tasks.</p>
+  <p>This builds on my doctoral research at <b>Peking University</b>, which centered on <b>multi-task agents operating within open-world settings</b>.
+  As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently <b>pushing the frontiers of AI agent capabilities in 3D video games</b>.
+  A core theme of this work was finding <b>task representations that are expressive, low-ambiguity, and scalable for efficient training</b> — a question that carries directly into building general coding agents today.</p>
+  <p>Across both lines of work, I hold a strong belief that the <b>scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI</b>.</p>
+  <p><b>Research Interests</b>: LLM Agents, Coding Agents, Post-training &amp; Reinforcement Learning, Machine Learning, Embodied Intelligence</p>
 
 portrait_url: /assets/images/photos/avater.jpg
-portrait_caption: >-
-  Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+# portrait_caption: >-
+#   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 
 education:
 - name: Peking University
@@ -57,7 +55,7 @@ education:
   date: Sep. 2015 - Jul. 2019
 
 experience:
-- name: DeekSeek AI
+- name: DeepSeek AI
   logo: /assets/images/badges/deepseek.png
   position: AGI Researcher
   date: Oct. 2025 - now

@@ -1,4 +1,5 @@
 {%- assign authors = include.authors -%}
+{%- assign t = site.data.strings[site.active_lang] -%}
 {%- assign has_eq_contrib = false -%}
 {%- assign has_corresponding = false -%}
 
@@ -44,11 +45,11 @@
 {%- if has_eq_contrib or has_corresponding %}
 <mark>(
     {%- if has_eq_contrib -%}
-        * <i> equal contribution</i>
+        * <i> {{ t.equal_contribution }}</i>
     {%- endif -%}
     {%- if has_corresponding -%}
         {%- if has_eq_contrib -%}, {% endif -%}
-        <sup>#</sup> <i> corresponding author</i>
+        <sup>#</sup> <i> {{ t.corresponding_author }}</i>
     {%- endif -%}
 )</mark>
 {%- endif -%}

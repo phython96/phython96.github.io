@@ -19,6 +19,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 markdown: kramdown
 plugins:
   - jekyll-email-protect
+  - jekyll-polyglot
+
+# Multilingual settings (jekyll-polyglot)
+languages: ["en", "zh"]
+default_lang: "en"
+exclude_from_localization: ["assets", "javascript", "images", "CNAME", ".nojekyll"]
+parallel_localization: false
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

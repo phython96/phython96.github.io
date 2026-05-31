@@ -1,17 +1,27 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    {% assign t = site.data.strings[site.active_lang] %}
     <div class="container">
         <a class="navbar-brand"><strong>{{site.data.profile.navbar_name}}</strong></a>
         <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-map"></i> Menu
+            <i class="fas fa-map"></i> {{ t.menu }}
         </button>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 {% for item in site.data.navigation.pages %}
                 <li class="nav-item {% if item.name == page.navbar_title %}active{% endif %}">
-                    <a class="nav-link" href="{{ item.url | relative_url }}">{{ item.name }}</a>
+                    <a class="nav-link" href="{{ item.url | relative_url }}">{% if site.active_lang == "zh" and item.name_zh %}{{ item.name_zh }}{% else %}{{ item.name }}{% endif %}</a>
                 </li>
                 {% endfor %}
+                {% comment %} Language switcher. page.url is language-neutral; strip any /zh prefix defensively. {% endcomment %}
+                {% assign neutral_url = page.url | remove_first: '/zh' %}
+                <li class="nav-item">
+                    {% if site.active_lang == "zh" %}
+                    <a class="nav-link" {% static_href %}href="{{ neutral_url }}"{% endstatic_href %}><i class="fas fa-language"></i> EN</a>
+                    {% else %}
+                    <a class="nav-link" href="/zh{{ neutral_url }}"><i class="fas fa-language"></i> 中文</a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>
