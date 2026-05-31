@@ -15,6 +15,7 @@ en:
   corresponding_author: "corresponding author"
   not_found_body: "The requested page could not be found."
   go_home: "Go home"
+  research_interests: "Research Interests"
 
 zh:
   menu: "菜单"
@@ -31,3 +32,4 @@ zh:
   corresponding_author: "通讯作者"
   not_found_body: "你访问的页面不存在。"
   go_home: "返回首页"
+  research_interests: "研究兴趣"

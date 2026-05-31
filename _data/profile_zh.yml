@@ -6,7 +6,7 @@ positions:
 - logo: /assets/images/badges/deepseek.png
   name: DeepSeek AI · AGI 研究员
 - logo: /assets/images/badges/PKU_red.png  # Logo is optional
-  name: 北京大学 · 博士研究生
+  name: 北京大学 · 人工智能博士
 
 # cv_link: link-to-your-cv-file
 gscholar: MZXDSSUAAAAJ
@@ -28,7 +28,13 @@ short_bio: >-
   作为第一作者,我主导了 <b>GROOT 与 ROCKET 系列</b>工作,让 AI 智能体能够遵循人类指令、在 Minecraft 中完成复杂任务,持续<b>推动 3D 游戏环境中智能体能力的前沿</b>。
   这项工作的一个核心主题是寻找<b>兼具高表达力、低歧义、且可扩展用于高效训练的任务表征</b>——而这一问题恰恰直接延伸到了今天构建通用 Coding Agent 的实践中。</p>
   <p>纵观这两段工作,我始终坚信:<b>在数字世界中可扩展地生成与验证任务,是当前通往 AGI 最可行的路径</b>。</p>
-  <p><b>研究兴趣</b>:LLM 智能体、Coding Agent、后训练与强化学习、机器学习、具身智能</p>
+
+research_interests:
+- 智能体
+- 强化学习
+- 大语言模型
+- 机器学习
+- 具身智能
 
 portrait_url: /assets/images/photos/avater.jpg
 # portrait_caption: >-
@@ -38,8 +44,8 @@ education:
 - name: 北京大学
   logo: /assets/images/badges/PKU_red.png
   position: >-
-    人工智能研究院 <br />
-    博士研究生
+    智能学院 · 人工智能研究院 <br />
+    计算机科学与技术(智能科学与技术) · 博士
   date: 2022.09 - 2026.07
 - name: 中国科学院大学
   logo: /assets/images/badges/UCAS_blue.jpg
@@ -71,3 +77,5 @@ awards:
   date: 2025
 - name: <b>冠军(第一名)</b> ATEC 2025 机器人与人工智能挑战赛 · 软件赛道
   date: 2025
+- name: <b>北京市普通高等学校优秀毕业生</b> 与 <b>北京大学优秀毕业生</b>
+  date: 2026

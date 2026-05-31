@@ -38,4 +38,26 @@ $(function () {
     $(".lazy").on("load", function () {
         $grid.masonry('layout');
     });
+
+    // Dark mode toggle (manual choice wins, persisted)
+    $('#theme-toggle').on('click', function () {
+        var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    // Follow the OS theme live, but only when the user hasn't made a manual choice
+    if (window.matchMedia) {
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var onSchemeChange = function (e) {
+            var stored = null;
+            try { stored = localStorage.getItem('theme'); } catch (err) {}
+            if (!stored) {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        };
+        if (mq.addEventListener) { mq.addEventListener('change', onSchemeChange); }
+        else if (mq.addListener) { mq.addListener(onSchemeChange); }
+    }
 })

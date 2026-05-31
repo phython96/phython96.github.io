@@ -1,47 +1,342 @@
 @charset "utf-8";
+
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+    --accent: #7c3aed;
+    --accent-2: #db2777;
+    --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+    --accent-soft: rgba(124, 58, 237, 0.10);
+    --accent-soft-2: rgba(219, 39, 119, 0.10);
+
+    --bg: #f5f5fb;
+    --bg-accent: radial-gradient(1200px 600px at 85% -10%, rgba(124,58,237,0.08), transparent 60%),
+                 radial-gradient(1000px 500px at -10% 10%, rgba(219,39,119,0.06), transparent 55%);
+    --card-bg: #ffffff;
+    --card-bg-elevated: #ffffff;
+    --text: #1f2230;
+    --text-muted: #6b7280;
+    --heading: #14141c;
+    --border: rgba(20, 20, 40, 0.08);
+    --border-strong: rgba(20, 20, 40, 0.12);
+    --shadow: 0 1px 2px rgba(20,20,50,0.04), 0 8px 24px rgba(20,20,50,0.06);
+    --shadow-hover: 0 6px 16px rgba(20,20,50,0.08), 0 16px 40px rgba(124,58,237,0.10);
+    --navbar-bg: rgba(255, 255, 255, 0.72);
+    --link: #6d28d9;
+    --link-hover: #db2777;
+    --badge-bg: var(--accent-soft);
+    --badge-text: #6d28d9;
+    --code: #db2777;
+}
+
+[data-theme="dark"] {
+    --bg: #14151c;
+    --bg-accent: radial-gradient(1200px 600px at 85% -10%, rgba(124,58,237,0.18), transparent 60%),
+                 radial-gradient(1000px 500px at -10% 10%, rgba(219,39,119,0.12), transparent 55%);
+    --card-bg: #1c1d27;
+    --card-bg-elevated: #20212d;
+    --text: #e6e7ee;
+    --text-muted: #9a9db0;
+    --heading: #f3f4fb;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.45);
+    --shadow-hover: 0 6px 16px rgba(0,0,0,0.5), 0 16px 40px rgba(124,58,237,0.30);
+    --navbar-bg: rgba(20, 21, 28, 0.72);
+    --link: #c4b5fd;
+    --link-hover: #f9a8d4;
+    --badge-bg: rgba(124, 58, 237, 0.22);
+    --badge-text: #d6bcfa;
+    --code: #f9a8d4;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Lato", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 400;
     padding-top: 5.0rem;
+    color: var(--text);
+    background-color: var(--bg);
+    background-image: var(--bg-accent);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Bootstrap bg helpers -> themed */
+body.bg-light { background-color: var(--bg) !important; }
+.bg-white { background-color: var(--card-bg) !important; }
+.bg-light { background-color: var(--bg) !important; }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.01em;
 }
 
-.text-profile-position {
-    font-weight: 400;
+a { color: var(--link); transition: color 0.18s ease; }
+a:hover { color: var(--link-hover); text-decoration: none; }
+
+hr { border-top-color: var(--border); }
+
+.text-muted { color: var(--text-muted) !important; }
+.text-body { color: var(--text) !important; }
+.border-gray { border-color: var(--border) !important; }
+.border-bottom { border-bottom-color: var(--border) !important; }
+.border-top { border-top-color: var(--border) !important; }
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 1rem !important;
+    box-shadow: var(--shadow) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+.card.shadow-sm { box-shadow: var(--shadow) !important; }
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover) !important;
+    border-color: var(--border-strong) !important;
 }
 
-.text-profile-bio {
-    /* font-family: "Raleway"; */
-    font-weight: 400;
-}
+/* Rounded containers used outside .card (publications/news wrappers) */
+.rounded-sm { border-radius: 0.85rem !important; }
+.shadow-sm { box-shadow: var(--shadow) !important; }
+.my-3.bg-white,
+.my-0.bg-white,
+.bg-white.shadow-sm { border: 1px solid var(--border) !important; }
 
+/* ============================================================
+   Navbar — glassmorphism
+   ============================================================ */
 .navbar {
-    opacity: 0.95;
+    background-color: var(--navbar-bg) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 12px rgba(20,20,50,0.05);
+    opacity: 1;
+}
+.navbar-brand strong {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+}
+.navbar .nav-link {
+    color: var(--text) !important;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.18s ease;
+}
+.navbar .nav-link:hover { color: var(--link-hover) !important; }
+.navbar .nav-item.active .nav-link,
+.navbar .nav-link.active { color: var(--accent) !important; }
+.navbar .nav-item.active .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.5rem; right: 0.5rem; bottom: 0.15rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent-gradient);
+}
+.navbar-toggler { color: var(--text); border-color: var(--border); }
+
+/* Theme toggle button */
+.theme-toggle {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    border-radius: 999px;
+    width: 2.1rem; height: 2.1rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.theme-toggle .fa-sun { display: none; }
+[data-theme="dark"] .theme-toggle .fa-sun { display: inline; }
+[data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+
+/* ============================================================
+   Profile card
+   ============================================================ */
+.text-profile-position { font-weight: 400; color: var(--text); }
+.text-profile-position .position-item { display: inline-block; white-space: nowrap; }
+.text-profile-position .position-sep {
+    margin: 0 0.6rem;
+    color: var(--text-muted);
+    opacity: 0.45;
+    font-weight: 300;
+}
+.text-profile-bio { font-weight: 400; line-height: 1.7; }
+.text-profile-bio b { color: var(--heading); }
+
+/* Research interest tags */
+.research-interests { display: flex; flex-wrap: wrap; align-items: center; }
+.ri-label {
+    font-weight: 700;
+    color: var(--heading);
+    margin-right: 0.6rem;
+    margin-bottom: 0.4rem;
+}
+.ri-tag {
+    display: inline-block;
+    margin: 0 0.4rem 0.4rem 0;
+    padding: 0.22rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--badge-text);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.ri-tag:hover {
+    background: var(--accent-gradient);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-1px);
 }
 
+/* Gradient name */
+.card-body .h1.font-weight-normal {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-weight: 800;
+}
+.card-body .h1.font-weight-normal small {
+    -webkit-text-fill-color: var(--text-muted);
+    color: var(--text-muted);
+    background: none;
+    font-weight: 400;
+}
+
+/* Portrait — refined thin gradient ring + soft glow */
+.figure-img.img-thumbnail {
+    border: 0;
+    padding: 3px;
+    border-radius: 18px;
+    background-color: transparent;
+    background-image: var(--accent-gradient);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.18), var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.figure-img.img-thumbnail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(124, 58, 237, 0.28), var(--shadow-hover);
+}
+.card-body .rounded-circle {
+    border: 0;
+    padding: 2px;
+    background-image: var(--accent-gradient);
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.22);
+    border-radius: 50% !important;
+}
+
+/* Social links row */
+.card-body a.no-break { font-weight: 500; }
+
+/* ============================================================
+   Section headings (Education / Experience / News / Pubs)
+   ============================================================ */
+.card-body h6,
+.my-3.bg-white > h6,
+.bg-white.shadow-sm > h6 {
+    color: var(--heading);
+}
+h6 .fas, h6 .fab, h6 .far {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+/* News / publication section title get a gradient accent bar */
+.my-3.bg-white > h6.border-bottom,
+.bg-white.rounded-sm > h6.border-bottom {
+    position: relative;
+}
+
+/* ============================================================
+   Experience / education entries
+   ============================================================ */
+.media .media-body > div:first-child { font-weight: 600; color: var(--heading); }
+
+/* ============================================================
+   Badges
+   ============================================================ */
+.badge-info, .badge-pill.badge-info {
+    background-color: var(--badge-bg) !important;
+    color: var(--badge-text) !important;
+    font-weight: 600;
+}
+.badge-success { background-color: rgba(16,185,129,0.15) !important; color: #059669 !important; }
+.badge-publication { font-size: 100%; }
+
+/* ============================================================
+   Publications
+   ============================================================ */
+.publication-row,
+.row.no-gutters {
+    transition: background-color 0.2s ease;
+    border-radius: 0.6rem;
+}
+.row.no-gutters:hover { background-color: var(--accent-soft); }
+
+.cover-image { width: 180px; max-height: 120px; }
+.abstract-body { min-height: 100px; }
+
+/* Link pills [Paper] [Code] ... */
+.abstract-links a {
+    display: inline-block;
+    margin: 0.15rem 0.25rem 0.15rem 0;
+    padding: 0.05rem 0.55rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--link) !important;
+    font-weight: 600;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+.abstract-links a:hover {
+    background: var(--accent-gradient);
+    color: #fff !important;
+}
+
+/* Mobile publication card background (replaces inline white) */
+.pub-mobile-bg { background-color: var(--card-bg) !important; }
+
+/* ============================================================
+   Misc / lazy / footer
+   ============================================================ */
 .inline-badge {
     height: 16px;
     vertical-align: -10%;
     margin-right: 2px;
     line-break: unset;
 }
-
-.no-break {
-    white-space: nowrap;
-}
-
-.cover-image {
-    width: 180px;
-    max-height: 120px;
-}
-
-.abstract-body {
-    min-height: 100px;
-}
+.no-break { white-space: nowrap; }
 
 img.lazy {
     background-image: url('images/loading.gif');
@@ -50,7 +345,6 @@ img.lazy {
     background-size: 50px 50px;
     min-height: 80px;
 }
-
 div.lazy {
     background-image: url('images/loading.gif');
     background-repeat: no-repeat;
@@ -59,11 +353,16 @@ div.lazy {
     min-height: 80px;
 }
 
-.badge-publication {
-    font-size: 100%;
-}
+.email-text { font-family: "SFMono-Regular", Menlo, Consolas, Courier, monospace; color: var(--code); }
 
-.email-text {
-    font-family: Courier, monospace;
-}
+.footer { color: var(--text-muted); }
+.footer a { color: var(--link); }
 
+/* Year nav pills on publications page */
+#navbar-year .nav-link { color: var(--text-muted); border-radius: 0.5rem; }
+#navbar-year .nav-link:hover { color: var(--accent); background: var(--accent-soft); }
+
+/* Smooth theme transition for large surfaces */
+body, .card, .navbar, .bg-white, .footer {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}

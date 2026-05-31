@@ -34,15 +34,27 @@
                         </div>
                         <div class="text-profile-position">
                             {% for position in profile.positions %}
-                            {% if position.logo -%}
-                            <img src="{{ position.logo | relative_url }}" alt="Logo" class="inline-badge"/>
-                            {%- endif %}
-                            {{ position.name }}<br/>
+                            <span class="position-item">
+                                {%- if position.logo -%}
+                                <img src="{{ position.logo | relative_url }}" alt="Logo" class="inline-badge"/>
+                                {%- endif -%}
+                                {{ position.name }}
+                            </span>{% unless forloop.last %}<span class="position-sep">|</span>{% endunless %}
                             {% endfor %}
                         </div>
                         <div class="text-profile-bio mt-3" {% if profile.short_bio_text_justify %}style="text-align: justify;"{% endif %}>
                             {{ profile.short_bio }}
                         </div>
+                        {% if profile.research_interests %}
+                        <div class="research-interests mt-3">
+                            <span class="ri-label">{{ t.research_interests }}</span>
+                            <span class="ri-tags">
+                                {%- for interest in profile.research_interests -%}
+                                <span class="ri-tag">{{ interest }}</span>
+                                {%- endfor -%}
+                            </span>
+                        </div>
+                        {% endif %}
                         {% if profile.cv_link %}
                             <a target="_blank" href="{{ profile.cv_link | relative_url }}"><i class="fas fa-file-alt"></i> {{ t.cv }}</a> <br/>
                         {% endif %}

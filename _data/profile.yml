@@ -6,7 +6,7 @@ positions:
 - logo: /assets/images/badges/deepseek.png
   name: AGI Researcher at DeepSeek AI
 - logo: /assets/images/badges/PKU_red.png  # Logo is optional
-  name: Ph.D. Candidate at Peking University
+  name: Ph.D. in AI, Peking University
 
 # cv_link: link-to-your-cv-file
 gscholar: MZXDSSUAAAAJ  # This is an example, replace it with your own Google Scholar ID
@@ -28,7 +28,13 @@ short_bio: >-
   As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently <b>pushing the frontiers of AI agent capabilities in 3D video games</b>.
   A core theme of this work was finding <b>task representations that are expressive, low-ambiguity, and scalable for efficient training</b> — a question that carries directly into building general coding agents today.</p>
   <p>Across both lines of work, I hold a strong belief that the <b>scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI</b>.</p>
-  <p><b>Research Interests</b>: LLM Agents, Coding Agents, Post-training &amp; Reinforcement Learning, Machine Learning, Embodied Intelligence</p>
+
+research_interests:
+- AI Agents
+- Reinforcement Learning
+- Large Language Models
+- Machine Learning
+- Embodied Intelligence
 
 portrait_url: /assets/images/photos/avater.jpg
 # portrait_caption: >-
@@ -37,9 +43,9 @@ portrait_url: /assets/images/photos/avater.jpg
 education:
 - name: Peking University
   logo: /assets/images/badges/PKU_red.png
-  position: >- 
-    Institute for Artificial Intelligence <br />
-    Ph.D. Candidate 
+  position: >-
+    School of Intelligence Science and Technology · Institute for Artificial Intelligence <br />
+    Computer Science and Technology (Intelligence Science and Technology) · Ph.D.
   date: Sep. 2022 - Jul. 2026
 - name: University of Chinese Academy of Sciences
   logo: /assets/images/badges/UCAS_blue.jpg
@@ -76,3 +82,6 @@ awards:
   date: 2025
 - name: <b>Winner, 1st</b> at ATEC 2025 Robotics and AI Challenge, Software Track
   date: 2025
+- name: <b>Outstanding Graduate</b> <br />
+        of Beijing Municipality &amp; Peking University
+  date: 2026
