@@ -610,7 +610,7 @@ h6 .fas, h6 .fab, h6 .far {
 .inline-badge {
     height: 16px;
     vertical-align: -10%;
-    margin-right: 2px;
+    margin-right: 0.35rem;
     line-break: unset;
 }
 .no-break { white-space: nowrap; }
