@@ -1,0 +1,47 @@
+name: Google Scholar Stats
+
+on:
+  schedule:
+    - cron: "23 7 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/google-scholar-stats.yml"
+      - "google_scholar_crawler/**"
+
+permissions:
+  contents: write
+
+# This workflow only updates the data branch; it does not touch the deployed site.
+concurrency:
+  group: "google-scholar-stats"
+  cancel-in-progress: true
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r google_scholar_crawler/requirements.txt
+
+      - name: Crawl Google Scholar
+        env:
+          GOOGLE_SCHOLAR_ID: MZXDSSUAAAAJ
+        run: python google_scholar_crawler/main.py
+
+      - name: Publish results to google-scholar-stats branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./results
+          publish_branch: google-scholar-stats
+          force_orphan: true

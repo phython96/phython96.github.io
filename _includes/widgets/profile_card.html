@@ -30,7 +30,8 @@
                             </div>
                             {% endif %}
                         </div>
-                        <div class="text-profile-position">
+                        <div class="text-profile-position d-flex flex-wrap align-items-baseline">
+                            <span class="positions-list">
                             {% for position in profile.positions %}
                             <span class="position-item">
                                 {%- if position.logo -%}
@@ -39,6 +40,13 @@
                                 {{ position.name }}
                             </span>{% unless forloop.last %}<span class="position-sep">|</span>{% endunless %}
                             {% endfor %}
+                            </span>
+                            {% if profile.gscholar %}
+                            {%- if profile.gscholar contains 'scholar.google' -%}{%- assign gs_url = profile.gscholar -%}{%- else -%}{%- assign gs_url = 'https://scholar.google.com/citations?user=' | append: profile.gscholar -%}{%- endif -%}
+                            <a id="gs-citations" class="gs-cite ml-auto" href="{{ gs_url }}" target="_blank" rel="noopener" title="Google Scholar" style="display:none;">
+                                <i class="fab fa-google-scholar"></i><span class="gs-count"></span><span class="gs-cite-label">{{ t.citations }}</span>
+                            </a>
+                            {% endif %}
                         </div>
                         <div class="text-profile-bio mt-3" {% if profile.short_bio_text_justify %}style="text-align: justify;"{% endif %}>
                             {{ profile.short_bio }}

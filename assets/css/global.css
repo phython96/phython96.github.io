@@ -186,6 +186,30 @@ hr { border-top-color: var(--border); }
     opacity: 0.45;
     font-weight: 300;
 }
+
+/* Google Scholar citation pill at the right of the positions row */
+.gs-cite {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--badge-text) !important;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.12rem 0.62rem;
+    white-space: nowrap;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.gs-cite:hover {
+    background: var(--accent-gradient);
+    color: #fff !important;
+    border-color: transparent;
+    transform: translateY(-1px);
+}
+.gs-cite .gs-count { font-weight: 700; }
 .text-profile-bio { font-weight: 400; line-height: 1.7; }
 .text-profile-bio b { color: var(--heading); }
 

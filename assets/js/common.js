@@ -60,4 +60,19 @@ $(function () {
         if (mq.addEventListener) { mq.addEventListener('change', onSchemeChange); }
         else if (mq.addListener) { mq.addListener(onSchemeChange); }
     }
+
+    // Google Scholar citation count, cached on the google-scholar-stats branch
+    // (updated daily by .github/workflows/google-scholar-stats.yml)
+    var $gs = $('#gs-citations');
+    if ($gs.length) {
+        fetch('https://raw.githubusercontent.com/phython96/phython96.github.io/google-scholar-stats/gs_data.json', { cache: 'no-store' })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(function (d) {
+                if (d && typeof d.citedby === 'number') {
+                    $gs.find('.gs-count').text(d.citedby.toLocaleString());
+                    $gs.css('display', '');
+                }
+            })
+            .catch(function () {});
+    }
 })

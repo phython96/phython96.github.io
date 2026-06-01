@@ -17,6 +17,7 @@ en:
   go_home: "Go home"
   research_interests: "Research Interests"
   site_title: "Shaofei Cai · Researcher at DeepSeek AI · Ph.D. at Peking University"
+  citations: "citations"
 
 zh:
   menu: "菜单"
@@ -35,3 +36,4 @@ zh:
   go_home: "返回首页"
   research_interests: "研究兴趣"
   site_title: "蔡少斐 · DeepSeek AI 研究员 · 北京大学博士"
+  citations: "引用"
