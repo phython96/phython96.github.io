@@ -86,11 +86,49 @@ $(function () {
         $('.accent-dot[data-accent="' + cur + '"]').addClass('active');
     };
     applyAccentActive();
-    $('.accent-dot').on('click', function () {
+    var triggerPosSwap = function () {
+        var pl = document.querySelector('.positions-list');
+        if (!pl) return;
+        pl.classList.remove('swap-anim');
+        void pl.offsetWidth; // force reflow to restart the animation
+        pl.classList.add('swap-anim');
+        setTimeout(function () { pl.classList.remove('swap-anim'); }, 600);
+    };
+    var ACCENT_GRAD = {
+        purple: 'linear-gradient(135deg, #7c3aed, #db2777)',
+        red: 'linear-gradient(135deg, #a4161a, #e5383b)',
+        blue: 'linear-gradient(135deg, #4d6bfe, #38bdf8)'
+    };
+    $('.accent-dot').on('click', function (e) {
         var accent = $(this).data('accent');
-        document.documentElement.setAttribute('data-accent', accent);
-        try { localStorage.setItem('accent', accent); } catch (e) {}
-        applyAccentActive();
+        var root = document.documentElement;
+        var prev = root.getAttribute('data-accent') || 'purple';
+        var crossesRed = (accent === 'red') !== (prev === 'red');
+        var apply = function () {
+            root.setAttribute('data-accent', accent);
+            try { localStorage.setItem('accent', accent); } catch (err) {}
+            applyAccentActive();
+            if (crossesRed) triggerPosSwap();
+        };
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || accent === prev) { apply(); return; }
+
+        // Cool color-sweep: a circle of the new palette expands from the clicked dot
+        var x = e.clientX || window.innerWidth / 2;
+        var y = e.clientY || 40;
+        var r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 8;
+        var ripple = document.createElement('div');
+        ripple.className = 'accent-ripple';
+        ripple.style.background = ACCENT_GRAD[accent] || ACCENT_GRAD.purple;
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.width = ripple.style.height = (r * 2) + 'px';
+        document.body.appendChild(ripple);
+        void ripple.offsetWidth; // reflow so the transition runs
+        ripple.classList.add('expand');
+        setTimeout(apply, 250);                                   // recolor under the sweep
+        setTimeout(function () { ripple.classList.add('fade'); }, 540);
+        setTimeout(function () { ripple.remove(); }, 950);
     });
 
     // Google Scholar citation count, cached on the google-scholar-stats branch

@@ -210,6 +210,20 @@ hr { border-top-color: var(--border); }
 .accent-dot.accent-red    { background-image: linear-gradient(135deg, #a4161a, #e5383b); }
 .accent-dot.accent-blue   { background-image: linear-gradient(135deg, #4d6bfe, #38bdf8); }
 
+/* Color-sweep ripple when switching accent palettes (sits behind the cards, in the page background) */
+.accent-ripple {
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.2;
+    pointer-events: none;
+    will-change: transform, opacity;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+}
+.accent-ripple.expand { transform: translate(-50%, -50%) scale(1); }
+.accent-ripple.fade { opacity: 0; }
+
 /* ============================================================
    Profile card
    ============================================================ */
@@ -220,6 +234,17 @@ hr { border-top-color: var(--border); }
     color: var(--text-muted);
     opacity: 0.45;
     font-weight: 300;
+}
+/* Positions row is a flex line so it can reorder + animate per theme */
+.positions-list { display: inline-flex; flex-wrap: wrap; align-items: baseline; }
+/* Red (PKU) theme: lead with Peking University, swap DeepSeek to second */
+[data-accent="red"] .positions-list { flex-direction: row-reverse; }
+@media (prefers-reduced-motion: no-preference) {
+    .positions-list.swap-anim { animation: pos-swap 0.45s ease; }
+}
+@keyframes pos-swap {
+    0%   { opacity: 0; transform: translateY(7px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Google Scholar citation pill at the right of the positions row */
