@@ -1,0 +1,69 @@
+---
+layout: default
+title: Play
+navbar_title: Play
+body_attr: data-page="play"
+---
+
+<div id="mc-game" class="mc-game">
+    <div class="mc-stage" id="mc-stage">
+        <div class="mc-crosshair" aria-hidden="true"></div>
+        <div class="mc-overlay" id="mc-overlay">
+            <div class="mc-overlay-inner">
+                <div class="mc-title"><i class="fas fa-cube"></i>
+                    {% if site.active_lang == "zh" %}迷你《我的世界》{% else %}Mini Minecraft{% endif %}
+                </div>
+                <p class="mc-sub">
+                    {% if site.active_lang == "zh" %}一个藏在主页里的体素小沙盒 —— 走一走,挖一挖,搭一搭。{% else %}A tiny voxel sandbox tucked into the homepage — walk, dig, and build.{% endif %}
+                </p>
+                <button type="button" class="mc-btn" id="mc-start">
+                    {% if site.active_lang == "zh" %}进入游戏{% else %}Enter{% endif %}
+                </button>
+                <ul class="mc-controls">
+                    <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>{% if site.active_lang == "zh" %}移动{% else %}Move{% endif %}</span></li>
+                    <li><i class="fas fa-mouse"></i> <span>{% if site.active_lang == "zh" %}转动视角{% else %}Look{% endif %}</span></li>
+                    <li><kbd>Space</kbd> <span>{% if site.active_lang == "zh" %}跳跃{% else %}Jump{% endif %}</span></li>
+                    <li><i class="fas fa-mouse-pointer"></i> <span>{% if site.active_lang == "zh" %}左键挖 / 右键放{% else %}Left: break · Right: place{% endif %}</span></li>
+                    <li><kbd>1</kbd>–<kbd>5</kbd> {% if site.active_lang == "zh" %}/ 滚轮{% else %}/ wheel{% endif %} <span>{% if site.active_lang == "zh" %}选方块{% else %}Pick block{% endif %}</span></li>
+                    <li><kbd>Esc</kbd> <span>{% if site.active_lang == "zh" %}退出{% else %}Exit{% endif %}</span></li>
+                </ul>
+                <p class="mc-mobile">{% if site.active_lang == "zh" %}建议在桌面端体验(需要键盘和鼠标)。{% else %}Best on desktop — keyboard &amp; mouse required.{% endif %}</p>
+                <p class="mc-status" id="mc-status" hidden></p>
+            </div>
+        </div>
+    </div>
+    <div class="mc-hotbar" id="mc-hotbar" aria-hidden="true"></div>
+</div>
+
+<script>
+(function () {
+    var zh = ({{ site.active_lang | jsonify }} === 'zh');
+    var cfg = {
+        stageId: 'mc-stage',
+        overlayId: 'mc-overlay',
+        hotbarId: 'mc-hotbar',
+        startBtnId: 'mc-start',
+        statusId: 'mc-status',
+        cdnUrls: [
+            'https://lib.baomitu.com/three.js/r134/three.min.js',
+            'https://cdn.staticfile.org/three.js/r134/three.min.js',
+            'https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js',
+            'https://unpkg.com/three@0.134.0/build/three.min.js'
+        ],
+        strings: {
+            loading: zh ? '正在加载游戏引擎…' : 'Loading game engine…',
+            ready: zh ? '点击锁定鼠标，开始游戏' : 'Click to lock the mouse and play',
+            paused: zh ? '已暂停 —— 点击继续' : 'Paused — click to resume',
+            error: zh ? '加载失败,可能是网络问题,稍后再试。' : 'Failed to load (network?). Please try again later.'
+        },
+        blocks: zh
+            ? ['草方块', '泥土', '石头', '木头', '树叶']
+            : ['Grass', 'Dirt', 'Stone', 'Wood', 'Leaves']
+    };
+    function start() { if (window.MCGame) { window.MCGame.boot(cfg); } }
+    var s = document.createElement('script');
+    s.src = '{{ "/assets/js/mc-game.js" | relative_url }}';
+    s.onload = start;
+    document.body.appendChild(s);
+})();
+</script>

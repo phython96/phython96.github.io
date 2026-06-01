@@ -10,3 +10,6 @@ pages:
 - name: Showcase
   name_zh: 展示
   url: /showcase
+- name: Play
+  name_zh: 小游戏
+  url: /play
