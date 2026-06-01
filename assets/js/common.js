@@ -81,7 +81,7 @@ $(function () {
 
     // Accent color picker (persisted; applied pre-paint by the inline <head> script)
     var applyAccentActive = function () {
-        var cur = document.documentElement.getAttribute('data-accent') || 'purple';
+        var cur = document.documentElement.getAttribute('data-accent') || 'red';
         $('.accent-dot').removeClass('active');
         $('.accent-dot[data-accent="' + cur + '"]').addClass('active');
     };
@@ -94,6 +94,51 @@ $(function () {
         pl.classList.add('swap-anim');
         setTimeout(function () { pl.classList.remove('swap-anim'); }, 600);
     };
+    var WM_IMG = {
+        red: "url('/assets/images/badges/PKU_red.png')",
+        blue: "url('/assets/images/badges/deepseek.svg')",
+        purple: ''
+    };
+    var WM_OP = {
+        red: { light: 0.07, dark: 0.16 },
+        blue: { light: 0.07, dark: 0.13 },
+        purple: { light: 0, dark: 0 }
+    };
+    // Diagonal cross-wipe of the watermark, started in sync with the color ripple.
+    // Uses two throwaway layers (explicit images) so it doesn't wait on the
+    // delayed data-accent flip; the persistent layer is hidden until it catches up.
+    var crossWipe = function (targetAccent, oldImg, oldOpacity) {
+        var wm = document.querySelector('.profile-watermark');
+        if (!wm) return;
+        var root = document.documentElement;
+        var theme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        var newImg = WM_IMG[targetAccent] || '';
+        var newOp = (WM_OP[targetAccent] || WM_OP.purple)[theme];
+        var mkLayer = function (img, op, cls) {
+            var d = document.createElement('div');
+            d.className = 'profile-watermark ' + cls;
+            d.setAttribute('aria-hidden', 'true');
+            d.style.backgroundImage = img;
+            d.style.opacity = op;
+            wm.parentNode.insertBefore(d, wm.nextSibling);
+            void d.offsetWidth; // reflow so the animation runs
+            return d;
+        };
+        wm.classList.add('wm-hidden');
+        var layers = [];
+        if (oldImg && oldImg !== 'none') layers.push(mkLayer(oldImg, oldOpacity, 'wm-out'));
+        if (newImg) layers.push(mkLayer(newImg, newOp, 'wm-in'));
+        // After the wipe, hand off to the persistent layer in a single frame:
+        // kill its transition so it appears at the exact static opacity (no
+        // fade-in stacking on top of the temp layer), then drop the temp layers.
+        setTimeout(function () {
+            wm.style.transition = 'none';
+            wm.classList.remove('wm-hidden');
+            void wm.offsetWidth; // commit the instant opacity
+            layers.forEach(function (l) { if (l.parentNode) l.parentNode.removeChild(l); });
+            requestAnimationFrame(function () { wm.style.transition = ''; });
+        }, 700);
+    };
     var ACCENT_GRAD = {
         purple: 'linear-gradient(135deg, #7c3aed, #db2777)',
         red: 'linear-gradient(135deg, #a4161a, #e5383b)',
@@ -102,8 +147,11 @@ $(function () {
     $('.accent-dot').on('click', function (e) {
         var accent = $(this).data('accent');
         var root = document.documentElement;
-        var prev = root.getAttribute('data-accent') || 'purple';
+        var prev = root.getAttribute('data-accent') || 'red';
         var crossesRed = (accent === 'red') !== (prev === 'red');
+        var wm = document.querySelector('.profile-watermark');
+        var oldImg = wm ? getComputedStyle(wm).backgroundImage : 'none';
+        var oldOpacity = wm ? getComputedStyle(wm).opacity : '0';
         var apply = function () {
             root.setAttribute('data-accent', accent);
             try { localStorage.setItem('accent', accent); } catch (err) {}
@@ -126,6 +174,7 @@ $(function () {
         document.body.appendChild(ripple);
         void ripple.offsetWidth; // reflow so the transition runs
         ripple.classList.add('expand');
+        crossWipe(accent, oldImg, oldOpacity);                    // watermark wipe, synced with the sweep
         setTimeout(apply, 250);                                   // recolor under the sweep
         setTimeout(function () { ripple.classList.add('fade'); }, 540);
         setTimeout(function () { ripple.remove(); }, 950);
