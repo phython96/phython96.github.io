@@ -43,7 +43,7 @@ education:
 - name: Peking University
   logo: /assets/images/badges/PKU_red.png
   position: >-
-    School of Intelligence Science & Technology · Institute for AI <br />
+    School of Intelligence Science & Technology <span class="x-sep">×</span> Institute for AI <br />
     Ph.D. · Computer Science & Technology
   date: Sep. 2022 - Jul. 2026
 - name: University of Chinese Academy of Sciences

@@ -3,23 +3,23 @@ layout: default
 title : Homepage
 navbar_title: Home
 ---
-{% include widgets/profile_card.html %}
+<div class="reveal">{% include widgets/profile_card.html %}</div>
 
 {% if site.data.display.homepage.show_experience %}
-    {% include widgets/experience_card.html %}
+    <div class="reveal">{% include widgets/experience_card.html %}</div>
 {% endif %}
 
 {% if site.data.display.homepage.show_news %}
     {% assign count_news = site.news | size %}
     {% if count_news > 0 %}
-        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+        <div class="reveal">{% include widgets/news_card.html limit=site.data.display.homepage.num_news %}</div>
     {% endif %}
 {% endif %}
 
 {% if site.data.display.homepage.show_selected_publications %}
     {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-    {%
+    <div class="reveal">{%
         include widgets/publication_card.html
         publications=pubs
-    %}
+    %}</div>
 {% endif %}

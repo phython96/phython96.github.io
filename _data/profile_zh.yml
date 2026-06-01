@@ -43,7 +43,7 @@ education:
 - name: 北京大学
   logo: /assets/images/badges/PKU_red.png
   position: >-
-    智能学院 · 人工智能研究院 <br />
+    智能学院 <span class="x-sep">×</span> 人工智能研究院 <br />
     博士 · 计算机科学与技术(智能科学与技术)
   date: 2022.09 - 2026.07
 - name: 中国科学院大学

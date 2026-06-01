@@ -20,6 +20,7 @@ en:
   citations: "citations"
   total_visits: "Views"
   visitors: "Visitors"
+  visitors_from: "Where visitors come from"
 
 zh:
   menu: "菜单"
@@ -41,3 +42,4 @@ zh:
   citations: "引用"
   total_visits: "总访问"
   visitors: "访客"
+  visitors_from: "访客来源分布"

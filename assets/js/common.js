@@ -61,6 +61,24 @@ $(function () {
         else if (mq.addListener) { mq.addListener(onSchemeChange); }
     }
 
+    // Reveal sections as they scroll into view
+    var revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+            revealEls.forEach(function (el) { io.observe(el); });
+        } else {
+            revealEls.forEach(function (el) { el.classList.add('in-view'); });
+        }
+    }
+
     // Accent color picker (persisted; applied pre-paint by the inline <head> script)
     var applyAccentActive = function () {
         var cur = document.documentElement.getAttribute('data-accent') || 'purple';
@@ -84,6 +102,8 @@ $(function () {
             .then(function (d) {
                 if (d && typeof d.citedby === 'number') {
                     $gs.find('.gs-count').text(d.citedby.toLocaleString());
+                    if (typeof d.hindex === 'number') { $('#gs-hindex').text(d.hindex); }
+                    if (typeof d.i10index === 'number') { $('#gs-i10').text(d.i10index); }
                     $gs.css('display', '');
                 }
             })

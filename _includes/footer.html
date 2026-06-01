@@ -22,5 +22,15 @@
                 </div>
             </div>
         </div>
+        {% if site.analytics.flagcounter_src and site.analytics.flagcounter_src != "" %}
+        <div class="row">
+            <div class="col text-center">
+                <div class="flagcounter-card mx-auto">
+                    <div class="flagcounter-label">{{ t.visitors_from }}</div>
+                    <img src="{{ site.analytics.flagcounter_src }}" alt="Flag Counter" loading="lazy">
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </footer>

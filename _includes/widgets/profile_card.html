@@ -44,7 +44,12 @@
                             {% if profile.gscholar %}
                             {%- if profile.gscholar contains 'scholar.google' -%}{%- assign gs_url = profile.gscholar -%}{%- else -%}{%- assign gs_url = 'https://scholar.google.com/citations?user=' | append: profile.gscholar -%}{%- endif -%}
                             <a id="gs-citations" class="gs-cite ml-auto" href="{{ gs_url }}" target="_blank" rel="noopener" title="Google Scholar" style="display:none;">
-                                <i class="fab fa-google-scholar"></i><span class="gs-count"></span><span class="gs-cite-label">{{ t.citations }}</span>
+                                <i class="fab fa-google-scholar"></i>
+                                <span class="gs-metric"><span class="gs-count"></span> {{ t.citations }}</span>
+                                <span class="gs-sep">·</span>
+                                <span class="gs-metric">h-index <span id="gs-hindex"></span></span>
+                                <span class="gs-sep">·</span>
+                                <span class="gs-metric">i10 <span id="gs-i10"></span></span>
                             </a>
                             {% endif %}
                         </div>

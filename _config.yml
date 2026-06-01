@@ -31,6 +31,7 @@ parallel_localization: false
 analytics:
   vercount: true        # visible PV/UV counter in the footer (Busuanzi-compatible)
   goatcounter: ""       # private dashboard: set to your GoatCounter code, e.g. "phython96"
+  flagcounter_src: ""   # visitor geography (Flag Counter image src). Empty = hidden. Saved code: https://s05.flagcounter.com/count/xD0J/bg_FFFFFF/txt_5B5B6B/border_FFFFFF/columns_3/maxflags_15/viewers_3/labels_0/pageviews_0/flags_0/percent_0/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

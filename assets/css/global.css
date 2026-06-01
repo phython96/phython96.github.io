@@ -245,6 +245,10 @@ hr { border-top-color: var(--border); }
     transform: translateY(-1px);
 }
 .gs-cite .gs-count { font-weight: 700; }
+.gs-cite .gs-metric b,
+.gs-cite #gs-hindex,
+.gs-cite #gs-i10 { font-weight: 700; }
+.gs-cite .gs-sep { opacity: 0.5; }
 .text-profile-bio { font-weight: 400; line-height: 1.7; }
 .text-profile-bio b { color: var(--heading); }
 
@@ -458,6 +462,12 @@ h6 .fas, h6 .fab, h6 .far {
     white-space: nowrap;
 }
 .exp-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.45; }
+.exp-sub .x-sep {
+    color: var(--accent);
+    font-weight: 700;
+    font-style: normal;
+    margin: 0 0.18rem;
+}
 
 .award-list { list-style: none; padding: 0; margin: 0; }
 .award-item {
@@ -569,6 +579,24 @@ div.lazy {
 .footer-counter { font-size: 0.82rem; }
 .footer-counter .fc-sep { margin: 0 0.5rem; opacity: 0.5; }
 .footer-counter .far { margin-right: 0.35rem; }
+.flagcounter-card {
+    display: inline-block;
+    margin-top: 0.95rem;
+    padding: 0.6rem 0.7rem 0.5rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    max-width: 100%;
+}
+.flagcounter-card .flagcounter-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #6b7280;
+    margin-bottom: 0.4rem;
+}
+.flagcounter-card img { max-width: 100%; height: auto; display: block; border-radius: 0.4rem; }
 
 /* Year nav pills on publications page */
 #navbar-year .nav-link { color: var(--text-muted); border-radius: 0.5rem; }
@@ -577,4 +605,18 @@ div.lazy {
 /* Smooth theme transition for large surfaces */
 body, .card, .navbar, .bg-white, .footer {
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Scroll-reveal (only when JS is on; respects reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+    html.js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        will-change: opacity, transform;
+    }
+    html.js .reveal.in-view {
+        opacity: 1;
+        transform: none;
+    }
 }
