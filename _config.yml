@@ -27,6 +27,11 @@ default_lang: "zh"
 exclude_from_localization: ["assets", "javascript", "images", "CNAME", ".nojekyll"]
 parallel_localization: false
 
+# Visitor analytics
+analytics:
+  vercount: true        # visible PV/UV counter in the footer (Busuanzi-compatible)
+  goatcounter: ""       # private dashboard: set to your GoatCounter code, e.g. "phython96"
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

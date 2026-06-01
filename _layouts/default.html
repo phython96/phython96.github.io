@@ -21,6 +21,8 @@
                 var stored = localStorage.getItem('theme');
                 var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme', theme);
+                var accent = localStorage.getItem('accent');
+                if (accent) { document.documentElement.setAttribute('data-accent', accent); }
             } catch (e) {}
         })();
     </script>
@@ -65,5 +67,12 @@
     </script>
     <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/bubble_visual_hash.js' | relative_url }}"></script>
+
+    {% if site.analytics.vercount %}
+    <script defer src="https://events.vercount.one/js"></script>
+    {% endif %}
+    {% if site.analytics.goatcounter and site.analytics.goatcounter != "" %}
+    <script data-goatcounter="https://{{ site.analytics.goatcounter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    {% endif %}
 </body>
 </html>

@@ -1,12 +1,22 @@
 <footer class="footer">
+    {% assign t = site.data.strings[site.active_lang] %}
     <div class="container">
         <div class="row my-3">
-            <div class="col-6">
+            <div class="col-sm-8">
                 <div class="text-muted">
-                    <i>{{ site.data.strings[site.active_lang].last_updated }}: {{ "now" | date: "%b %Y" }}</i>
+                    <i>{{ t.last_updated }}: {{ "now" | date: "%b %Y" }}</i>
+                    {% if site.analytics.vercount %}
+                    <span class="footer-counter">
+                        <span class="fc-sep">·</span>
+                        <i class="far fa-eye"></i>
+                        {{ t.total_visits }} <span id="vercount_value_site_pv">…</span>
+                        <span class="fc-sep">·</span>
+                        {{ t.visitors }} <span id="vercount_value_site_uv">…</span>
+                    </span>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-sm-4">
                 <div class="text-right text-muted">
                     {{ site.data.display.footer_text }}
                 </div>

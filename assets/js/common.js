@@ -61,6 +61,20 @@ $(function () {
         else if (mq.addListener) { mq.addListener(onSchemeChange); }
     }
 
+    // Accent color picker (persisted; applied pre-paint by the inline <head> script)
+    var applyAccentActive = function () {
+        var cur = document.documentElement.getAttribute('data-accent') || 'purple';
+        $('.accent-dot').removeClass('active');
+        $('.accent-dot[data-accent="' + cur + '"]').addClass('active');
+    };
+    applyAccentActive();
+    $('.accent-dot').on('click', function () {
+        var accent = $(this).data('accent');
+        document.documentElement.setAttribute('data-accent', accent);
+        try { localStorage.setItem('accent', accent); } catch (e) {}
+        applyAccentActive();
+    });
+
     // Google Scholar citation count, cached on the google-scholar-stats branch
     // (updated daily by .github/workflows/google-scholar-stats.yml)
     var $gs = $('#gs-citations');

@@ -18,6 +18,8 @@ en:
   research_interests: "Research Interests"
   site_title: "Shaofei Cai · Researcher at DeepSeek AI · Ph.D. at Peking University"
   citations: "citations"
+  total_visits: "Views"
+  visitors: "Visitors"
 
 zh:
   menu: "菜单"
@@ -37,3 +39,5 @@ zh:
   research_interests: "研究兴趣"
   site_title: "蔡少斐 · DeepSeek AI 研究员 · 北京大学博士"
   citations: "引用"
+  total_visits: "总访问"
+  visitors: "访客"
