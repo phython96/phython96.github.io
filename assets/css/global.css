@@ -285,7 +285,7 @@ h6 .fas, h6 .fab, h6 .far {
 .exp-section-title {
     position: relative;
     padding-left: 0.7rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.55rem;
     font-weight: 700;
     color: var(--heading);
 }
@@ -308,7 +308,7 @@ h6 .fas, h6 .fab, h6 .far {
 .exp-item {
     display: flex;
     gap: 0.7rem;
-    padding: 0.45rem 0.6rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 0.7rem;
     transition: background-color 0.18s ease;
 }
@@ -347,7 +347,7 @@ h6 .fas, h6 .fab, h6 .far {
     justify-content: space-between;
     gap: 0.6rem;
     position: relative;
-    padding: 0.4rem 0.6rem 0.4rem 1.15rem;
+    padding: 0.28rem 0.6rem 0.28rem 1.15rem;
     border-radius: 0.6rem;
     transition: background-color 0.18s ease;
 }

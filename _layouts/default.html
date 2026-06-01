@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.active_lang }}">
 <!-- Template: https://github.com/luost26/academic-homepage -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ page.title }} - {{ site.data.profile.navbar_name }}</title>
+    {% assign t = site.data.strings[site.active_lang] %}
+    {% if page.title == "Homepage" %}
+    <title>{{ t.site_title }}</title>
+    {% else %}
+    <title>{{ page.title }} · {{ site.data.profile.navbar_name }}</title>
+    {% endif %}
+
+    <link rel="icon" type="image/png" href="{{ '/assets/images/badges/deepseek.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/badges/deepseek.png' | relative_url }}">
 
     <!-- Set theme before paint to avoid flash of unstyled content -->
     <script>

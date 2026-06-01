@@ -7,19 +7,6 @@
             <div class="card-body p-5">
                 <div class="row">
                     <div class="col">
-                        {% if profile.portrait_url %}
-                        <!-- When the screen is wider than md, float the portrait on the right -->
-                        <div class="figure float-right ml-4 mb-4 d-none d-md-block">
-                            <img 
-                                src="{{ profile.portrait_url | relative_url }}" 
-                                class="figure-img img-fluid img-thumbnail" 
-                                style="height: 200px;"
-                                data-toggle="tooltip" 
-                                data-placement="top" 
-                                title="{{ profile.portrait_caption }}">
-                        </div>
-                        {% endif %}
-
                         <div class="d-flex">
                             <div class="h1 font-weight-normal">
                                 {{ profile.primary_name }} <small>{{ profile.secondary_name }}</small>
@@ -59,7 +46,21 @@
                             <a target="_blank" href="{{ profile.cv_link | relative_url }}"><i class="fas fa-file-alt"></i> {{ t.cv }}</a> <br/>
                         {% endif %}
                     </div>
-        
+
+                    {% if profile.portrait_url %}
+                    <div class="col-auto d-none d-md-block order-first order-md-last">
+                        <a target="_blank" href="{{ profile.portrait_url | relative_url }}">
+                            <img
+                                src="{{ profile.portrait_url | relative_url }}"
+                                class="figure-img img-fluid img-thumbnail mb-0"
+                                style="height: 220px;"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="{{ profile.portrait_caption }}">
+                        </a>
+                    </div>
+                    {% endif %}
+
                 </div>
                 <hr />
                 <div class="row">

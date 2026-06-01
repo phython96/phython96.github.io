@@ -22,8 +22,8 @@ plugins:
   - jekyll-polyglot
 
 # Multilingual settings (jekyll-polyglot)
-languages: ["en", "zh"]
-default_lang: "en"
+languages: ["zh", "en"]
+default_lang: "zh"
 exclude_from_localization: ["assets", "javascript", "images", "CNAME", ".nojekyll"]
 parallel_localization: false
 

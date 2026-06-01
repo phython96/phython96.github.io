@@ -26,6 +26,10 @@
         {%- assign name = key -%}
     {%- endif -%}
 
+    {%- if site.active_lang == "zh" and info['name_zh'] -%}
+        {%- assign name = info['name_zh'] -%}
+    {%- endif -%}
+
     {%- if info['bold'] == true -%}
         {%- assign display_name = name | append: mark | prepend: "<strong>" | append: "</strong>" -%}
     {%- else -%}

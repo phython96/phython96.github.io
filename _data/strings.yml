@@ -16,6 +16,7 @@ en:
   not_found_body: "The requested page could not be found."
   go_home: "Go home"
   research_interests: "Research Interests"
+  site_title: "Shaofei Cai · Researcher at DeepSeek AI · Ph.D. at Peking University"
 
 zh:
   menu: "菜单"
@@ -33,3 +34,4 @@ zh:
   not_found_body: "你访问的页面不存在。"
   go_home: "返回首页"
   research_interests: "研究兴趣"
+  site_title: "蔡少斐 · DeepSeek AI 研究员 · 北京大学博士"

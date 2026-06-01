@@ -21,13 +21,12 @@ orcid: 0000-0002-1195-7276
 
 short_bio_text_justify: false
 short_bio: >-
-  <p><b>My dream is to witness the emergence of AGI and to contribute my efforts.</b></p>
-  <p>I am currently a Deep Learning Researcher at <b>DeepSeek AI</b>, where I focus on <b>post-training large language models to strengthen their agentic capabilities</b>, with an emphasis on <b>coding agents</b>.
-  I'm fascinated by how scalable training can turn a language model into an agent that reliably plans, acts, and self-corrects while solving real-world software engineering tasks.</p>
-  <p>This builds on my doctoral research at <b>Peking University</b>, which centered on <b>multi-task agents operating within open-world settings</b>.
-  As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently <b>pushing the frontiers of AI agent capabilities in 3D video games</b>.
-  A core theme of this work was finding <b>task representations that are expressive, low-ambiguity, and scalable for efficient training</b> — a question that carries directly into building general coding agents today.</p>
-  <p>Across both lines of work, I hold a strong belief that the <b>scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI</b>.</p>
+  <p>I am currently a Deep Learning Researcher at <b>DeepSeek AI</b>, where I focus on post-training large language models to strengthen their agentic capabilities, with an emphasis on <b>coding agents</b>.
+  The question I care about is how scalable training can turn a language model into an agent that reliably plans, acts, and self-corrects while solving real-world software engineering tasks.</p>
+  <p>I am also deeply interested in <b>multimodal agents</b>, such as GUI agents and agents in 3D game worlds.
+  This interest stems from my doctoral research at Peking University, where I worked on multi-task agents in open-world settings. As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently pushing the frontiers of AI agent capabilities in 3D video games.
+  A core theme of this work was finding task representations that are expressive, low-ambiguity, and scalable for efficient training.</p>
+  <p>Across both lines of work, I hold a strong belief that the scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI.</p>
 
 research_interests:
 - AI Agents
@@ -44,11 +43,11 @@ education:
 - name: Peking University
   logo: /assets/images/badges/PKU_red.png
   position: >-
-    School of Intelligence Science and Technology · Institute for Artificial Intelligence <br />
-    Ph.D. · Computer Science and Technology (Intelligence Science and Technology)
+    School of Intelligence Science & Technology · Institute for AI <br />
+    Ph.D. · Computer Science & Technology
   date: Sep. 2022 - Jul. 2026
 - name: University of Chinese Academy of Sciences
-  logo: /assets/images/badges/UCAS_blue.jpg
+  logo: /assets/images/badges/UCAS_blue.png
   position: >-
     Institute of Computing Technology, Chinese Academy of Sciences <br />
     M.S. · Computer Technology
@@ -72,7 +71,7 @@ experience:
 #   date: Oct. 2020 - May 2021
 
 awards:
-- name: <b>Gold Medal</b> · ICPC Asia Regional <span class="badge badge-pill badge-info">Top 3.3%</span>
+- name: <b>Gold Medal</b> · ACM-ICPC Asia Regional
   date: 2018
 - name: <b>Winner</b> · ATEC 2025 Robotics &amp; AI Challenge (Software)
   date: 2025
