@@ -180,6 +180,13 @@ $(function () {
         setTimeout(function () { ripple.remove(); }, 950);
     });
 
+    // News "show all / show less" toggle
+    $('.news-toggle').on('click', function () {
+        var card = $(this).closest('.news-card');
+        var expanded = card.toggleClass('expanded').hasClass('expanded');
+        this.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    });
+
     // Google Scholar citation count, cached on the google-scholar-stats branch
     // (updated daily by .github/workflows/google-scholar-stats.yml)
     var $gs = $('#gs-citations');

@@ -12,7 +12,7 @@ navbar_title: Home
 {% if site.data.display.homepage.show_news %}
     {% assign count_news = site.news | size %}
     {% if count_news > 0 %}
-        <div class="reveal">{% include widgets/news_card.html limit=site.data.display.homepage.num_news %}</div>
+        <div class="reveal">{% include widgets/news_card.html limit=site.data.display.homepage.num_news collapse=site.data.display.homepage.num_news_collapsed %}</div>
     {% endif %}
 {% endif %}
 

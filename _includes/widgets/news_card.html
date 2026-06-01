@@ -1,22 +1,35 @@
-{% assign news_by_year = site.news | sort: "date" | reverse | slice: 0, include.limit | group_by_exp: "item", "item.date | date: '%Y'" -%}
-{% assign t = site.data.strings[site.active_lang] %}
+{% assign news_sorted = site.news | sort: "date" | reverse -%}
+{% if include.limit %}{% assign news_sorted = news_sorted | slice: 0, include.limit %}{% endif -%}
+{% assign total = news_sorted | size -%}
+{% assign news_by_year = news_sorted | group_by_exp: "item", "item.date | date: '%Y'" -%}
+{% assign collapse = include.collapse | default: 5 -%}
+{% assign t = site.data.strings[site.active_lang] -%}
+{% assign gi = 0 -%}
 
-<div class="my-3 bg-white shadow-sm rounded-sm" id="news">
-    <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fas fa-rss"></i> {{ t.news }}</h6>
-    <div class="px-3 pb-1">
+<div class="my-3 news-card shadow-sm rounded-sm" id="news">
+    <h6 class="news-head"><i class="fas fa-rss"></i> {{ t.news }}</h6>
+    <div class="news-body">
         {% for year in news_by_year %}
-        <div class="media py-1 {% if not_first -%}border-top border-gray{%- endif %}">
-            {% assign not_first = true %}
-            <div class="mr-3 text-muted my-1">{{ year.name }}</div>
-            <div class="media-body">
+        <div class="news-year{% if gi >= collapse %} news-extra{% endif %}">
+            <div class="news-year-label">{{ year.name }}</div>
+            <ul class="news-list">
                 {% for item in year.items %}
-                <div class="my-1 d-flex">
-                    <div>{% if site.active_lang == "zh" and item.title_zh %}{{ item.title_zh }}{% else %}{{ item.title }}{% endif %}</div>
-                    <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
-                </div>
+                <li class="news-item{% if gi >= collapse %} news-extra{% endif %}">
+                    <span class="news-dot"></span>
+                    <div class="news-text">{% if site.active_lang == "zh" and item.title_zh %}{{ item.title_zh }}{% else %}{{ item.title }}{% endif %}</div>
+                    <div class="news-date">{{ item.date | date: "%b %d" }}</div>
+                </li>
+                {% assign gi = gi | plus: 1 %}
                 {% endfor %}
-            </div>
+            </ul>
         </div>
         {% endfor %}
     </div>
+    {% if total > collapse %}
+    <button class="news-toggle" type="button" aria-expanded="false">
+        <span class="news-toggle-more">{% if site.active_lang == "zh" %}显示全部 {{ total }} 条{% else %}Show all {{ total }}{% endif %}</span>
+        <span class="news-toggle-less">{% if site.active_lang == "zh" %}收起{% else %}Show less{% endif %}</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    {% endif %}
 </div>
