@@ -280,6 +280,39 @@ hr { border-top-color: var(--border); }
     transform: translateY(-1px);
 }
 
+/* Latest-news inline highlight (right of research interests) */
+.latest-news {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 100%;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-muted) !important;
+    transition: color 0.18s ease;
+}
+.latest-news:hover { color: var(--link-hover) !important; }
+.latest-news:hover .ln-text { color: var(--link-hover); }
+.latest-news .ln-label {
+    flex: 0 0 auto;
+    font-weight: 700;
+    color: var(--badge-text);
+    white-space: nowrap;
+}
+.latest-news .ln-label .fas { margin-right: 0.25rem; }
+.latest-news .ln-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 20rem;
+    color: var(--text);
+}
+.latest-news .ln-date { flex: 0 0 auto; white-space: nowrap; opacity: 0.75; }
+@media (max-width: 575.98px) {
+    .latest-news { margin-left: 0 !important; margin-top: 0.4rem; }
+    .latest-news .ln-text { max-width: 60vw; }
+}
+
 /* Gradient name */
 .card-body .h1.font-weight-normal {
     background: var(--accent-gradient);

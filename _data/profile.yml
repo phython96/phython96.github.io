@@ -4,7 +4,7 @@ navbar_name: "Shaofei Cai"
 
 positions:
 - logo: /assets/images/badges/deepseek.png
-  name: Deep Learning Researcher at DeepSeek AI
+  name: Researcher at DeepSeek AI
 - logo: /assets/images/badges/PKU_red.png  # Logo is optional
   name: Ph.D. in AI, Peking University
 
@@ -21,17 +21,15 @@ orcid: 0000-0002-1195-7276
 
 short_bio_text_justify: false
 short_bio: >-
-  <p>I am currently a Deep Learning Researcher at <b>DeepSeek AI</b>, where I focus on post-training large language models to strengthen their agentic capabilities, with an emphasis on <b>coding agents</b>.
-  The question I care about is how scalable training can turn a language model into an agent that reliably plans, acts, and self-corrects while solving real-world software engineering tasks.</p>
-  <p>I am also deeply interested in <b>multimodal agents</b>, such as GUI agents and agents in 3D game worlds.
-  This interest stems from my doctoral research at Peking University, where I worked on multi-task agents in open-world settings. As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently pushing the frontiers of AI agent capabilities in 3D video games.
-  A core theme of this work was finding task representations that are expressive, low-ambiguity, and scalable for efficient training.</p>
+  <p>I am a Researcher at <b>DeepSeek AI</b>, where I post-train large language models to strengthen their agentic capabilities, with a focus on <b>coding agents</b>.
+  My question: how can scalable training turn a language model into an agent that reliably plans, acts, and self-corrects on real-world software engineering tasks?</p>
+  <p>I am also interested in <b>multimodal agents</b>, such as GUI agents and agents in 3D game worlds. This interest stems from my doctoral research at Peking University on multi-task agents in open-world settings.
+  As first author, I led the <b>GROOT and ROCKET series</b>, building agents that follow human instructions to complete intricate Minecraft tasks, emphasizing task representations that are expressive, low-ambiguity, and scalable for efficient training.</p>
 
 research_interests:
 - AI Agents
-- Reinforcement Learning
-- Large Language Models
-- Machine Learning
+- RL
+- LLMs
 - Embodied Intelligence
 
 portrait_url: /assets/images/photos/avater.jpg
@@ -43,7 +41,7 @@ education:
 - name: Peking University
   logo: /assets/images/badges/PKU_red.png
   position: >-
-    School of Intelligence Science & Technology <span class="x-sep">×</span> Institute for AI <br />
+    SIST <span class="x-sep">×</span> IAI <br />
     Ph.D. · Computer Science & Technology
   date: Sep. 2022 - Jul. 2026
 - name: University of Chinese Academy of Sciences

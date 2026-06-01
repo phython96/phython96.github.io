@@ -83,16 +83,26 @@
                 <hr class="profile-sep" />
                 <div class="row">
                     <div class="col">
-                        {% if profile.research_interests %}
-                        <div class="research-interests">
-                            <span class="ri-label">{{ t.research_interests }}</span>
-                            <span class="ri-tags">
-                                {%- for interest in profile.research_interests -%}
-                                <span class="ri-tag">{{ interest }}</span>
-                                {%- endfor -%}
-                            </span>
+                        <div class="d-flex flex-wrap align-items-center">
+                            {% if profile.research_interests %}
+                            <div class="research-interests">
+                                <span class="ri-label">{{ t.research_interests }}</span>
+                                <span class="ri-tags">
+                                    {%- for interest in profile.research_interests -%}
+                                    <span class="ri-tag">{{ interest }}</span>
+                                    {%- endfor -%}
+                                </span>
+                            </div>
+                            {% endif %}
+                            {% assign latest_news = site.news | sort: "date" | reverse | first %}
+                            {% if latest_news %}
+                            <a class="latest-news ml-auto" href="#news">
+                                <span class="ln-label"><i class="fas fa-bullhorn"></i> {{ t.latest }}</span>
+                                <span class="ln-text">{% if site.active_lang == "zh" and latest_news.title_zh %}{{ latest_news.title_zh }}{% else %}{{ latest_news.title }}{% endif %}</span>
+                                <span class="ln-date">{{ latest_news.date | date: "%Y.%m" }}</span>
+                            </a>
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <div class="d-md-none mt-3">{{ social_icons }}</div>
                     </div>
                 </div>

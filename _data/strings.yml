@@ -21,6 +21,7 @@ en:
   total_visits: "Views"
   visitors: "Visitors"
   visitors_from: "Where visitors come from"
+  latest: "Latest"
 
 zh:
   menu: "菜单"
@@ -43,3 +44,4 @@ zh:
   total_visits: "总访问"
   visitors: "访客"
   visitors_from: "访客来源分布"
+  latest: "最新"
