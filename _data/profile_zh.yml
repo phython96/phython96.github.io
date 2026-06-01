@@ -26,7 +26,6 @@ short_bio: >-
   <p>我同样对<b>多模态智能体</b>抱有浓厚的兴趣,例如 GUI 智能体,以及 3D 游戏世界中的智能体。
   这份兴趣源自我在北京大学的博士研究:我围绕开放世界环境中的多任务智能体展开工作,作为第一作者主导了 <b>GROOT 与 ROCKET 系列</b>,让 AI 智能体能够遵循人类指令、在 Minecraft 中完成复杂任务,持续推动 3D 游戏环境中智能体能力的前沿。
   其中一个核心主题是寻找兼具高表达力、低歧义、且可扩展用于高效训练的任务表征。</p>
-  <p>纵观这两段工作,我始终坚信:在数字世界中可扩展地生成与验证任务,是当前通往 AGI 最可行的路径。</p>
 
 research_interests:
 - 智能体
@@ -36,6 +35,7 @@ research_interests:
 - 具身智能
 
 portrait_url: /assets/images/photos/avater.jpg
+portrait_tagline: "用可扩展的训练,让语言模型成长为可靠的智能体。"
 # portrait_caption: >-
 #   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 

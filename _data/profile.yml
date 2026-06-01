@@ -26,7 +26,6 @@ short_bio: >-
   <p>I am also deeply interested in <b>multimodal agents</b>, such as GUI agents and agents in 3D game worlds.
   This interest stems from my doctoral research at Peking University, where I worked on multi-task agents in open-world settings. As first author, I led the development of the <b>GROOT and ROCKET series</b>, empowering AI agents to follow human instructions and execute intricate tasks in Minecraft, consistently pushing the frontiers of AI agent capabilities in 3D video games.
   A core theme of this work was finding task representations that are expressive, low-ambiguity, and scalable for efficient training.</p>
-  <p>Across both lines of work, I hold a strong belief that the scalable generation and validation of tasks within digital worlds is currently the most viable route to achieving AGI.</p>
 
 research_interests:
 - AI Agents
@@ -36,6 +35,7 @@ research_interests:
 - Embodied Intelligence
 
 portrait_url: /assets/images/photos/avater.jpg
+portrait_tagline: "Turning language models into reliable agents through scalable training."
 # portrait_caption: >-
 #   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 

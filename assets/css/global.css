@@ -247,6 +247,66 @@ hr { border-top-color: var(--border); }
     transform: translateY(-2px);
     box-shadow: 0 14px 38px rgba(124, 58, 237, 0.28), var(--shadow-hover);
 }
+
+/* Portrait column: fixed width so divider + tagline align under the image */
+.portrait-col { width: 231px; }
+.portrait-col .portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.portrait-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0 0.4rem;
+}
+.portrait-divider::before,
+.portrait-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong));
+}
+.portrait-divider::after { transform: scaleX(-1); }
+.portrait-divider span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 0 0.55rem;
+    background: var(--accent-gradient);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.portrait-tagline {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    font-style: italic;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Icon-only social links */
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.05rem;
+}
+.social-icons a {
+    color: var(--link);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+.social-icons a:hover {
+    color: var(--link-hover);
+    transform: translateY(-2px);
+}
+.portrait-col .social-icons { margin-top: 0.55rem; }
+
+/* Tighten separator before research interests */
+.profile-sep { margin-top: 0.25rem; margin-bottom: 0.85rem; }
 .card-body .rounded-circle {
     border: 0;
     padding: 2px;
