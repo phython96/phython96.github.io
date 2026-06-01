@@ -34,8 +34,10 @@ jobs:
         run: pip install -r google_scholar_crawler/requirements.txt
 
       - name: Crawl Google Scholar
+        timeout-minutes: 8
         env:
           GOOGLE_SCHOLAR_ID: MZXDSSUAAAAJ
+          SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
         run: python google_scholar_crawler/main.py
 
       - name: Publish results to google-scholar-stats branch
