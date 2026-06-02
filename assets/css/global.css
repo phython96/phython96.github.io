@@ -41,6 +41,34 @@
     --accent: #4d6bfe;
     --accent-2: #38bdf8;
 }
+[data-accent="minecraft"] {
+    --accent: #4f8f29;
+    --accent-2: #8b5a2b;
+    --accent-gradient: linear-gradient(180deg, #7fbe43 0 45%, #4f8f29 45% 54%, #8b5a2b 54% 100%);
+    --accent-soft: color-mix(in srgb, #7fbe43 14%, transparent);
+    --accent-soft-2: color-mix(in srgb, #8b5a2b 12%, transparent);
+
+    --bg: #edf7e6;
+    --bg-accent: repeating-linear-gradient(90deg, rgba(73, 103, 47, 0.08) 0 1px, transparent 1px 32px),
+                 repeating-linear-gradient(180deg, rgba(73, 103, 47, 0.08) 0 1px, transparent 1px 32px),
+                 linear-gradient(180deg, #d8f0ff 0%, #edf7e6 48%, #e4efd5 100%);
+    --card-bg: #fffdf1;
+    --card-bg-elevated: #fff7dd;
+    --text: #273022;
+    --text-muted: #66715d;
+    --heading: #172315;
+    --border: rgba(86, 64, 38, 0.24);
+    --border-strong: rgba(86, 64, 38, 0.4);
+    --shadow: 4px 4px 0 rgba(86, 64, 38, 0.16), 0 8px 20px rgba(43, 59, 31, 0.08);
+    --shadow-hover: 6px 6px 0 rgba(79, 143, 41, 0.24), 0 14px 28px rgba(43, 59, 31, 0.12);
+    --navbar-bg: rgba(237, 247, 230, 0.9);
+    --link: #2f7d32;
+    --link-hover: #6e4a21;
+    --badge-bg: rgba(127, 190, 67, 0.16);
+    --badge-text: #376c26;
+    --code: #78511e;
+    --pixel-line: rgba(86, 64, 38, 0.12);
+}
 
 [data-theme="dark"] {
     --bg: #14151c;
@@ -61,6 +89,29 @@
     --badge-bg: color-mix(in srgb, var(--accent) 22%, transparent);
     --badge-text: color-mix(in srgb, var(--accent) 35%, #fff);
     --code: color-mix(in srgb, var(--accent-2) 45%, #fff);
+}
+
+[data-theme="dark"][data-accent="minecraft"] {
+    --bg: #11180f;
+    --bg-accent: repeating-linear-gradient(90deg, rgba(223, 201, 125, 0.08) 0 1px, transparent 1px 32px),
+                 repeating-linear-gradient(180deg, rgba(223, 201, 125, 0.08) 0 1px, transparent 1px 32px),
+                 linear-gradient(180deg, #142033 0%, #11180f 48%, #1b2413 100%);
+    --card-bg: #1e2119;
+    --card-bg-elevated: #25271d;
+    --text: #e5ead8;
+    --text-muted: #a9b29a;
+    --heading: #f5f2d0;
+    --border: rgba(223, 201, 125, 0.2);
+    --border-strong: rgba(223, 201, 125, 0.34);
+    --shadow: 4px 4px 0 rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.38);
+    --shadow-hover: 6px 6px 0 rgba(95, 143, 57, 0.25), 0 16px 36px rgba(0, 0, 0, 0.42);
+    --navbar-bg: rgba(17, 24, 15, 0.88);
+    --link: #8ed35e;
+    --link-hover: #d6b06d;
+    --badge-bg: rgba(127, 190, 67, 0.18);
+    --badge-text: #a9e276;
+    --code: #e3c17a;
+    --pixel-line: rgba(223, 201, 125, 0.1);
 }
 
 /* ============================================================
@@ -209,20 +260,112 @@ hr { border-top-color: var(--border); }
 .accent-dot.accent-purple { background-image: linear-gradient(135deg, #7c3aed, #db2777); }
 .accent-dot.accent-red    { background-image: linear-gradient(135deg, #a4161a, #e5383b); }
 .accent-dot.accent-blue   { background-image: linear-gradient(135deg, #4d6bfe, #38bdf8); }
+.accent-dot.accent-minecraft {
+    border-radius: 0.18rem;
+    background-image: linear-gradient(180deg, #7fbe43 0 45%, #4f8f29 45% 54%, #8b5a2b 54% 100%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+}
+.accent-dot.accent-minecraft.active {
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--text),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.35), inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .accent-dot.is-switching { animation: accent-dot-pop 0.42s cubic-bezier(0.16, 1, 0.3, 1); }
+}
+@keyframes accent-dot-pop {
+    0% { transform: translateY(0) scale(1); }
+    38% { transform: translateY(-1px) scale(1.28); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Minecraft accent: block textures without changing the site's information layout */
+[data-accent="minecraft"] h1,
+[data-accent="minecraft"] h2,
+[data-accent="minecraft"] h3,
+[data-accent="minecraft"] h4,
+[data-accent="minecraft"] h5,
+[data-accent="minecraft"] h6,
+[data-accent="minecraft"] .h1,
+[data-accent="minecraft"] .h2,
+[data-accent="minecraft"] .h3,
+[data-accent="minecraft"] .h4,
+[data-accent="minecraft"] .h5,
+[data-accent="minecraft"] .h6 {
+    letter-spacing: 0;
+}
+[data-accent="minecraft"] .navbar {
+    border-bottom-width: 2px;
+    box-shadow: 0 4px 0 var(--pixel-line);
+}
+[data-accent="minecraft"] .card,
+[data-accent="minecraft"] .news-card,
+[data-accent="minecraft"] .my-3.bg-white,
+[data-accent="minecraft"] .my-0.bg-white,
+[data-accent="minecraft"] .bg-white.shadow-sm,
+[data-accent="minecraft"] .flagcounter-card {
+    border-width: 2px !important;
+    border-radius: 0.28rem !important;
+    background-image: linear-gradient(90deg, var(--pixel-line) 1px, transparent 1px),
+                      linear-gradient(180deg, var(--pixel-line) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+[data-accent="minecraft"] .card:hover {
+    transform: translate(-2px, -2px);
+}
+[data-accent="minecraft"] .theme-toggle,
+[data-accent="minecraft"] .accent-dot,
+[data-accent="minecraft"] .ri-tag,
+[data-accent="minecraft"] .gs-cite,
+[data-accent="minecraft"] .exp-date,
+[data-accent="minecraft"] .award-date,
+[data-accent="minecraft"] .abstract-links a,
+[data-accent="minecraft"] #navbar-year .nav-link {
+    border-radius: 0.22rem;
+}
+[data-accent="minecraft"] .figure-img.img-thumbnail,
+[data-accent="minecraft"] .card-body .rounded-circle {
+    border-radius: 0.35rem !important;
+    padding: 4px;
+    box-shadow: var(--shadow);
+}
+[data-accent="minecraft"] .portrait-divider span,
+[data-accent="minecraft"] .news-dot,
+[data-accent="minecraft"] .award-item::before {
+    border-radius: 0;
+}
+[data-accent="minecraft"] .publication-row::before,
+[data-accent="minecraft"] .exp-section-title::before {
+    border-radius: 0;
+}
 
 /* Color-sweep ripple when switching accent palettes (sits behind the cards, in the page background) */
 .accent-ripple {
     position: fixed;
-    z-index: -1;
+    z-index: 1040;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.02);
+    opacity: 0;
     pointer-events: none;
     will-change: transform, opacity;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+    transition: transform 0.72s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
 }
-.accent-ripple.expand { transform: translate(-50%, -50%) scale(1); }
-.accent-ripple.fade { opacity: 0; }
+.accent-ripple.expand { transform: translate(-50%, -50%) scale(1); opacity: 0.18; }
+.accent-ripple.fade { opacity: 0; transition-duration: 0.22s; }
+@media (prefers-reduced-motion: no-preference) {
+    body.accent-settling .navbar,
+    body.accent-settling .card,
+    body.accent-settling .news-card,
+    body.accent-settling .my-3.bg-white,
+    body.accent-settling .my-0.bg-white,
+    body.accent-settling .bg-white.shadow-sm {
+        animation: accent-settle 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+}
+@keyframes accent-settle {
+    0% { transform: translateY(0); }
+    36% { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+}
 
 /* ============================================================
    Profile card
@@ -824,7 +967,7 @@ body, .card, .navbar, .bg-white, .footer {
     }
 }
 
-/* ===== Profile card watermark (per accent: red=PKU, blue=DeepSeek, purple=none) ===== */
+/* ===== Profile card watermark (per accent: purple=SC, red=PKU, blue=DeepSeek, minecraft=none) ===== */
 .profile-card { position: relative; overflow: hidden; }
 .profile-card .card-body { position: relative; z-index: 1; }
 .profile-watermark {
@@ -864,6 +1007,12 @@ body, .card, .navbar, .bg-white, .footer {
         animation: none; -webkit-mask-image: none; mask-image: none;
     }
 }
+[data-accent="purple"] .profile-watermark {
+    background-image: url('/assets/images/etc/purple-cai-watermark.svg');
+    background-position: 56% 50%;
+    background-size: auto 72%;
+    opacity: 0.075;
+}
 [data-accent="red"] .profile-watermark {
     background-image: url('/assets/images/badges/PKU_red.png');
     opacity: 0.07;
@@ -874,9 +1023,11 @@ body, .card, .navbar, .bg-white, .footer {
 }
 [data-theme="dark"][data-accent="red"] .profile-watermark { opacity: 0.16; }
 [data-theme="dark"][data-accent="blue"] .profile-watermark { opacity: 0.13; }
+[data-theme="dark"][data-accent="purple"] .profile-watermark { opacity: 0.12; }
 [data-theme="dark"] .profile-watermark { filter: brightness(1.3) saturate(1); }
 @media (max-width: 767px) {
     .profile-watermark { background-position: center 30%; background-size: auto 55%; }
+    [data-accent="purple"] .profile-watermark { background-position: center 29%; background-size: auto 46%; }
 }
 
 /* ===== Mini Minecraft (/play) ===== */

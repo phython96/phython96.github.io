@@ -79,7 +79,7 @@ $(function () {
         }
     }
 
-    // Accent color picker (persisted; applied pre-paint by the inline <head> script)
+    // Accent color picker (page load starts with a random accent; manual clicks affect the current page)
     var applyAccentActive = function () {
         var cur = document.documentElement.getAttribute('data-accent') || 'red';
         $('.accent-dot').removeClass('active');
@@ -97,12 +97,14 @@ $(function () {
     var WM_IMG = {
         red: "url('/assets/images/badges/PKU_red.png')",
         blue: "url('/assets/images/badges/deepseek.svg')",
-        purple: ''
+        minecraft: '',
+        purple: "url('/assets/images/etc/purple-cai-watermark.svg')"
     };
     var WM_OP = {
         red: { light: 0.07, dark: 0.16 },
         blue: { light: 0.07, dark: 0.13 },
-        purple: { light: 0, dark: 0 }
+        minecraft: { light: 0, dark: 0 },
+        purple: { light: 0.075, dark: 0.12 }
     };
     // Diagonal cross-wipe of the watermark, started in sync with the color ripple.
     // Uses two throwaway layers (explicit images) so it doesn't wait on the
@@ -142,9 +144,28 @@ $(function () {
     var ACCENT_GRAD = {
         purple: 'linear-gradient(135deg, #7c3aed, #db2777)',
         red: 'linear-gradient(135deg, #a4161a, #e5383b)',
-        blue: 'linear-gradient(135deg, #4d6bfe, #38bdf8)'
+        blue: 'linear-gradient(135deg, #4d6bfe, #38bdf8)',
+        minecraft: 'linear-gradient(180deg, #7fbe43 0 45%, #4f8f29 45% 54%, #8b5a2b 54% 100%)'
+    };
+    var settleTimer = null;
+    var popAccentDot = function (btn) {
+        if (!btn) return;
+        btn.classList.remove('is-switching');
+        void btn.offsetWidth;
+        btn.classList.add('is-switching');
+        setTimeout(function () { btn.classList.remove('is-switching'); }, 460);
+    };
+    var settleAccentSurfaces = function () {
+        clearTimeout(settleTimer);
+        document.body.classList.remove('accent-settling');
+        void document.body.offsetWidth;
+        document.body.classList.add('accent-settling');
+        settleTimer = setTimeout(function () {
+            document.body.classList.remove('accent-settling');
+        }, 560);
     };
     $('.accent-dot').on('click', function (e) {
+        var btn = this;
         var accent = $(this).data('accent');
         var root = document.documentElement;
         var prev = root.getAttribute('data-accent') || 'red';
@@ -152,16 +173,17 @@ $(function () {
         var wm = document.querySelector('.profile-watermark');
         var oldImg = wm ? getComputedStyle(wm).backgroundImage : 'none';
         var oldOpacity = wm ? getComputedStyle(wm).opacity : '0';
-        var apply = function () {
+        var apply = function (animateSurfaces) {
             root.setAttribute('data-accent', accent);
-            try { localStorage.setItem('accent', accent); } catch (err) {}
             applyAccentActive();
+            if (animateSurfaces) settleAccentSurfaces();
             if (crossesRed) triggerPosSwap();
         };
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce || accent === prev) { apply(); return; }
+        if (reduce || accent === prev) { apply(false); return; }
 
-        // Cool color-sweep: a circle of the new palette expands from the clicked dot
+        popAccentDot(btn);
+        // Color sweep: a circle of the new palette expands from the clicked dot.
         var x = e.clientX || window.innerWidth / 2;
         var y = e.clientY || 40;
         var r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 8;
@@ -175,9 +197,9 @@ $(function () {
         void ripple.offsetWidth; // reflow so the transition runs
         ripple.classList.add('expand');
         crossWipe(accent, oldImg, oldOpacity);                    // watermark wipe, synced with the sweep
-        setTimeout(apply, 250);                                   // recolor under the sweep
-        setTimeout(function () { ripple.classList.add('fade'); }, 540);
-        setTimeout(function () { ripple.remove(); }, 950);
+        setTimeout(function () { apply(true); }, 220);             // recolor under the sweep
+        setTimeout(function () { ripple.classList.add('fade'); }, 600);
+        setTimeout(function () { ripple.remove(); }, 900);
     });
 
     // News "show all / show less" toggle

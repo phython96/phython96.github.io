@@ -22,7 +22,8 @@
                 var stored = localStorage.getItem('theme');
                 var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme', theme);
-                var accent = localStorage.getItem('accent') || 'red';
+                var accents = ['purple', 'red', 'blue', 'minecraft'];
+                var accent = accents[Math.floor(Math.random() * accents.length)];
                 document.documentElement.setAttribute('data-accent', accent);
             } catch (e) {}
         })();
