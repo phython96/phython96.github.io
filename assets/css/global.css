@@ -1041,7 +1041,10 @@ body, .card, .navbar, .bg-white, .footer {
     border-radius: 1rem;
     background: var(--card-bg);
     color: var(--text);
-    box-shadow: var(--shadow-hover);
+    /* Soft, neutral elevation. Deliberately NOT var(--shadow-hover): the minecraft
+       accent redefines those tokens as hard zero-blur offsets (6px 6px 0), which
+       reads as a glitch on a floating overlay rather than a drop shadow. */
+    box-shadow: 0 18px 44px rgba(15, 18, 40, 0.22), 0 2px 10px rgba(15, 18, 40, 0.12);
 }
 .namecard-banner { height: 78px; background: var(--accent-gradient); }
 .namecard-close {
@@ -1062,7 +1065,7 @@ body, .card, .navbar, .bg-white, .footer {
     padding: 4px;
     border-radius: 50%;
     background: var(--card-bg);
-    box-shadow: var(--shadow);
+    box-shadow: 0 6px 16px rgba(15, 18, 40, 0.18);
 }
 .namecard-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
