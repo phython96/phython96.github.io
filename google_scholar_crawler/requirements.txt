@@ -1,2 +1,5 @@
 scholarly
 httpx<0.28
+# bibtexparser 2.x restructured the package and dropped `bibtexparser.bibdatabase`,
+# which scholarly still imports at load time -> ModuleNotFoundError. Stay on 1.x.
+bibtexparser<2
