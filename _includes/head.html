@@ -1,0 +1,115 @@
+{%- comment -%}
+  Shared <head> metadata. Included by both default.html and prompt.html so every
+  page (including 404) gets a title, description, canonical, language alternates,
+  Open Graph / Twitter Card tags and favicons.
+
+  page.url is language-neutral under jekyll-polyglot, so both language variants are
+  derived from it (mirrors the defensive handling in navbar.html).
+{%- endcomment -%}
+{%- assign t = site.data.strings[site.active_lang] -%}
+{%- assign prof = site.data.profile -%}
+{%- if site.active_lang == "zh" and site.data.profile_zh -%}{%- assign prof = site.data.profile_zh -%}{%- endif -%}
+
+{%- assign default_lang = site.default_lang | default: "zh" -%}
+{%- assign cur_lang = site.active_lang | default: default_lang -%}
+{%- assign neutral = page.url | remove_first: '/en' -%}
+{%- assign page_path = neutral | remove_first: 'index.html' | remove: '.html' -%}
+{%- if page_path == '' -%}{%- assign page_path = '/' -%}{%- endif -%}
+{%- assign url_default = page_path | absolute_url -%}
+{%- assign url_en = '/en' | append: page_path | absolute_url -%}
+{%- if cur_lang == default_lang -%}
+  {%- assign canonical = url_default -%}
+{%- else -%}
+  {%- assign canonical = url_en -%}
+{%- endif -%}
+
+{%- if page.title == "Homepage" -%}
+  {%- assign meta_title = t.site_title -%}
+{%- else -%}
+  {%- assign meta_title = page.title | append: ' · ' | append: prof.navbar_name -%}
+{%- endif -%}
+{%- case page.navbar_title -%}
+  {%- when 'Publications' -%}{%- assign meta_desc = t.desc_publications -%}
+  {%- when 'Showcase' -%}{%- assign meta_desc = t.desc_showcase -%}
+  {%- else -%}{%- assign meta_desc = t.site_description -%}
+{%- endcase -%}
+{%- if page.description -%}{%- assign meta_desc = page.description -%}{%- endif -%}
+{%- unless meta_desc -%}{%- assign meta_desc = site.description -%}{%- endunless -%}
+
+{%- assign og_image = '/assets/images/og/og-' | append: cur_lang | append: '.png' | absolute_url -%}
+{%- if cur_lang == default_lang -%}
+  {%- assign og_locale = 'zh_CN' -%}{%- assign og_locale_alt = 'en_US' -%}
+{%- else -%}
+  {%- assign og_locale = 'en_US' -%}{%- assign og_locale_alt = 'zh_CN' -%}
+{%- endif -%}
+
+    <title>{{ meta_title }}</title>
+    <meta name="description" content="{{ meta_desc | escape }}">
+    <meta name="author" content="{{ prof.primary_name | default: site.title }}">
+    {%- if page.noindex %}
+    <meta name="robots" content="noindex, follow">
+    {%- else %}
+    <link rel="canonical" href="{{ canonical }}">
+
+    <!-- Language alternates: without these Google may treat /en/ as duplicate content.
+         static_href keeps jekyll-polyglot from prefixing these with the active language;
+         its own negative lookbehind only exempts hreflang="zh", not "zh-CN"/"x-default". -->
+    <link rel="alternate" hreflang="zh-CN" {% static_href %}href="{{ url_default }}"{% endstatic_href %}>
+    <link rel="alternate" hreflang="en" {% static_href %}href="{{ url_en }}"{% endstatic_href %}>
+    <link rel="alternate" hreflang="x-default" {% static_href %}href="{{ url_default }}"{% endstatic_href %}>
+    {%- endif %}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:title" content="{{ meta_title | escape }}">
+    <meta property="og:description" content="{{ meta_desc | escape }}">
+    {%- unless page.noindex %}
+    <meta property="og:url" content="{{ canonical }}">
+    {%- endunless %}
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ meta_title | escape }}">
+    <meta property="og:locale" content="{{ og_locale }}">
+    <meta property="og:locale:alternate" content="{{ og_locale_alt }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ meta_title | escape }}">
+    <meta name="twitter:description" content="{{ meta_desc | escape }}">
+    <meta name="twitter:image" content="{{ og_image }}">
+    {%- if prof.twitter %}
+    <meta name="twitter:creator" content="@{{ prof.twitter }}">
+    {%- endif %}
+
+    <link rel="icon" type="image/png" href="{{ '/assets/images/badges/deepseek.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/badges/deepseek.png' | relative_url }}">
+{%- if page.title == "Homepage" %}
+
+    <!-- Structured data: helps search engines resolve this as a person/entity -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shaofei Cai",
+      "alternateName": "蔡少斐",
+      "url": {{ canonical | jsonify }},
+      "image": {{ og_image | jsonify }},
+      "jobTitle": "Researcher",
+      "worksFor": { "@type": "Organization", "name": "DeepSeek AI" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Peking University" },
+        { "@type": "CollegeOrUniversity", "name": "University of Chinese Academy of Sciences" },
+        { "@type": "CollegeOrUniversity", "name": "Xi'an Jiaotong University" }
+      ],
+      "knowsAbout": {{ prof.research_interests | jsonify }},
+      "sameAs": [
+        "https://scholar.google.com/citations?user={{ prof.gscholar }}",
+        "https://github.com/{{ prof.github }}"{% if prof.orcid %},
+        "https://orcid.org/{{ prof.orcid }}"{% endif %}{% if prof.linkedin %},
+        "https://www.linkedin.com/in/{{ prof.linkedin | uri_escape }}"{% endif %}
+      ]
+    }
+    </script>
+{%- endif %}

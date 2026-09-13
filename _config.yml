@@ -13,6 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+title: "Shaofei Cai"
+description: >-
+  Shaofei Cai (蔡少斐) — Researcher at DeepSeek AI, Ph.D. from Peking University.
+  Research on AI agents, reinforcement learning, and large language models.
+url: "https://phython96.github.io" # used by absolute_url for canonical + Open Graph URLs
 baseurl: "" # the subpath of your site, e.g. /blog
 
 # Build settings
@@ -33,17 +38,19 @@ analytics:
   goatcounter: ""       # private dashboard: set to your GoatCounter code, e.g. "phython96"
   flagcounter_src: ""   # visitor geography (Flag Counter image src). Empty = hidden. Saved code: https://s05.flagcounter.com/count/xD0J/bg_FFFFFF/txt_5B5B6B/border_FFFFFF/columns_3/maxflags_15/viewers_3/labels_0/pageviews_0/flags_0/percent_0/
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Exclude from processing. Setting this list overrides Jekyll's defaults, so the
+# default entries are repeated here alongside the extra ones.
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - .jekyll-metadata
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  # build-time helpers — not part of the published site
+  - tools/
 
 # timezone: Asia/Shanghai
 

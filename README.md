@@ -1,64 +1,174 @@
-# academic-homepage
+# Shaofei Cai · Academic Homepage
 
-![Preview](assets/images/etc/preview.png)
+Personal academic homepage of **Shaofei Cai (蔡少斐)** — Researcher at DeepSeek AI, Ph.D. from Peking University.
 
-[![pages-build-deployment](https://github.com/luost26/academic-homepage/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/luost26/academic-homepage/actions/workflows/pages/pages-build-deployment)
-[![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fluost26.github.io%2Facademic-homepage)](https://validator.nu/?doc=https%3A%2F%2Fluost26.github.io%2Facademic-homepage)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fluost26%2Facademic-homepage&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-[![GitHub stars](https://img.shields.io/github/stars/luost26/academic-homepage)](https://github.com/luost26/academic-homepage)
-[![GitHub forks](https://img.shields.io/github/forks/luost26/academic-homepage)](https://github.com/luost26/academic-homepage/forks)
+**Live site:** <https://phython96.github.io/>
 
-A GitHub Pages (Jekyll) template for personal academic website. Click [here](https://luost.me/academic-homepage/) to see the demo.
+Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 
-## User Community
+## Features
 
-[:star:](https://luost.me/)
-[:star:](https://cch1999.github.io/)
-[:star:](https://kyrrego.github.io/)
-[:star:](https://ced3-han.github.io/)
-[:star:](https://lihengchen.com/)
-[:star:](https://hpwang-whu.github.io/)
-[:star:](https://zhang-yingyi.github.io/)
-[:star:](https://wby24.github.io/)
-[:star:](https://pengfeixu.com/)
-[:star:](https://boqiuphd.github.io/)
-[:star:](https://www.huabing.li/)
-[:star:](https://xiecuiying.github.io/)
-[:star:](https://hannyang.github.io/)
-[:star:](https://king-play.github.io/)
+- **Bilingual** — Chinese is the default language at `/`, English at `/en/`, powered by
+  [jekyll-polyglot](https://github.com/untra/polyglot). Every page, including news and publication
+  abstracts, has a `_zh` counterpart.
+- **Dark mode** + four switchable accent themes (purple / red / blue / minecraft), persisted in
+  `localStorage` and applied before first paint to avoid a flash of unstyled content.
+- **Live Google Scholar badge** — citation count, h-index and i10 are fetched at runtime from a
+  `google-scholar-stats` data branch, refreshed daily by a GitHub Actions crawler.
+- **Collapsible news timeline**, selected-publication highlights, scroll-reveal animations, and a
+  visitor counter.
 
-:hugs: Feel free to tell us if you are using this template for your website by creating an issue [here](https://github.com/luost26/academic-homepage/issues/new?assignees=&labels=&projects=&template=user-report.md&title=I+am+using+this+template%21).
+## Project structure
 
+```
+_config.yml                  # Jekyll config: languages, plugins, analytics
+index.html                   # Homepage (profile + experience + news + selected publications)
+publications.html            # Full publication list, grouped by year
+showcase.html                # Showcase grid
+404.html
 
-## Need Help?
+_data/
+  profile.yml                # English profile: positions, bio, education, experience, awards, photo
+  profile_zh.yml             # Chinese profile (used when active_lang == "zh")
+  display.yml                # Homepage section toggles and footer text
+  navigation.yml             # Navbar entries (name / name_zh / url)
+  strings.yml                # UI string dictionary, per language
+  authors.yml                # Co-author list, used to bold/highlight names
 
-If you run into **any** issues while using this template, or have suggestions for improvements, please don't hesitate to create an issue [here](https://github.com/luost26/academic-homepage/issues/new).
+_news/                       # One file per news item (title, title_zh, date)
+_publications/<year>/        # One file per paper
+_showcase/                   # Showcase cards
 
+_includes/widgets/           # profile_card, experience_card, news_card, publication_card, ...
+_includes/head.html          # All <head> metadata: SEO, Open Graph, hreflang, JSON-LD
+_layouts/default.html        # Main layout: navbar, footer, scripts
+assets/css/global.css        # All styling
+assets/js/common.js          # Theme switching, reveal animations, Scholar badge fetch
+assets/images/og/            # Generated 1200x630 social preview cards
+tools/make_og_image.py       # Regenerates the cards above (excluded from the build)
+robots.txt, sitemap.xml      # Crawler directives and the bilingual sitemap
+```
 
-## Getting Started
+## Local development
 
-1. First, fork this repository or click the "Use this template" button to create a new repository. The name of the repository should be `<your-github-username>.github.io` (click [here](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites) to learn more about naming a GitHub Pages repository).
-   - If you plan to customize the functionality or style of the template, and do not want to get updates from this repository, choose "Use this template".
-   - If you plan to only edit the content (biography, publications, news, etc.), and would like to get updates from this repository, choose "Fork".
-   - If you want to contribute to this project, fork the repository and submit a pull request.
+> **Important — use Homebrew's Ruby 3.4, not the system Ruby.**
+>
+> macOS ships Ruby 2.6 at `/usr/bin/ruby`. Running the project with it fails immediately:
+>
+> ```
+> Could not find 'bundler' (2.7.2) required by your Gemfile.lock. (Gem::GemNotFoundException)
+> ```
+>
+> The `bundle` on `PATH` resolves to `/usr/bin/bundle` (Ruby 2.6), which does not have the bundler
+> version this project is locked to. Put Homebrew's Ruby first on `PATH` before building:
+>
+> ```bash
+> export PATH="/opt/homebrew/opt/ruby@3.4/bin:$PATH"
+> ```
+>
+> Install it once with `brew install ruby@3.4` if missing. This is a local-only concern —
+> CI uses `ruby/setup-ruby` and is unaffected.
 
-### Running Locally (Debug & Preview)
+```bash
+# 1. Use Homebrew Ruby 3.4 (see note above)
+export PATH="/opt/homebrew/opt/ruby@3.4/bin:$PATH"
 
-2. Follow the **step 1** and **step 2** of the instruction [here](https://jekyllrb.com/docs/) to install prerequisites and jekyll.
+# 2. Install dependencies (gems are vendored into vendor/bundle per .bundle/config)
+bundle install
 
-3. Clone your forked repository to your local machine.
+# 3. Serve locally with live rebuild
+bundle exec jekyll serve          # → http://127.0.0.1:4000
 
-4. Run the following command in the root directory of the repository:
+# Or just build into _site/
+bundle exec jekyll build          # add JEKYLL_ENV=production for a production build
+```
 
-   ```bash
-   bundle exec jekyll serve
-   ```
+Notes:
 
-5. Browse to the displayed URL to see the website.
+- Chinese pages are served at `/`, English at `/en/`.
+- `_config.yml` is **not** reloaded automatically. Restart the server after editing it.
+- `_site/` is generated output and is not tracked in git.
+- `Gemfile.lock` is not tracked either; `bundle install` regenerates it.
 
-### Deploying to GitHub Pages
+## Adding content
 
-2. Go to the repository settings and enable GitHub Pages. Detailed instructions can be found [here](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site).
+**A news item** — create `_news/YYYY-newsN.md`:
 
-3. Navigate to your created website, and follow the instructions displayed on the homepage (if any) to finalize the setup.
+```yaml
+---
+title: >-
+    Some news in English. 🎉
+title_zh: >-
+    对应的中文动态。🎉
+date: 2026-09-13 10:00:00 +0800
+---
+```
 
+Ordering is driven by `date`, newest first. The most recent entry is also surfaced as the
+"Latest" line on the homepage profile card.
+
+**A publication** — add a file under `_publications/<year>/` with:
+
+- `title`, `date`, `selected` (show on the homepage), `pub` (venue string, e.g. `"arxiv"` or
+  `"International Conference on Learning Representations (ICLR'24)"`), `pub_date` (display year)
+- `authors` (one per line; `*` marks equal contribution — `_data/authors.yml` controls which names
+  are highlighted), `cover` (thumbnail URL), `links` (`Paper:` / `Code:` / `Page:` / `Video:` …)
+- `abstract` and `abstract_zh`, plus optional `pub_last` for badge markup
+  (e.g. `Spotlight`, `Oral`, `Top 6.2%`)
+
+See any existing file for the exact shape.
+
+**Switching profile text** — edit both `_data/profile.yml` (English) and `_data/profile_zh.yml`
+(Chinese). They are independent files, so a wording or photo change usually needs to be made twice.
+
+## SEO, social preview and language alternates
+
+Everything `<head>`-related lives in `_includes/head.html`, shared by `default.html` and
+`prompt.html`, so the 404 page is covered too. It emits:
+
+- `<title>`, `<meta name="description">`, `<meta name="author">`, `<link rel="canonical">`
+- **hreflang** alternates (`zh-CN`, `en`, `x-default`). These matter here: GitHub Pages serves both
+  `/publications` and `/publications.html` with HTTP 200 and **no redirect**, so without canonical
+  and hreflang tags each page competes with its own duplicates and with its other-language twin.
+- **Open Graph + Twitter Card**, with a per-language 1200×630 preview image
+  (`assets/images/og/og-zh.png` and `og-en.png`).
+- **JSON-LD `Person`** structured data on the homepage, built from `_data/profile*.yml`.
+
+Descriptions come from `_data/strings.yml` (`site_description`, `desc_publications`,
+`desc_showcase`); add a `description:` to a page's front matter to override it. Add `noindex: true`
+to exclude a page from search (this is how `404.html` is handled).
+
+### Regenerating the preview cards
+
+The cards are generated, not hand-drawn. After changing the name, title or portrait:
+
+```bash
+python3 tools/make_og_image.py     # needs Pillow; writes assets/images/og/og-{en,zh}.png
+```
+
+### Gotcha: jekyll-polyglot rewrites URLs in the output
+
+Polyglot post-processes rendered HTML and prefixes internal `href="..."` values with the active
+language on non-default pages. Its negative lookbehind only exempts `hreflang="zh"` — **not**
+`hreflang="zh-CN"` or `x-default` — so cross-language links silently get pointed at `/en/…`. Wrap
+any URL that must stay language-neutral in `{% raw %}{% static_href %}href="…"{% endstatic_href %}{% endraw %}`
+(see `_includes/head.html` and the language switcher in `_includes/navbar.html`). Paths under
+`exclude_from_localization` in `_config.yml` — `assets`, `images`, … — are exempt automatically,
+which is why asset URLs work unguarded.
+
+## Deployment
+
+Pushing to `main` triggers `.github/workflows/pages.yml`, which builds the site on Ruby 3.3 and
+publishes it to GitHub Pages. No manual step is required.
+
+`.github/workflows/google-scholar-stats.yml` runs separately on a daily schedule: it crawls Google
+Scholar and commits the result to the `google-scholar-stats` branch. It never touches the deployed
+site; the homepage badge reads that branch's JSON at runtime.
+
+Analytics are configured under `analytics:` in `_config.yml` (visitor counter enabled by default;
+GoatCounter and Flag Counter can be enabled by filling in their codes).
+
+## Credits
+
+Built on the [academic-homepage](https://github.com/luost26/academic-homepage) template by
+Shitong Luo, released under the MIT License. See [LICENSE](LICENSE).
