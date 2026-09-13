@@ -1,0 +1,47 @@
+{%- comment -%}
+  Business card modal, opened by clicking the portrait in the profile card.
+
+  Kept in its own include and rendered OUTSIDE the `.reveal` wrapper in index.html:
+  `.reveal` sets `will-change: transform`, which makes it the containing block for
+  position:fixed descendants and would mis-position the Bootstrap modal.
+
+  All content is read from the active language's profile data, so it stays in sync.
+{%- endcomment -%}
+{%- assign nc_profile = site.data.profile -%}
+{%- if site.active_lang == "zh" and site.data.profile_zh -%}{%- assign nc_profile = site.data.profile_zh -%}{%- endif -%}
+{%- assign t = site.data.strings[site.active_lang] -%}
+{%- if nc_profile.portrait_url %}
+<div class="modal fade" id="modal-namecard" tabindex="-1" role="dialog" aria-labelledby="namecard-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered namecard-dialog" role="document">
+        <div class="modal-content namecard">
+            <button type="button" class="namecard-close" data-dismiss="modal" aria-label="{{ t.close }}">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="namecard-banner" aria-hidden="true"></div>
+            <div class="namecard-avatar">
+                <img src="{{ nc_profile.portrait_url | relative_url }}" alt="{{ nc_profile.primary_name }}">
+            </div>
+            <div class="namecard-body">
+                <div class="namecard-name" id="namecard-title">{{ nc_profile.primary_name }}{% if nc_profile.secondary_name %} <small>{{ nc_profile.secondary_name }}</small>{% endif %}</div>
+                {% if nc_profile.positions %}
+                <div class="namecard-positions">
+                    {%- for position in nc_profile.positions %}
+                    <span class="namecard-position">{% if position.logo %}<img src="{{ position.logo | relative_url }}" alt="" class="inline-badge"/>{% endif %}{{ position.name }}</span>
+                    {%- endfor %}
+                </div>
+                {% endif %}
+                {% if nc_profile.research_interests %}
+                <div class="namecard-tags">
+                    {%- for interest in nc_profile.research_interests -%}
+                    <span class="ri-tag">{{ interest }}</span>
+                    {%- endfor -%}
+                </div>
+                {% endif %}
+                <hr class="namecard-sep" />
+                <div class="namecard-label">{{ t.contact }}</div>
+                {% include widgets/social_icons.html %}
+            </div>
+        </div>
+    </div>
+</div>
+{%- endif %}

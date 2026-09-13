@@ -25,6 +25,9 @@ en:
   visitors: "Visitors"
   visitors_from: "Where visitors come from"
   latest: "Latest"
+  namecard_hint: "Click to view my business card"
+  contact: "Contact"
+  close: "Close"
 
 zh:
   menu: "菜单"
@@ -51,3 +54,6 @@ zh:
   visitors: "访客"
   visitors_from: "访客来源分布"
   latest: "最新"
+  namecard_hint: "点击查看名片"
+  contact: "联系方式"
+  close: "关闭"

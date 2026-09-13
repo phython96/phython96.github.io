@@ -5,6 +5,12 @@ navbar_title: Home
 ---
 <div class="reveal">{% include widgets/profile_card.html %}</div>
 
+{% comment %}
+  Outside .reveal on purpose: .reveal carries `will-change: transform`, which would
+  become the containing block for the modal's position:fixed and break its layout.
+{% endcomment %}
+{% include widgets/namecard_modal.html %}
+
 {% if site.data.display.homepage.show_experience %}
     <div class="reveal">{% include widgets/experience_card.html %}</div>
 {% endif %}

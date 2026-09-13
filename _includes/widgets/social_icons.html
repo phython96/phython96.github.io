@@ -1,0 +1,15 @@
+{%- comment -%}
+  Icon-only contact row. Shared by the profile card and the business card modal.
+  Uses si_profile so it does not clobber the caller's `profile` variable.
+{%- endcomment -%}
+{%- assign si_profile = site.data.profile -%}
+{%- if site.active_lang == "zh" and site.data.profile_zh -%}{%- assign si_profile = site.data.profile_zh -%}{%- endif -%}
+<div class="social-icons">
+    <a href="mailto:{{ si_profile.email | encode_email }}" title="Email" aria-label="Email"><i class="fas fa-at"></i></a>
+    {% if si_profile.gscholar %}{% if si_profile.gscholar contains 'scholar.google' %}{% assign gscholar_url = si_profile.gscholar %}{% else %}{% assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: si_profile.gscholar %}{% endif %}<a target="_blank" rel="noopener" href="{{ gscholar_url }}" title="Google Scholar" aria-label="Google Scholar"><i class="fab fa-google-scholar"></i></a>{% endif %}
+    {% if si_profile.github %}<a target="_blank" rel="noopener" href="https://github.com/{{ si_profile.github }}" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>{% endif %}
+    {% if si_profile.wechat_qrcode %}<a data-toggle="modal" data-target="#modal-wechat" title="WeChat" aria-label="WeChat" style="cursor:pointer;"><i class="fab fa-weixin"></i></a>{% endif %}
+    {% if si_profile.twitter %}<a target="_blank" rel="noopener" href="https://twitter.com/{{ si_profile.twitter }}" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>{% endif %}
+    {% if si_profile.linkedin %}<a target="_blank" rel="noopener" href="https://www.linkedin.com/in/{{ si_profile.linkedin }}" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>{% endif %}
+    {% if si_profile.orcid %}<a target="_blank" rel="noopener" href="https://orcid.org/{{ si_profile.orcid }}" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>{% endif %}
+</div>

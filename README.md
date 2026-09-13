@@ -17,6 +17,8 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   `google-scholar-stats` data branch, refreshed daily by a GitHub Actions crawler.
 - **Collapsible news timeline**, selected-publication highlights, scroll-reveal animations, and a
   visitor counter.
+- **Business card modal** — clicking the portrait opens a contact card with positions, research
+  interests and contact links, built from the active language's profile data.
 
 ## Project structure
 
@@ -155,6 +157,14 @@ any URL that must stay language-neutral in `{% raw %}{% static_href %}href="…"
 (see `_includes/head.html` and the language switcher in `_includes/navbar.html`). Paths under
 `exclude_from_localization` in `_config.yml` — `assets`, `images`, … — are exempt automatically,
 which is why asset URLs work unguarded.
+
+### Gotcha: `.reveal` breaks `position: fixed` children
+
+`.reveal` (the scroll animation wrapper used throughout `index.html`) sets
+`will-change: transform`, which makes it the containing block for `position: fixed` descendants.
+A Bootstrap modal nested inside it would be positioned against that element instead of the viewport.
+That is why `widgets/namecard_modal.html` is included from `index.html` **outside** the `.reveal`
+div rather than from inside `profile_card.html`. Keep modal markup out of `.reveal`.
 
 ## Deployment
 

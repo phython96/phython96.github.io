@@ -1030,3 +1030,55 @@ body, .card, .navbar, .bg-white, .footer {
     [data-accent="purple"] .profile-watermark { background-position: center 29%; background-size: auto 46%; }
 }
 
+/* ===== Business card modal (opened by clicking the portrait) ===== */
+.portrait-trigger { display: inline-block; cursor: pointer; }
+
+.namecard-dialog { max-width: 340px; }
+.namecard {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card-bg);
+    color: var(--text);
+    box-shadow: var(--shadow-hover);
+}
+.namecard-banner { height: 78px; background: var(--accent-gradient); }
+.namecard-close {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    width: 28px; height: 28px; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff; font-size: 0.8rem; line-height: 1; cursor: pointer;
+    transition: background 0.18s ease;
+}
+.namecard-close:hover { background: rgba(255, 255, 255, 0.42); }
+
+/* Avatar straddles the banner */
+.namecard-avatar {
+    width: 116px; height: 116px;
+    margin: -58px auto 0;
+    padding: 4px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+.namecard-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+.namecard-body { padding: 0.85rem 1.4rem 1.5rem; text-align: center; }
+.namecard-name { font-size: 1.25rem; font-weight: 700; line-height: 1.35; color: var(--heading); }
+.namecard-name small { font-size: 0.78em; font-weight: 400; color: var(--text-muted); }
+.namecard-positions { margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.75; color: var(--text-muted); }
+.namecard-position { display: block; }
+.namecard-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: 0.95rem; }
+.namecard-tags .ri-tag { margin: 0; font-size: 0.76rem; }
+.namecard-sep { margin: 1.1rem 0 0.85rem; border: 0; border-top: 1px solid var(--border); }
+.namecard-label {
+    margin-bottom: 0.7rem;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted);
+}
+.namecard .social-icons a { font-size: 1.15rem; }
+

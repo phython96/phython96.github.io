@@ -1,17 +1,6 @@
 {% assign profile = site.data.profile %}
 {% if site.active_lang == "zh" and site.data.profile_zh %}{% assign profile = site.data.profile_zh %}{% endif %}
 {% assign t = site.data.strings[site.active_lang] %}
-{% capture social_icons %}
-<div class="social-icons">
-    <a href="mailto:{{ profile.email | encode_email }}" title="Email" aria-label="Email"><i class="fas fa-at"></i></a>
-    {% if profile.gscholar %}{% if profile.gscholar contains 'scholar.google' %}{% assign gscholar_url = profile.gscholar %}{% else %}{% assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: profile.gscholar %}{% endif %}<a target="_blank" href="{{ gscholar_url }}" title="Google Scholar" aria-label="Google Scholar"><i class="fab fa-google-scholar"></i></a>{% endif %}
-    {% if profile.github %}<a target="_blank" href="https://github.com/{{ profile.github }}" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>{% endif %}
-    {% if profile.wechat_qrcode %}<a data-toggle="modal" data-target="#modal-wechat" title="WeChat" aria-label="WeChat" style="cursor:pointer;"><i class="fab fa-weixin"></i></a>{% endif %}
-    {% if profile.twitter %}<a target="_blank" href="https://twitter.com/{{ profile.twitter }}" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>{% endif %}
-    {% if profile.linkedin %}<a target="_blank" href="https://www.linkedin.com/in/{{ profile.linkedin }}" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>{% endif %}
-    {% if profile.orcid %}<a target="_blank" href="https://orcid.org/{{ profile.orcid }}" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>{% endif %}
-</div>
-{% endcapture %}
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm bg-white profile-card">
@@ -25,7 +14,9 @@
                             </div>
                             {% if profile.portrait_url %}
                             <div class="ml-auto d-md-none">
-                                <a target="_blank" href="{{ profile.portrait_url | relative_url }}">
+                                <a href="#" class="portrait-trigger" role="button"
+                                   data-toggle="modal" data-target="#modal-namecard"
+                                   title="{{ t.namecard_hint }}" aria-label="{{ t.namecard_hint }}">
                                     <img src="{{ profile.portrait_url | relative_url }}" class="rounded-circle" style="height: 48px;" alt="Portrait">
                                 </a>
                             </div>
@@ -64,19 +55,20 @@
 
                     {% if profile.portrait_url %}
                     <div class="col-auto d-none d-md-block order-first order-md-last portrait-col">
-                        <a target="_blank" href="{{ profile.portrait_url | relative_url }}">
+                        <a href="#" class="portrait-trigger" role="button"
+                           data-toggle="modal" data-target="#modal-namecard"
+                           title="{{ t.namecard_hint }}" aria-label="{{ t.namecard_hint }}">
                             <img
                                 src="{{ profile.portrait_url | relative_url }}"
                                 class="figure-img img-fluid img-thumbnail mb-0 portrait-img"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="{{ profile.portrait_caption }}">
+                                {% if profile.portrait_caption %}title="{{ profile.portrait_caption }}"{% endif %}
+                                alt="{{ profile.primary_name }}">
                         </a>
                         {% if profile.portrait_tagline %}
                         <div class="portrait-divider"><span></span></div>
                         <div class="portrait-tagline">{{ profile.portrait_tagline }}</div>
                         {% endif %}
-                        {{ social_icons }}
+                        {% include widgets/social_icons.html %}
                     </div>
                     {% endif %}
 
@@ -104,7 +96,7 @@
                             </a>
                             {% endif %}
                         </div>
-                        <div class="d-md-none mt-3">{{ social_icons }}</div>
+                        <div class="d-md-none mt-3">{% include widgets/social_icons.html %}</div>
                     </div>
                 </div>
             </div>
