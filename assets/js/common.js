@@ -79,7 +79,8 @@ $(function () {
         }
     }
 
-    // Accent color picker (page load starts with a random accent; manual clicks affect the current page)
+    // Accent color picker (a first visit defaults to red; clicking a swatch applies
+    // it and remembers the choice for later visits)
     var applyAccentActive = function () {
         var cur = document.documentElement.getAttribute('data-accent') || 'red';
         $('.accent-dot').removeClass('active');
@@ -175,6 +176,7 @@ $(function () {
         var oldOpacity = wm ? getComputedStyle(wm).opacity : '0';
         var apply = function (animateSurfaces) {
             root.setAttribute('data-accent', accent);
+            try { localStorage.setItem('accent', accent); } catch (err) {}
             applyAccentActive();
             if (animateSurfaces) settleAccentSurfaces();
             if (crossesRed) triggerPosSwap();

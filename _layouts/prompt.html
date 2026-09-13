@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% include head.html %}
 
-    <!-- Set theme before paint to avoid flash of unstyled content -->
+    <!-- Set theme + accent before paint to avoid flash of unstyled content -->
     <script>
         (function () {
             try {
@@ -13,7 +13,8 @@
                 var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme', theme);
                 var accents = ['purple', 'red', 'blue', 'minecraft'];
-                var accent = accents[Math.floor(Math.random() * accents.length)];
+                var storedAccent = localStorage.getItem('accent');
+                var accent = accents.indexOf(storedAccent) !== -1 ? storedAccent : 'red';
                 document.documentElement.setAttribute('data-accent', accent);
             } catch (e) {}
         })();
