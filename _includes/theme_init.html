@@ -1,0 +1,48 @@
+<!-- Resolve shared appearance before paint; explicit URL state wins over storage. -->
+<script>
+(function () {
+    var accents = ['red', 'blue', 'minecraft'];
+    var modes = ['light', 'dark'];
+    var views = ['whoami', 'experience', 'news', 'papers', 'projects', 'agent', 'theme', 'help'];
+    var legacy = {about: 'whoami', whoami: 'whoami', experience: 'experience', news: 'news', papers: 'papers', projects: 'projects', 'agent-demo': 'agent', help: 'help', theme: 'theme'};
+    function parse(hash) {
+        var fragment = (hash || '').replace(/^#/, '');
+        if (legacy[fragment]) return {view: legacy[fragment]};
+        if (/^year-\d{4}$/.test(fragment)) return {view: 'papers', year: fragment.slice(5)};
+        var params = new URLSearchParams(fragment);
+        var state = {};
+        var accent = params.get('theme');
+        if (accent === 'purple') accent = 'red';
+        if (accents.indexOf(accent) !== -1) state.theme = accent;
+        if (modes.indexOf(params.get('mode')) !== -1) state.mode = params.get('mode');
+        if (views.indexOf(params.get('view')) !== -1) state.view = params.get('view');
+        if (/^\d{4}$/.test(params.get('year') || '') && (!state.view || state.view === 'papers')) {
+            state.view = 'papers';
+            state.year = params.get('year');
+        }
+        return state;
+    }
+    function format(state) {
+        var params = new URLSearchParams();
+        params.set('theme', accents.indexOf(state.theme) !== -1 ? state.theme : 'red');
+        params.set('mode', modes.indexOf(state.mode) !== -1 ? state.mode : 'light');
+        params.set('view', views.indexOf(state.view) !== -1 ? state.view : 'whoami');
+        if (state.view === 'papers' && /^\d{4}$/.test(state.year || '')) params.set('year', state.year);
+        return '#' + params.toString();
+    }
+    window.TerminalURL = {parse: parse, format: format};
+    var root = document.documentElement;
+    root.classList.add('js');
+    var state = parse(location.hash);
+    var savedAccent, savedMode;
+    try { savedAccent = localStorage.getItem('accent'); savedMode = localStorage.getItem('theme'); } catch (e) {}
+    var accent = state.theme || (accents.indexOf(savedAccent) !== -1 ? savedAccent : 'red');
+    var mode = state.mode || (modes.indexOf(savedMode) !== -1 ? savedMode : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    root.setAttribute('data-accent', accent);
+    root.setAttribute('data-theme', mode);
+    try {
+        if (state.theme || (savedAccent && savedAccent !== accent)) localStorage.setItem('accent', accent);
+        if (state.mode) localStorage.setItem('theme', mode);
+    } catch (e) {}
+})();
+</script>

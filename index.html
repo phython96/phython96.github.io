@@ -4,16 +4,25 @@ title : Homepage
 navbar_title: Home
 terminal_view: whoami
 ---
-<div class="reveal is-terminal-active" data-terminal-panel="whoami">{% include widgets/profile_card.html %}</div>
+<div class="reveal is-terminal-active" data-terminal-panel="whoami">
+    <div class="terminal-classic-content">{% include widgets/profile_card.html %}</div>
+    {% include widgets/terminal_profile.html %}
+</div>
 
 {% if site.data.display.homepage.show_experience %}
-    <div class="reveal" data-terminal-panel="experience">{% include widgets/experience_card.html %}</div>
+    <div class="reveal" data-terminal-panel="experience">
+        <div class="terminal-classic-content">{% include widgets/experience_card.html %}</div>
+        {% include widgets/terminal_experience.html %}
+    </div>
 {% endif %}
 
 {% if site.data.display.homepage.show_news %}
     {% assign count_news = site.news | size %}
     {% if count_news > 0 %}
-        <div class="reveal" data-terminal-panel="news">{% include widgets/news_card.html limit=site.data.display.homepage.num_news collapse=site.data.display.homepage.num_news_collapsed %}</div>
+        <div class="reveal" data-terminal-panel="news">
+            <div class="terminal-classic-content">{% include widgets/news_card.html limit=site.data.display.homepage.num_news collapse=site.data.display.homepage.num_news_collapsed %}</div>
+            {% include widgets/terminal_news.html %}
+        </div>
     {% endif %}
 {% endif %}
 

@@ -1,0 +1,19 @@
+{% assign profile = site.data.profile %}
+{% if site.active_lang == 'zh' %}{% assign profile = site.data.profile_zh %}{% endif %}
+<section class="agent-only terminal-native-output terminal-profile-output">
+    <dl class="terminal-kv">
+        <div><dt>name</dt><dd>{{ profile.primary_name }} <span class="text-muted">{{ profile.secondary_name }}</span></dd></div>
+        <div><dt>role</dt><dd>{% for position in profile.positions %}<div>{{ position.name }}</div>{% endfor %}</dd></div>
+        <div><dt>research</dt><dd>{{ profile.research_interests | join: ' · ' }}</dd></div>
+        <div><dt>links</dt><dd class="terminal-text-links">
+            {% if profile.github %}<a href="https://github.com/{{ profile.github }}" target="_blank" rel="noopener">[GitHub]</a>{% endif %}
+            {% if profile.gscholar %}{% if profile.gscholar contains 'scholar.google' %}{% assign scholar_url = profile.gscholar %}{% else %}{% assign scholar_url = 'https://scholar.google.com/citations?user=' | append: profile.gscholar %}{% endif %}<a href="{{ scholar_url }}" target="_blank" rel="noopener">[Scholar]</a>{% endif %}
+            {% if profile.email %}<a href="mailto:{{ profile.email | encode_email }}">[Email]</a>{% endif %}
+            {% if profile.linkedin %}<a href="https://www.linkedin.com/in/{{ profile.linkedin | uri_escape }}" target="_blank" rel="noopener">[LinkedIn]</a>{% endif %}
+            {% if profile.orcid %}<a href="https://orcid.org/{{ profile.orcid }}" target="_blank" rel="noopener">[ORCID]</a>{% endif %}
+            {% if profile.cv_link %}<a href="{{ profile.cv_link | relative_url }}" target="_blank" rel="noopener">[CV]</a>{% endif %}
+        </dd></div>
+    </dl>
+    <h2 class="terminal-output-label">about</h2>
+    <div class="terminal-prose">{{ profile.short_bio }}</div>
+</section>

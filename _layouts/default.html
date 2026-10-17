@@ -6,24 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% include head.html %}
 
-    <!-- Set theme + accent before paint to avoid flash of unstyled content -->
-    <script>
-        (function () {
-            try {
-                document.documentElement.classList.add('js');
-                var stored = localStorage.getItem('theme');
-                var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                // First visit defaults to red; afterwards the visitor's pick is remembered
-                // (saved by the accent picker in assets/js/common.js).
-                var accents = ['red', 'blue', 'minecraft'];
-                var storedAccent = localStorage.getItem('accent');
-                var accent = accents.indexOf(storedAccent) !== -1 ? storedAccent : 'red';
-                document.documentElement.setAttribute('data-accent', accent);
-                if (storedAccent && storedAccent !== accent) localStorage.setItem('accent', accent);
-            } catch (e) {}
-        })();
-    </script>
+    {% include theme_init.html %}
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
@@ -43,6 +26,7 @@
         {% include widgets/terminal_header.html %}
         {% include navbar.html %}
         <main class="container site-main" id="site-content" data-terminal-default="{{ page.terminal_view | default: 'whoami' }}">
+            <div class="agent-only terminal-output-command"><span class="terminal-echo-prompt">shaofei@deepseek<span>:~ $</span></span> <code class="terminal-echo-text">{{ page.terminal_view | default: 'whoami' }}</code></div>
             {{content}}
             {% include widgets/terminal_help.html %}
         </main>
@@ -76,7 +60,9 @@
     <script src="{{ '/assets/js/common.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script defer src="{{ '/assets/js/scholar.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script defer src="{{ '/assets/js/agent.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+    <script defer src="{{ '/assets/js/terminal-output.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script defer src="{{ '/assets/js/terminal.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+    <script defer src="{{ '/assets/js/terminal-input.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script src="{{ '/assets/js/bubble_visual_hash.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
     {% if site.analytics.vercount %}

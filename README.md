@@ -11,12 +11,22 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 - **DeepSeek blue terminal theme** — the entire site lives inside one terminal
   with a DeepSeek watermark, scrolling output, clickable navigation, and a command
   prompt. Each command replaces the output with only its own category: `whoami`,
-  `experience`, `news`, `papers`, `projects`, `agent`, or `help`. The homepage starts
+  `experience`, `news`, `papers`, `projects`, `agent`, `theme`, or `help`. The homepage starts
   with the profile; category links survive reloads, and `papers` opens the complete
   publication list. The Agent visualization has a separate output panel.
-  The blue header only contains the terminal title and appearance controls;
+  The blue header only contains the terminal title; appearance is controlled by
+  `theme blue`, `theme red`, `theme minecraft`, `theme dark`, and `theme light`.
+  URL fragments such as `#theme=blue&mode=dark&view=news` preserve a shareable view
+  and override saved preferences. Legacy section/year anchors are still accepted.
   `lang` (or `lang en` / `lang zh`) switches language without changing categories.
+  Each entered command is echoed above its output. Profile, experience, and news
+  use terminal field/record/log layouts; output blocks reveal progressively after
+  Enter, with bounded timing and immediate display for reduced-motion visitors.
   The prompt supports history and Tab completion; no command executes backend code.
+  While the input is idle, a blinking caret accompanies command hints that type,
+  hold for three blinks, and erase in a loop. Real typing and IME composition take
+  priority; previews never populate or submit the actual input. The loop pauses
+  when hidden or when reduced motion is requested.
   `terminal.css` / `terminal.js` handle the shell; `agent.css` / `agent.js` handle
   the code visualization. Motion honors system preferences, and JetBrains Mono is
   served locally. Other palettes retain their original document layout.

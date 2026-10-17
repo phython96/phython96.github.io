@@ -1,6 +1,12 @@
 # UI string dictionary for bilingual rendering (jekyll-polyglot).
 # Usage in templates: {% assign t = site.data.strings[site.active_lang] %} then {{ t.education }}
 en:
+  terminal_describe_theme: "Appearance and light/dark mode."
+  terminal_theme_title: "Appearance"
+  terminal_theme_intro: "Run a theme command. Copy the URL to share the same appearance and category."
+  terminal_current: "current"
+  terminal_dark: "Dark mode"
+  terminal_light: "Light mode"
   terminal_help_title: "Available commands"
   terminal_help_intro: "Each command replaces the output with its own category."
   terminal_describe_whoami: "Profile and research interests"
@@ -69,6 +75,12 @@ en:
   close: "Close"
 
 zh:
+  terminal_describe_theme: "外观主题与亮暗模式。"
+  terminal_theme_title: "外观主题"
+  terminal_theme_intro: "输入主题命令进行切换，复制网址即可分享相同主题和当前类目。"
+  terminal_current: "当前"
+  terminal_dark: "暗色模式"
+  terminal_light: "亮色模式"
   terminal_help_title: "可用命令"
   terminal_help_intro: "每个命令只显示对应类目的内容，新的输出会替换上一类。"
   terminal_describe_whoami: "个人简介与研究兴趣"

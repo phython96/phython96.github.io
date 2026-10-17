@@ -5,21 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% include head.html %}
 
-    <!-- Set theme + accent before paint to avoid flash of unstyled content -->
-    <script>
-        (function () {
-            try {
-                var stored = localStorage.getItem('theme');
-                var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                var accents = ['red', 'blue', 'minecraft'];
-                var storedAccent = localStorage.getItem('accent');
-                var accent = accents.indexOf(storedAccent) !== -1 ? storedAccent : 'red';
-                document.documentElement.setAttribute('data-accent', accent);
-                if (storedAccent && storedAccent !== accent) localStorage.setItem('accent', accent);
-            } catch (e) {}
-        })();
-    </script>
+    {% include theme_init.html %}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,0 +1,16 @@
+{% assign profile = site.data.profile %}
+{% if site.active_lang == 'zh' %}{% assign profile = site.data.profile_zh %}{% endif %}
+<section class="agent-only terminal-native-output terminal-experience-output">
+    <h2 class="terminal-output-label">education</h2>
+    <ol class="terminal-records">
+        {% for item in profile.education %}<li><div class="terminal-record-head"><strong>{{ item.name }}</strong><span>{{ item.date }}</span></div><div class="terminal-record-detail">{{ item.position }}</div></li>{% endfor %}
+    </ol>
+    <h2 class="terminal-output-label">work</h2>
+    <ol class="terminal-records">
+        {% for item in profile.experience %}<li><div class="terminal-record-head"><strong>{{ item.name }}</strong><span>{{ item.date }}</span></div><div class="terminal-record-detail">{{ item.position }}</div></li>{% endfor %}
+    </ol>
+    <h2 class="terminal-output-label">honors</h2>
+    <ol class="terminal-records">
+        {% for item in profile.awards %}<li><div class="terminal-record-head"><span>{{ item.name }}</span><span>{{ item.date }}</span></div></li>{% endfor %}
+    </ol>
+</section>

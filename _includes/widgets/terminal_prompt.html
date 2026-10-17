@@ -3,7 +3,10 @@
     <div class="terminal-response" role="status" aria-live="polite" data-help="{{ t.terminal_help }}" data-unknown="{{ t.terminal_unknown }}" data-missing="{{ t.terminal_missing }}">{{ t.terminal_hint }}</div>
     <form class="terminal-command-form" aria-label="{{ t.terminal_command_label }}">
         <label for="terminal-command" class="terminal-prompt-label"><span>shaofei@deepseek</span><span class="terminal-prompt-path">:~</span><span class="terminal-dollar">$</span></label>
-        <input id="terminal-command" name="site-command" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="{{ t.terminal_placeholder }}" aria-label="{{ t.terminal_command_label }}" disabled>
+        <div class="terminal-input-wrap">
+            <input id="terminal-command" name="site-command" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="{{ t.terminal_placeholder }}" aria-label="{{ t.terminal_command_label }}" disabled>
+            <span class="terminal-idle-display" aria-hidden="true"><span class="terminal-idle-text"></span><span class="terminal-idle-caret"></span></span>
+        </div>
         <button class="terminal-submit" type="submit" aria-label="{{ t.terminal_enter }}" title="{{ t.terminal_enter }}" disabled>↵</button>
     </form>
     <nav class="terminal-shortcuts" aria-label="{{ t.terminal_shortcuts }}">
@@ -13,6 +16,7 @@
         <a href="{{ '/publications' | relative_url }}" data-terminal-command="papers">papers</a>
         <a href="{{ '/showcase' | relative_url }}" data-terminal-command="projects">projects</a>
         <a href="{{ '/#agent-demo' | relative_url }}" data-terminal-command="agent">agent</a>
+        <button type="button" data-terminal-command="theme" disabled>theme</button>
         <button type="button" data-terminal-command="lang" title="中文 / English" disabled>lang</button>
         <button type="button" data-terminal-command="help" disabled>help</button>
     </nav>
