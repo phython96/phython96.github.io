@@ -30,7 +30,6 @@
 {%- endif -%}
 {%- case page.navbar_title -%}
   {%- when 'Publications' -%}{%- assign meta_desc = t.desc_publications -%}
-  {%- when 'Showcase' -%}{%- assign meta_desc = t.desc_showcase -%}
   {%- else -%}{%- assign meta_desc = t.site_description -%}
 {%- endcase -%}
 {%- if page.description -%}{%- assign meta_desc = page.description -%}{%- endif -%}

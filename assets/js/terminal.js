@@ -13,7 +13,7 @@
     var idleHint = response.textContent;
     var urlState = window.TerminalURL;
     var shortcuts = Array.from(document.querySelectorAll('[data-terminal-command]'));
-    var commands = ['whoami', 'experience', 'news', 'papers', 'projects', 'theme', 'lang', 'help'];
+    var commands = ['whoami', 'experience', 'news', 'papers', 'theme', 'lang', 'help'];
     var aliases = {about: 'whoami', profile: 'whoami', 'cat profile.md': 'whoami', ls: 'help'};
     var panels = Array.from(main.querySelectorAll('[data-terminal-panel]'));
     var defaultView = main.dataset.terminalDefault || 'whoami';
@@ -217,7 +217,7 @@
         var route = shortcuts.find(function (item) { return item.dataset.terminalCommand === command; });
         // The homepage also contains selected papers for the other themes;
         // the terminal's papers command always opens the complete collection.
-        if ((command === 'papers' || command === 'projects') && defaultView !== command) {
+        if (command === 'papers' && defaultView !== command) {
             if (route && route.href) navigate(route.href, command, text);
             return;
         }

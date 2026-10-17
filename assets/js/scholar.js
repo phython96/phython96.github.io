@@ -60,7 +60,7 @@
     refresh();
 })();
 
-// The reading line also works on publications and showcase pages, which have
+// The reading line also works on publication pages, which have
 // no profile scene. Content resizing (including expanded news) updates its range.
 (function () {
     'use strict';

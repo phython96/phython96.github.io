@@ -3,8 +3,8 @@
 (function () {
     var accents = ['red', 'blue', 'minecraft'];
     var modes = ['light', 'dark'];
-    var views = ['whoami', 'experience', 'news', 'papers', 'projects', 'theme', 'help'];
-    var legacy = {about: 'whoami', whoami: 'whoami', experience: 'experience', news: 'news', papers: 'papers', projects: 'projects', 'agent-demo': 'help', help: 'help', theme: 'theme'};
+    var views = ['whoami', 'experience', 'news', 'papers', 'theme', 'help'];
+    var legacy = {about: 'whoami', whoami: 'whoami', experience: 'experience', news: 'news', papers: 'papers', projects: 'whoami', 'agent-demo': 'help', help: 'help', theme: 'theme'};
     function parse(hash) {
         var fragment = (hash || '').replace(/^#/, '');
         if (legacy[fragment]) return {view: legacy[fragment]};
@@ -15,7 +15,9 @@
         if (accent === 'purple') accent = 'red';
         if (accents.indexOf(accent) !== -1) state.theme = accent;
         if (modes.indexOf(params.get('mode')) !== -1) state.mode = params.get('mode');
-        var view = params.get('view') === 'agent' ? 'help' : params.get('view');
+        var view = params.get('view');
+        if (view === 'agent') view = 'help';
+        if (view === 'projects') view = 'whoami';
         if (views.indexOf(view) !== -1) state.view = view;
         if (/^\d{4}$/.test(params.get('year') || '') && (!state.view || state.view === 'papers')) {
             state.view = 'papers';

@@ -11,7 +11,7 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 - **DeepSeek blue terminal theme** — the entire site lives inside one terminal
   with a DeepSeek watermark, scrolling output, clickable navigation, and a command
   prompt. Each command replaces the output with only its own category: `whoami`,
-  `experience`, `news`, `papers`, `projects`, `theme`, or `help`. The homepage starts
+  `experience`, `news`, `papers`, `theme`, or `help`. The homepage starts
   with the profile; category links survive reloads, and `papers` opens the complete
   publication list.
   The blue header only contains the terminal title; appearance is controlled by
@@ -69,6 +69,9 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   visitor counter.
 - **Business card modal** — in the classic themes, clicking the portrait opens a contact card with positions, research
   interests and contact links, built from the active language's profile data.
+- The personal-photo showcase is retired. Its old Chinese and English URLs redirect
+  to the corresponding homepage and preserve shared appearance fragments; old
+  `projects` fragments resolve to `whoami`.
 
 ## Project structure
 
@@ -76,7 +79,7 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 _config.yml                  # Jekyll config: languages, plugins, analytics
 index.html                   # Homepage (profile + experience + news + selected publications)
 publications.html            # Full publication list, grouped by year
-showcase.html                # Showcase grid
+showcase.html                # Redirect for the retired personal-photo page
 404.html
 
 _data/
@@ -89,7 +92,7 @@ _data/
 
 _news/                       # One file per news item (title, title_zh, date)
 _publications/<year>/        # One file per paper
-_showcase/                   # Showcase cards
+_showcase/                   # Inactive template examples (not published)
 
 _includes/widgets/           # profile_card, experience_card, news_card, publication_card, ...
 _includes/head.html          # All <head> metadata: SEO, Open Graph, hreflang, JSON-LD
@@ -186,8 +189,8 @@ Everything `<head>`-related lives in `_includes/head.html`, shared by `default.h
   (`assets/images/og/og-zh.png` and `og-en.png`).
 - **JSON-LD `Person`** structured data on the homepage, built from `_data/profile*.yml`.
 
-Descriptions come from `_data/strings.yml` (`site_description`, `desc_publications`,
-`desc_showcase`); add a `description:` to a page's front matter to override it. Add `noindex: true`
+Descriptions come from `_data/strings.yml` (`site_description`, `desc_publications`);
+add a `description:` to a page's front matter to override it. Add `noindex: true`
 to exclude a page from search (this is how `404.html` is handled).
 
 ### Regenerating the preview cards

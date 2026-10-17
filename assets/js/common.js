@@ -25,20 +25,6 @@ $(function () {
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    var $grid = $('.grid').masonry({
-        "percentPosition": true,
-        "itemSelector": ".grid-item",
-        "columnWidth": ".grid-sizer"
-    });
-    // layout Masonry after each image loads
-    $grid.imagesLoaded().progress(function () {
-        $grid.masonry('layout');
-    });
-
-    $(".lazy").on("load", function () {
-        $grid.masonry('layout');
-    });
-
     // Dark mode toggle (manual choice wins, persisted)
     $('#theme-toggle').on('click', function () {
         var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';

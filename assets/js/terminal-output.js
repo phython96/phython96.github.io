@@ -12,7 +12,6 @@
         experience: '.terminal-output-label, .terminal-records > li',
         news: '.terminal-log-header, .terminal-log > li',
         papers: 'h2, .publication-row',
-        projects: 'h1, .grid-item > div',
         help: '.terminal-section-command, .terminal-help-title, .terminal-help-intro, .terminal-help-list > div, .terminal-help-keys',
         theme: '.terminal-section-command, .terminal-help-title, .terminal-help-intro, .terminal-help-list > div',
         message: '.terminal-section-command, .terminal-message-text, .terminal-message-help'
