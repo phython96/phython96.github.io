@@ -135,9 +135,35 @@
 :root[data-accent="blue"] .terminal-kv dt { color: #6f96cc; font-weight: 400; }
 :root[data-accent="blue"] .terminal-kv dt::after { content: ":"; }
 :root[data-accent="blue"] .terminal-kv dd { margin: 0; color: #d0def3; }
-:root[data-accent="blue"] .terminal-profile-header { display: grid; grid-template-columns: minmax(0, 1fr) 224px; gap: 2rem; align-items: start; }
-:root[data-accent="blue"] .terminal-portrait { width: 224px; margin: 0; }
+:root[data-accent="blue"] .terminal-profile-header { --terminal-portrait-size: calc(224px * .70710678); display: grid; grid-template-columns: minmax(0, 1fr) calc(var(--terminal-portrait-size) + 16px); gap: 2rem; align-items: start; }
+:root[data-accent="blue"] .terminal-portrait { width: calc(var(--terminal-portrait-size) + 16px); margin: 0; }
 :root[data-accent="blue"] .terminal-portrait figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: 9px; color: #6589bc; font-size: .6rem; line-height: 1.6; }
+:root[data-accent="blue"] .terminal-portrait-frame {
+    position: relative;
+    padding: 7px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: linear-gradient(145deg, #0d1a2c, #070f1d) padding-box,
+                linear-gradient(135deg, #adcaf775, #41618d55 28%, #2c476d44 65%, #8aaee578) border-box;
+    box-shadow: inset 0 1px 0 #ffffff05, 0 7px 22px #0206113d;
+}
+:root[data-accent="blue"] .terminal-portrait-frame::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, #adcfffaa, transparent) top left / 12px 1px,
+        linear-gradient(180deg, #adcfffaa, transparent) top left / 1px 12px,
+        linear-gradient(270deg, #89b1e388, transparent) top right / 12px 1px,
+        linear-gradient(180deg, #89b1e388, transparent) top right / 1px 12px,
+        linear-gradient(90deg, #89b1e366, transparent) bottom left / 12px 1px,
+        linear-gradient(0deg, #89b1e366, transparent) bottom left / 1px 12px,
+        linear-gradient(270deg, #adcfff99, transparent) bottom right / 12px 1px,
+        linear-gradient(0deg, #adcfff99, transparent) bottom right / 1px 12px;
+    background-repeat: no-repeat;
+}
 :root[data-accent="blue"] .terminal-portrait-image { position: relative; aspect-ratio: 1; overflow: hidden; filter: drop-shadow(0 8px 16px #02081540); }
 /* The original photo is framed closer to the face. The adaptive vector mask
    uses fine, narrow seams there and larger raised tiles around the perimeter. */
@@ -340,8 +366,8 @@
     :root[data-accent="blue"] .terminal-response { font-size: .57rem; }
     :root[data-accent="blue"] .terminal-output-command { font-size: .69rem; gap: .4rem; margin-bottom: 1.3rem; }
     :root[data-accent="blue"] .terminal-kv { font-size: .75rem; }
-    :root[data-accent="blue"] .terminal-profile-header { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
-    :root[data-accent="blue"] .terminal-portrait { grid-row: 1; width: 192px; }
+    :root[data-accent="blue"] .terminal-profile-header { --terminal-portrait-size: calc(192px * .70710678); grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
+    :root[data-accent="blue"] .terminal-portrait { grid-row: 1; }
     :root[data-accent="blue"] .terminal-kv > div { grid-template-columns: 4.8rem minmax(0, 1fr); gap: .6rem; }
     :root[data-accent="blue"] .terminal-prose { font-size: .77rem; }
     :root[data-accent="blue"] .terminal-log { font-size: .75rem; }

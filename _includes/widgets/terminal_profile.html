@@ -18,11 +18,13 @@
     {% if profile.portrait_url %}
     <figure class="terminal-portrait">
         <figcaption><span>portrait</span><span aria-hidden="true">▧</span></figcaption>
-        <div class="terminal-portrait-image">
-            <div class="terminal-portrait-surface">
-                <img src="{{ profile.portrait_url | relative_url }}" alt="{{ profile.primary_name }}" width="224" height="224">
+        <div class="terminal-portrait-frame">
+            <div class="terminal-portrait-image">
+                <div class="terminal-portrait-surface">
+                    <img src="{{ profile.portrait_url | relative_url }}" alt="{{ profile.primary_name }}" width="224" height="224">
+                </div>
+                <span class="terminal-portrait-scan" aria-hidden="true"></span>
             </div>
-            <span class="terminal-portrait-scan" aria-hidden="true"></span>
         </div>
     </figure>
     {% endif %}
