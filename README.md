@@ -22,9 +22,10 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   Each entered command is echoed above its output. Profile, experience, and news
   use terminal field/record/log layouts; output blocks reveal progressively after
   Enter, with bounded timing and immediate display for reduced-motion visitors.
-  The portrait uses the original photo behind a grid of separated tile faces with
-  subtle extruded edges. This voxel-style treatment preserves the source image's
-  resolution and detail; other themes and social previews retain the plain photo.
+  The portrait frames the original photo closer to the face. An adaptive vector
+  mask uses fine tiles and narrow seams around facial features, with larger,
+  subtly raised tiles toward the edges. The source image keeps its full resolution;
+  other themes and social previews retain the plain photo.
   The prompt supports history and Tab completion; no command executes backend code.
   While the input is idle, a blinking caret accompanies command hints that type,
   hold for three blinks, and erase in a loop. Real typing and IME composition take
