@@ -20,6 +20,8 @@
         card.classList.remove('ink-active');
         card.style.removeProperty('--ink-x');
         card.style.removeProperty('--ink-y');
+        card.style.removeProperty('--ink-offset-x');
+        card.style.removeProperty('--ink-offset-y');
     }
     function refresh() {
         var active = root.getAttribute('data-accent') === 'red' && !motion.matches && !document.hidden && visible;
@@ -36,6 +38,8 @@
         frame = requestAnimationFrame(function () {
             card.style.setProperty('--ink-x', x.toFixed(2) + '%');
             card.style.setProperty('--ink-y', y.toFixed(2) + '%');
+            card.style.setProperty('--ink-offset-x', ((x - 50) * .1).toFixed(2) + 'px');
+            card.style.setProperty('--ink-offset-y', ((y - 50) * .07).toFixed(2) + 'px');
             card.classList.add('ink-active');
             frame = 0;
         });

@@ -40,7 +40,11 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   illustration, with a faint lake reflection. Its contours are converted to SVG;
   source attribution and license are in `assets/images/boya-tower-LICENSE.txt`.
   It sits in the wide page margin, moving into the profile on smaller screens;
-  decorative lake contours span the page. Its light and dark
+  decorative lake contours span the page. The profile has a gold-edged page frame,
+  a vermilion bookmark and seal, a softly lit circular portrait backdrop, and subtle
+  floating gold flecks. Pointer movement shifts the halo slightly; portrait hover
+  adds a brief paper sheen. These effects pause offscreen and respect reduced motion.
+  Its light and dark
   variants are isolated in `assets/css/scholar.css`; `assets/js/scholar.js` pauses
   background motion offscreen and honors reduced-motion preferences. The other
   accent palettes retain their existing designs.
