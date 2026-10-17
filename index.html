@@ -2,24 +2,30 @@
 layout: default
 title : Homepage
 navbar_title: Home
+terminal_view: whoami
 ---
-<div class="reveal">{% include widgets/profile_card.html %}</div>
+<div class="reveal is-terminal-active" data-terminal-panel="whoami">{% include widgets/profile_card.html %}</div>
 
 {% if site.data.display.homepage.show_experience %}
-    <div class="reveal">{% include widgets/experience_card.html %}</div>
+    <div class="reveal" data-terminal-panel="experience">{% include widgets/experience_card.html %}</div>
 {% endif %}
 
 {% if site.data.display.homepage.show_news %}
     {% assign count_news = site.news | size %}
     {% if count_news > 0 %}
-        <div class="reveal">{% include widgets/news_card.html limit=site.data.display.homepage.num_news collapse=site.data.display.homepage.num_news_collapsed %}</div>
+        <div class="reveal" data-terminal-panel="news">{% include widgets/news_card.html limit=site.data.display.homepage.num_news collapse=site.data.display.homepage.num_news_collapsed %}</div>
     {% endif %}
 {% endif %}
 
 {% if site.data.display.homepage.show_selected_publications %}
     {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-    <div class="reveal">{%
+    <div class="reveal" data-terminal-panel="papers">{%
         include widgets/publication_card.html
         publications=pubs
     %}</div>
 {% endif %}
+
+<section class="agent-only terminal-agent-panel" data-terminal-panel="agent" id="agent-demo">
+    <div class="terminal-section-command" aria-hidden="true"><span>❯</span> agent --visualize</div>
+    {% include widgets/agent_workbench.html %}
+</section>

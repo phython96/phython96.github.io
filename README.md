@@ -10,8 +10,12 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 
 - **DeepSeek blue terminal theme** — the entire site lives inside one terminal
   with a DeepSeek watermark, scrolling output, clickable navigation, and a command
-  prompt. `whoami`, `experience`, `news`, `papers`, and `projects` navigate existing
-  content; `agent` opens a conceptual workflow visualization in the same terminal.
+  prompt. Each command replaces the output with only its own category: `whoami`,
+  `experience`, `news`, `papers`, `projects`, `agent`, or `help`. The homepage starts
+  with the profile; category links survive reloads, and `papers` opens the complete
+  publication list. The Agent visualization has a separate output panel.
+  The blue header only contains the terminal title and appearance controls;
+  `lang` (or `lang en` / `lang zh`) switches language without changing categories.
   The prompt supports history and Tab completion; no command executes backend code.
   `terminal.css` / `terminal.js` handle the shell; `agent.css` / `agent.js` handle
   the code visualization. Motion honors system preferences, and JetBrains Mono is
@@ -24,8 +28,9 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 - **Bilingual** — Chinese is the default language at `/`, English at `/en/`, powered by
   [jekyll-polyglot](https://github.com/untra/polyglot). Every page, including news and publication
   abstracts, has a `_zh` counterpart.
-- **Dark mode** + four switchable accent themes (purple / red / blue / minecraft), persisted in
+- **Dark mode** + three switchable accent themes (red / blue / minecraft), persisted in
   `localStorage` and applied before first paint to avoid a flash of unstyled content.
+  Saved selections for removed themes fall back to red.
 - **Live Google Scholar badge** — citation count, h-index and i10 are fetched at runtime from a
   `google-scholar-stats` data branch, refreshed daily by a GitHub Actions crawler.
 - **Collapsible news timeline**, selected-publication highlights, scroll-reveal animations, and a

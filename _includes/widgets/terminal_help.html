@@ -1,0 +1,21 @@
+{% assign t = site.data.strings[site.active_lang] %}
+<section class="agent-only terminal-help-panel" data-terminal-panel="help" id="help">
+    <div class="terminal-section-command" aria-hidden="true"><span>❯</span> help</div>
+    <h1 class="terminal-help-title">{{ t.terminal_help_title }}</h1>
+    <p class="terminal-help-intro">{{ t.terminal_help_intro }}</p>
+    <dl class="terminal-help-list">
+        <div><dt><a href="{{ '/' | relative_url }}" data-terminal-command="whoami">whoami</a></dt><dd>{{ t.terminal_describe_whoami }}</dd></div>
+        <div><dt><a href="{{ '/#experience' | relative_url }}" data-terminal-command="experience">experience</a></dt><dd>{{ t.terminal_describe_experience }}</dd></div>
+        <div><dt><a href="{{ '/#news' | relative_url }}" data-terminal-command="news">news</a></dt><dd>{{ t.terminal_describe_news }}</dd></div>
+        <div><dt><a href="{{ '/publications' | relative_url }}" data-terminal-command="papers">papers</a></dt><dd>{{ t.terminal_describe_papers }}</dd></div>
+        <div><dt><a href="{{ '/showcase' | relative_url }}" data-terminal-command="projects">projects</a></dt><dd>{{ t.terminal_describe_projects }}</dd></div>
+        <div><dt><a href="{{ '/#agent-demo' | relative_url }}" data-terminal-command="agent">agent</a></dt><dd>{{ t.terminal_describe_agent }}</dd></div>
+        <div><dt><button type="button" data-terminal-command="lang" title="中文 / English">lang</button></dt><dd>{{ t.terminal_describe_lang }} <code>lang en / lang zh</code></dd></div>
+    </dl>
+    <p class="terminal-help-keys">{{ t.terminal_help_keys }}</p>
+</section>
+<section class="agent-only terminal-message-panel" data-terminal-panel="message">
+    <div class="terminal-section-command"><span aria-hidden="true">❯</span> <span class="terminal-message-command"></span></div>
+    <p class="terminal-message-text"></p>
+    <button type="button" class="terminal-message-help" data-terminal-command="help">help ↵</button>
+</section>

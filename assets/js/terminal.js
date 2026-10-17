@@ -10,9 +10,11 @@
     var input = form.querySelector('input');
     var response = document.querySelector('.terminal-response');
     var shortcuts = Array.from(document.querySelectorAll('[data-terminal-command]'));
-    var commands = ['whoami', 'experience', 'news', 'papers', 'projects', 'agent', 'help'];
+    var commands = ['whoami', 'experience', 'news', 'papers', 'projects', 'agent', 'lang', 'help'];
     var aliases = {about: 'whoami', profile: 'whoami', 'cat profile.md': 'whoami', 'agent --visualize': 'agent', ls: 'help'};
-    var targets = {whoami: '#about', experience: '#experience', news: '#news', agent: '#agent-demo'};
+    var panels = Array.from(main.querySelectorAll('[data-terminal-panel]'));
+    var defaultView = main.dataset.terminalDefault || 'whoami';
+    var hashes = {whoami: '', experience: '#experience', news: '#news', agent: '#agent-demo', help: '#help'};
     var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     var history = [];
     var historyIndex = 0;
@@ -23,7 +25,7 @@
     var yearLinks = hasYearNavigation ? Array.from(document.querySelectorAll('#navbar-year a')) : [];
 
     function updateYearNavigation() {
-        if (!hasYearNavigation || root.dataset.accent !== 'blue') return;
+        if (!hasYearNavigation || root.dataset.accent !== 'blue' || main.dataset.terminalView !== 'papers') return;
         var current = yearLinks[0];
         var top = main.getBoundingClientRect().top + 80;
         yearLinks.forEach(function (link) {
@@ -67,6 +69,48 @@
         });
     }
 
+    function selectPanel(name, resetScroll) {
+        var panel = panels.find(function (item) { return item.dataset.terminalPanel === name; });
+        if (!panel) return false;
+        panels.forEach(function (item) { item.classList.toggle('is-terminal-active', item === panel); });
+        main.dataset.terminalView = name;
+        shortcuts.forEach(function (item) {
+            if (item.dataset.terminalCommand === name) item.setAttribute('aria-current', 'true');
+            else item.removeAttribute('aria-current');
+        });
+        if (resetScroll) main.scrollTo({top: 0, behavior: 'instant'});
+        requestAnimationFrame(function () {
+            // Images and Masonry grids may have initialized while their panel
+            // was hidden. Let their existing resize handlers measure it again.
+            window.dispatchEvent(new Event('resize'));
+            scheduleYearNavigation();
+        });
+        return true;
+    }
+
+    function rememberPanel(name) {
+        var hash = name === defaultView ? '' : (hashes[name] || '');
+        window.history.replaceState(null, '', location.pathname + location.search + hash);
+    }
+
+    function restorePanel() {
+        var name = Object.keys(hashes).find(function (key) { return hashes[key] && hashes[key] === location.hash; }) || defaultView;
+        if (location.hash === '#about') name = 'whoami';
+        var yearAnchor = defaultView === 'papers' && location.hash.indexOf('#year-') === 0;
+        if (!selectPanel(name, !yearAnchor)) selectPanel(defaultView, !yearAnchor);
+        if (yearAnchor) {
+            var year = document.getElementById(location.hash.slice(1));
+            if (year) scrollToTarget(year);
+        }
+    }
+
+    function showMessage(command, message) {
+        main.querySelector('.terminal-message-command').textContent = command;
+        main.querySelector('.terminal-message-text').textContent = message;
+        selectPanel('message', true);
+        response.textContent = message;
+    }
+
     function run(raw) {
         if (root.dataset.accent !== 'blue') return;
         var text = raw.trim();
@@ -77,27 +121,39 @@
         draft = '';
         var command = text.toLowerCase().replace(/\s+/g, ' ');
         command = aliases[command] || command;
+        var language = /^(?:lang )?(en|zh)$/.exec(command);
+        if (language) command = 'lang';
         input.value = '';
         if (commands.indexOf(command) === -1) {
-            response.textContent = response.dataset.unknown;
+            showMessage(text, response.dataset.unknown);
             return;
         }
-        if (command === 'help') {
-            response.textContent = response.dataset.help;
+        if (command === 'lang') {
+            var currentLanguage = root.lang === 'en' ? 'en' : 'zh';
+            if (language && language[1] === currentLanguage) {
+                response.textContent = '❯ ' + text;
+                return;
+            }
+            var switcher = document.querySelector('[data-language-switch]');
+            if (switcher) {
+                var destination = new URL(switcher.href, location.href);
+                destination.hash = location.hash;
+                window.location.assign(destination.href);
+            }
             return;
         }
         var route = shortcuts.find(function (item) { return item.dataset.terminalCommand === command; });
-        var target = targets[command] ? document.querySelector(targets[command]) : null;
-        if (target) {
-            if (command === 'agent') shell.classList.add('terminal-demo-open');
-            else if (command === 'whoami') {
-                shell.classList.remove('terminal-demo-open');
-                if (location.hash === '#agent-demo') window.history.replaceState(null, '', location.pathname + location.search);
-            }
+        // The homepage also contains selected papers for the other themes;
+        // the terminal's papers command always opens the complete collection.
+        if ((command === 'papers' || command === 'projects') && defaultView !== command) {
+            if (route && route.href) window.location.assign(route.href);
+            return;
+        }
+        if (selectPanel(command, true)) {
+            rememberPanel(command);
             response.textContent = '❯ ' + text;
-            scrollToTarget(target);
-        } else if (targets[command] && document.querySelector('#about')) {
-            response.textContent = response.dataset.missing;
+        } else if (defaultView === 'whoami') {
+            showMessage(text, response.dataset.missing);
         } else if (route && route.href) {
             window.location.assign(route.href);
         }
@@ -137,18 +193,12 @@
         var blue = root.dataset.accent === 'blue';
         shell.classList.toggle('terminal-resting', !blue || motion.matches || document.hidden);
         if (blue !== wasBlue || (hasYearNavigation && !wasBlue)) syncYearNavigation(blue);
-        if (blue && !wasBlue && location.hash === '#agent-demo') {
-            var demo = document.querySelector('#agent-demo');
-            if (demo) {
-                shell.classList.add('terminal-demo-open');
-                scrollToTarget(demo);
-            }
-        }
+        if (blue && !wasBlue) restorePanel();
         wasBlue = blue;
     }
     new MutationObserver(refresh).observe(root, {attributes: true, attributeFilter: ['data-accent']});
     document.addEventListener('visibilitychange', refresh);
-    window.addEventListener('hashchange', function () { wasBlue = false; refresh(); });
+    window.addEventListener('hashchange', function () { if (root.dataset.accent === 'blue') restorePanel(); });
     main.addEventListener('scroll', scheduleYearNavigation, {passive: true});
     window.addEventListener('resize', scheduleYearNavigation);
     if (document.fonts) document.fonts.ready.then(scheduleYearNavigation);

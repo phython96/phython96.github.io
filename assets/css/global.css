@@ -5,8 +5,8 @@
    ============================================================ */
 :root {
     /* Accent seed (switchable via [data-accent]); everything else derives from it */
-    --accent: #7c3aed;
-    --accent-2: #db2777;
+    --accent: #a4161a;
+    --accent-2: #e5383b;
 
     --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
     --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
@@ -257,7 +257,6 @@ hr { border-top-color: var(--border); }
 }
 .accent-dot:hover { transform: translateY(-1px) scale(1.08); }
 .accent-dot.active { border-color: var(--text); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--text); }
-.accent-dot.accent-purple { background-image: linear-gradient(135deg, #7c3aed, #db2777); }
 .accent-dot.accent-red    { background-image: linear-gradient(135deg, #a4161a, #e5383b); }
 .accent-dot.accent-blue   { background-image: linear-gradient(135deg, #4d6bfe, #38bdf8); }
 .accent-dot.accent-minecraft {
@@ -967,7 +966,7 @@ body, .card, .navbar, .bg-white, .footer {
     }
 }
 
-/* ===== Profile card watermark (per accent: purple=SC, red=PKU, blue=DeepSeek, minecraft=none) ===== */
+/* ===== Profile card watermark (red=PKU, blue=DeepSeek, minecraft=none) ===== */
 .profile-card { position: relative; overflow: hidden; }
 .profile-card .card-body { position: relative; z-index: 1; }
 .profile-watermark {
@@ -1007,12 +1006,6 @@ body, .card, .navbar, .bg-white, .footer {
         animation: none; -webkit-mask-image: none; mask-image: none;
     }
 }
-[data-accent="purple"] .profile-watermark {
-    background-image: url('/assets/images/etc/purple-cai-watermark.svg');
-    background-position: 56% 50%;
-    background-size: auto 72%;
-    opacity: 0.075;
-}
 [data-accent="red"] .profile-watermark {
     background-image: url('/assets/images/badges/PKU_red.png');
     opacity: 0.07;
@@ -1023,11 +1016,9 @@ body, .card, .navbar, .bg-white, .footer {
 }
 [data-theme="dark"][data-accent="red"] .profile-watermark { opacity: 0.16; }
 [data-theme="dark"][data-accent="blue"] .profile-watermark { opacity: 0.13; }
-[data-theme="dark"][data-accent="purple"] .profile-watermark { opacity: 0.12; }
 [data-theme="dark"] .profile-watermark { filter: brightness(1.3) saturate(1); }
 @media (max-width: 767px) {
     .profile-watermark { background-position: center 30%; background-size: auto 55%; }
-    [data-accent="purple"] .profile-watermark { background-position: center 29%; background-size: auto 46%; }
 }
 
 /* ===== Business card modal (opened by clicking the portrait) ===== */
@@ -1084,4 +1075,3 @@ body, .card, .navbar, .bg-white, .footer {
     color: var(--text-muted);
 }
 .namecard .social-icons a { font-size: 1.15rem; }
-

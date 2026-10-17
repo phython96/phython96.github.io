@@ -1,6 +1,16 @@
 # UI string dictionary for bilingual rendering (jekyll-polyglot).
 # Usage in templates: {% assign t = site.data.strings[site.active_lang] %} then {{ t.education }}
 en:
+  terminal_help_title: "Available commands"
+  terminal_help_intro: "Each command replaces the output with its own category."
+  terminal_describe_whoami: "Profile and research interests"
+  terminal_describe_experience: "Education, work, and honors"
+  terminal_describe_news: "Research updates"
+  terminal_describe_papers: "All publications, organized by year"
+  terminal_describe_projects: "Projects and highlights"
+  terminal_describe_agent: "Interactive code-agent visualization"
+  terminal_describe_lang: "Switch language; keep the current category."
+  terminal_help_keys: "↑ ↓ command history · Tab autocomplete · Esc clear input"
   terminal_label: "RESEARCH TERMINAL"
   terminal_hint: "Explore with the links below, or type a site command."
   terminal_help: "whoami · experience · news · papers · projects · agent | ↑ ↓ history · Tab autocomplete"
@@ -59,6 +69,16 @@ en:
   close: "Close"
 
 zh:
+  terminal_help_title: "可用命令"
+  terminal_help_intro: "每个命令只显示对应类目的内容，新的输出会替换上一类。"
+  terminal_describe_whoami: "个人简介与研究兴趣"
+  terminal_describe_experience: "教育、工作经历与荣誉"
+  terminal_describe_news: "研究动态"
+  terminal_describe_papers: "按年份查看全部论文"
+  terminal_describe_projects: "项目与个人展示"
+  terminal_describe_agent: "代码智能体交互演示"
+  terminal_describe_lang: "切换中英文，保留当前类目。"
+  terminal_help_keys: "↑ ↓ 命令历史 · Tab 自动补全 · Esc 清空输入"
   terminal_label: "RESEARCH TERMINAL"
   terminal_hint: "点击下方命令浏览，或输入站点命令。"
   terminal_help: "whoami 简介 · experience 经历 · news 动态 · papers 论文 · projects 展示 · agent 演示 | ↑ ↓ 历史 · Tab 补全"

@@ -98,14 +98,12 @@ $(function () {
     var WM_IMG = {
         red: "url('/assets/images/badges/PKU_red.png')",
         blue: "url('/assets/images/badges/deepseek.svg')",
-        minecraft: '',
-        purple: "url('/assets/images/etc/purple-cai-watermark.svg')"
+        minecraft: ''
     };
     var WM_OP = {
         red: { light: 0.035, dark: 0.065 },
         blue: { light: 0.025, dark: 0.03 },
-        minecraft: { light: 0, dark: 0 },
-        purple: { light: 0.075, dark: 0.12 }
+        minecraft: { light: 0, dark: 0 }
     };
     // Diagonal cross-wipe of the watermark, started in sync with the color ripple.
     // Uses two throwaway layers (explicit images) so it doesn't wait on the
@@ -116,7 +114,7 @@ $(function () {
         var root = document.documentElement;
         var theme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
         var newImg = WM_IMG[targetAccent] || '';
-        var newOp = (WM_OP[targetAccent] || WM_OP.purple)[theme];
+        var newOp = (WM_OP[targetAccent] || WM_OP.red)[theme];
         var mkLayer = function (img, op, cls) {
             var d = document.createElement('div');
             d.className = 'profile-watermark ' + cls;
@@ -143,7 +141,6 @@ $(function () {
         }, 700);
     };
     var ACCENT_GRAD = {
-        purple: 'linear-gradient(135deg, #7c3aed, #db2777)',
         red: 'linear-gradient(135deg, #8e2930, #b56b53)',
         blue: 'linear-gradient(135deg, #4d6bfe, #38bdf8)',
         minecraft: 'linear-gradient(180deg, #7fbe43 0 45%, #4f8f29 45% 54%, #8b5a2b 54% 100%)'
@@ -191,7 +188,7 @@ $(function () {
         var r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 8;
         var ripple = document.createElement('div');
         ripple.className = 'accent-ripple';
-        ripple.style.background = ACCENT_GRAD[accent] || ACCENT_GRAD.purple;
+        ripple.style.background = ACCENT_GRAD[accent] || ACCENT_GRAD.red;
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.style.width = ripple.style.height = (r * 2) + 'px';

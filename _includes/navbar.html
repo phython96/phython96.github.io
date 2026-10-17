@@ -17,14 +17,13 @@
                 {% assign neutral_url = page.url | remove_first: '/en' %}
                 <li class="nav-item">
                     {% if site.active_lang == "en" %}
-                    <a class="nav-link" {% static_href %}href="{{ neutral_url }}"{% endstatic_href %}><i class="fas fa-language"></i> 中文</a>
+                    <a class="nav-link" data-language-switch {% static_href %}href="{{ neutral_url }}"{% endstatic_href %}><i class="fas fa-language"></i> 中文</a>
                     {% else %}
-                    <a class="nav-link" href="/en{{ neutral_url }}"><i class="fas fa-language"></i> EN</a>
+                    <a class="nav-link" data-language-switch href="/en{{ neutral_url }}"><i class="fas fa-language"></i> EN</a>
                     {% endif %}
                 </li>
                 <li class="nav-item d-flex align-items-center ml-sm-2 my-2 my-sm-0">
                     <span class="accent-picker mr-2">
-                        <button type="button" class="accent-dot accent-purple" data-accent="purple" aria-label="Purple theme" title="Purple"></button>
                         <button type="button" class="accent-dot accent-red" data-accent="red" aria-label="{{ t.scholar_theme }}" title="{{ t.scholar_theme }}"></button>
                         <button type="button" class="accent-dot accent-blue" data-accent="blue" aria-label="{{ t.agent_theme }}" title="{{ t.agent_theme }}"></button>
                         <button type="button" class="accent-dot accent-minecraft" data-accent="minecraft" aria-label="Minecraft theme" title="Minecraft"></button>
