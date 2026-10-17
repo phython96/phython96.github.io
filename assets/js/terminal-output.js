@@ -8,12 +8,11 @@
     var timer = 0;
     var pieces = [];
     var selectors = {
-        whoami: '.terminal-kv > div, .terminal-output-label, .terminal-prose p',
+        whoami: '.terminal-kv > div, .terminal-portrait, .terminal-output-label, .terminal-prose p',
         experience: '.terminal-output-label, .terminal-records > li',
         news: '.terminal-log-header, .terminal-log > li',
         papers: 'h2, .publication-row',
         projects: 'h1, .grid-item > div',
-        agent: '.terminal-section-command, .agent-editor-tabs, .agent-line, .agent-terminal, .agent-demo-heading, .agent-phases, .agent-demo-caption',
         help: '.terminal-section-command, .terminal-help-title, .terminal-help-intro, .terminal-help-list > div, .terminal-help-keys',
         theme: '.terminal-section-command, .terminal-help-title, .terminal-help-intro, .terminal-help-list > div',
         message: '.terminal-section-command, .terminal-message-text, .terminal-message-help'

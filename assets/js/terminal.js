@@ -13,8 +13,8 @@
     var idleHint = response.textContent;
     var urlState = window.TerminalURL;
     var shortcuts = Array.from(document.querySelectorAll('[data-terminal-command]'));
-    var commands = ['whoami', 'experience', 'news', 'papers', 'projects', 'agent', 'theme', 'lang', 'help'];
-    var aliases = {about: 'whoami', profile: 'whoami', 'cat profile.md': 'whoami', 'agent --visualize': 'agent', ls: 'help'};
+    var commands = ['whoami', 'experience', 'news', 'papers', 'projects', 'theme', 'lang', 'help'];
+    var aliases = {about: 'whoami', profile: 'whoami', 'cat profile.md': 'whoami', ls: 'help'};
     var panels = Array.from(main.querySelectorAll('[data-terminal-panel]'));
     var defaultView = main.dataset.terminalDefault || 'whoami';
     var initialState = urlState.parse(location.hash);

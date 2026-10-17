@@ -9,7 +9,6 @@
         <div><dt><a href="{{ '/#news' | relative_url }}" data-terminal-command="news">news</a></dt><dd>{{ t.terminal_describe_news }}</dd></div>
         <div><dt><a href="{{ '/publications' | relative_url }}" data-terminal-command="papers">papers</a></dt><dd>{{ t.terminal_describe_papers }}</dd></div>
         <div><dt><a href="{{ '/showcase' | relative_url }}" data-terminal-command="projects">projects</a></dt><dd>{{ t.terminal_describe_projects }}</dd></div>
-        <div><dt><a href="{{ '/#agent-demo' | relative_url }}" data-terminal-command="agent">agent</a></dt><dd>{{ t.terminal_describe_agent }}</dd></div>
         <div><dt><button type="button" data-terminal-command="theme">theme</button></dt><dd>{{ t.terminal_describe_theme }} <code>theme blue / theme dark</code></dd></div>
         <div><dt><button type="button" data-terminal-command="lang" title="中文 / English">lang</button></dt><dd>{{ t.terminal_describe_lang }} <code>lang en / lang zh</code></dd></div>
     </dl>
@@ -20,8 +19,8 @@
     <h1 class="terminal-help-title">{{ t.terminal_theme_title }}</h1>
     <p class="terminal-help-intro">{{ t.terminal_theme_intro }}</p>
     <dl class="terminal-help-list terminal-theme-list">
-        <div><dt><button type="button" data-terminal-command="theme blue" data-theme-choice="blue" aria-pressed="false">theme blue</button></dt><dd>{{ t.agent_theme }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
-        <div><dt><button type="button" data-terminal-command="theme red" data-theme-choice="red" aria-pressed="false">theme red</button></dt><dd>{{ t.scholar_theme }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
+        <div><dt><button type="button" data-terminal-command="theme blue" data-theme-choice="blue" aria-pressed="false">theme blue</button></dt><dd>{{ t.blue_theme }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
+        <div><dt><button type="button" data-terminal-command="theme red" data-theme-choice="red" aria-pressed="false">theme red</button></dt><dd>{{ t.red_theme }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
         <div><dt><button type="button" data-terminal-command="theme minecraft" data-theme-choice="minecraft" aria-pressed="false">theme minecraft</button></dt><dd>Minecraft <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
         <div><dt><button type="button" data-terminal-command="theme dark" data-mode-choice="dark" aria-pressed="false">theme dark</button></dt><dd>{{ t.terminal_dark }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>
         <div><dt><button type="button" data-terminal-command="theme light" data-mode-choice="light" aria-pressed="false">theme light</button></dt><dd>{{ t.terminal_light }} <span class="terminal-theme-current">{{ t.terminal_current }}</span></dd></div>

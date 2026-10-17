@@ -1,6 +1,7 @@
 {% assign profile = site.data.profile %}
 {% if site.active_lang == 'zh' %}{% assign profile = site.data.profile_zh %}{% endif %}
 <section class="agent-only terminal-native-output terminal-profile-output">
+    <div class="terminal-profile-header">
     <dl class="terminal-kv">
         <div><dt>name</dt><dd>{{ profile.primary_name }} <span class="text-muted">{{ profile.secondary_name }}</span></dd></div>
         <div><dt>role</dt><dd>{% for position in profile.positions %}<div>{{ position.name }}</div>{% endfor %}</dd></div>
@@ -14,6 +15,16 @@
             {% if profile.cv_link %}<a href="{{ profile.cv_link | relative_url }}" target="_blank" rel="noopener">[CV]</a>{% endif %}
         </dd></div>
     </dl>
+    {% if profile.portrait_url %}
+    <figure class="terminal-portrait">
+        <figcaption><span>portrait</span><span aria-hidden="true">▧</span></figcaption>
+        <div class="terminal-portrait-image">
+            <img src="{{ profile.portrait_url | relative_url }}" alt="{{ profile.primary_name }}" width="160" height="160">
+            <span class="terminal-portrait-scan" aria-hidden="true"></span>
+        </div>
+    </figure>
+    {% endif %}
+    </div>
     <h2 class="terminal-output-label">about</h2>
     <div class="terminal-prose">{{ profile.short_bio }}</div>
 </section>
