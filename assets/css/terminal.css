@@ -140,6 +140,25 @@
 :root[data-accent="blue"] .terminal-portrait figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: 7px; color: #7da4d7; font-size: .62rem; line-height: 1.6; }
 :root[data-accent="blue"] .terminal-portrait-image { position: relative; aspect-ratio: 1; overflow: hidden; }
 :root[data-accent="blue"] .terminal-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Original-resolution photo seen through spaced tile faces, with small extruded
+   right/bottom edges. The grid masks pixels; it never downsamples the source. */
+:root[data-accent="blue"] .terminal-portrait img {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='white' d='M1 1h16v16H1z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='white' d='M1 1h16v16H1z'/%3E%3C/svg%3E");
+    -webkit-mask-size: 10% 10%;
+    mask-size: 10% 10%;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+}
+:root[data-accent="blue"] .terminal-portrait-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M17 1l2 2v16l-2-2z' fill='%237b9dcc' fill-opacity='.28'/%3E%3Cpath d='M1 17h16l2 2H3z' fill='%2302050d' fill-opacity='.85'/%3E%3Cpath d='M1 17V1h16' fill='none' stroke='%23e2edff' stroke-opacity='.24' stroke-width='.55'/%3E%3C/svg%3E");
+    background-size: 10% 10%;
+    background-repeat: repeat;
+}
 :root[data-accent="blue"] .terminal-portrait-scan { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #8edcffb3; box-shadow: 0 0 10px #64baff88; opacity: 0; pointer-events: none; }
 :root[data-accent="blue"] .terminal-text-links { display: flex; flex-wrap: wrap; gap: .3rem .9rem; }
 :root[data-accent="blue"] .terminal-output-label { margin: 1.5rem 0 .8rem; color: #82b9f7; font: 500 .85rem/1.6 var(--agent-mono); }
