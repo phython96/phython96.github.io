@@ -1,5 +1,5 @@
 /* The red palette: warm paper, ink, and a restrained Peking University red.
-   Every visual override is scoped so the other three palettes stay independent. */
+   Every visual override is scoped so the other palettes stay independent. */
 @font-face {
     font-family: "Scholar Serif";
     src: url("../fonts/scholar-serif-400.woff2") format("woff2");
@@ -21,18 +21,23 @@
     --accent: #972b32;
     --accent-2: #b66d52;
     --accent-gradient: linear-gradient(125deg, #8e2930, #b56b53);
-    --bg: #f4f1ea;
-    --bg-accent: radial-gradient(ellipse at 90% 0%, #e8ded24d, transparent 55%);
-    --card-bg: #fcfaf5;
+    --bg: #efe5d8;
+    --bg-accent: radial-gradient(ellipse at 0% 22%, #b868592e, transparent 52%),
+                 radial-gradient(ellipse at 100% 6%, #bd895c24, transparent 58%),
+                 linear-gradient(180deg, #faf4e9aa, #efe5d833 60%, #decbbd66);
+    --card-bg: #fffaf2;
     --card-bg-elevated: #fffdf8;
     --text: #423e38;
     --text-muted: #746e64;
     --heading: #282c29;
-    --border: #82765d2b;
+    --border: #8e665732;
     --border-strong: #82765d4d;
-    --shadow: 0 3px 18px #503b2004;
-    --shadow-hover: 0 8px 30px #503b200a;
-    --navbar-bg: #f4f1eaf2;
+    --shadow: 0 5px 24px #774c320d;
+    --shadow-hover: 0 8px 30px #774c3212;
+    --navbar-bg: #f3e9ddef;
+    --scholar-ink: #923d3d;
+    --scholar-card-wash: #b9704f16;
+    --scholar-header-wash: #972b320a;
     --link: #902b32;
     --link-hover: #b0493d;
     --badge-bg: #972b320b;
@@ -42,9 +47,11 @@
 }
 
 :root[data-theme="dark"][data-accent="red"] {
-    --bg: #201f1d;
-    --bg-accent: radial-gradient(ellipse at 90% 0%, #63352b26, transparent 55%);
-    --card-bg: #292723;
+    --bg: #261e1d;
+    --bg-accent: radial-gradient(ellipse at 0% 22%, #913f3733, transparent 52%),
+                 radial-gradient(ellipse at 100% 6%, #a56b3922, transparent 58%),
+                 linear-gradient(180deg, #251e1d44, #211a1966 60%, #160f1477);
+    --card-bg: #2d2523;
     --card-bg-elevated: #302c27;
     --text: #ddd6c9;
     --text-muted: #b3a899;
@@ -53,7 +60,10 @@
     --border-strong: #c4ac854d;
     --shadow: 0 3px 18px #0000000a;
     --shadow-hover: 0 8px 30px #00000014;
-    --navbar-bg: #201f1df2;
+    --navbar-bg: #261e1def;
+    --scholar-ink: #d29a84;
+    --scholar-card-wash: #cc87501a;
+    --scholar-header-wash: #d0906b0a;
     --link: #e1a195;
     --link-hover: #f2c4ad;
     --badge-bg: #b9615422;
@@ -61,12 +71,25 @@
 }
 
 :root[data-accent="red"] body {
+    isolation: isolate;
     zoom: 1;
     padding-top: 6.5rem;
     background-image: var(--paper-grain), var(--bg-accent);
-    background-repeat: repeat, no-repeat;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat;
     line-height: 1.75;
 }
+/* The tower lives in the page margin on wide screens; its compact companion
+   moves into the profile's unused lower corner when the margins disappear. */
+:root[data-accent="red"] .scholar-backdrop { --scholar-tower-width: clamp(130px, calc((100vw - 1140px) * .44), 210px); display: block; position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+:root[data-accent="red"] .scholar-boya {
+    position: absolute;
+    background: var(--scholar-ink);
+    -webkit-mask: url("../images/boya-tower.svg") center / contain no-repeat;
+    mask: url("../images/boya-tower.svg") center / contain no-repeat;
+}
+:root[data-accent="red"] .scholar-backdrop-tower { left: max(4px, calc((100vw - 1140px) / 4 - var(--scholar-tower-width) / 2)); top: 150px; width: var(--scholar-tower-width); aspect-ratio: 240 / 864; max-height: calc(100vh - 180px); opacity: .26; }
+:root[data-accent="red"] .scholar-backdrop-waves { position: absolute; left: 0; bottom: -4vh; width: 100%; height: 50vh; color: var(--scholar-ink); opacity: .17; }
+:root[data-accent="red"] .scholar-card-tower { display: none; }
 :root[data-accent="red"] ::selection { background: #972b3226; color: var(--heading); }
 :root[data-accent="red"] :focus-visible { outline: 2px solid var(--link); outline-offset: 5px; }
 :root[data-accent="red"] .container { max-width: 1140px; }
@@ -109,11 +132,14 @@
 :root[data-accent="red"] .card,
 :root[data-accent="red"] .rounded-sm,
 :root[data-accent="red"] .news-card { border-radius: 3px !important; }
+:root[data-accent="red"] .card,
+:root[data-accent="red"] .news-card,
+:root[data-accent="red"] .bg-white.shadow-sm { background-image: var(--paper-grain), linear-gradient(125deg, var(--scholar-card-wash), transparent 55%); }
 :root[data-accent="red"] .card:hover { transform: none; box-shadow: var(--shadow) !important; }
 :root[data-accent="red"] .profile-card {
     border: 1px solid var(--border) !important;
     border-top: 2px solid var(--accent) !important;
-    background-image: var(--paper-grain);
+    background-image: var(--paper-grain), radial-gradient(ellipse at 100% 0%, var(--scholar-card-wash), transparent 65%);
     isolation: isolate;
 }
 :root[data-accent="red"] .profile-card .card-body { padding: 2rem 3.5rem 1.65rem !important; }
@@ -237,7 +263,7 @@
     right: -150px;
     top: 45px;
     border-radius: 50%;
-    background: radial-gradient(ellipse, #a7473114, #b8915a09 50%, transparent 70%);
+    background: radial-gradient(ellipse, #a7473120, #b8915a10 50%, transparent 70%);
 }
 :root[data-accent="red"] .profile-card::after {
     content: "";
@@ -275,6 +301,8 @@
 :root[data-accent="red"] .award-item::before { width: 3px; height: 3px; top: 1rem; border-radius: 0; }
 :root[data-accent="red"] .news-head,
 :root[data-accent="red"] .bg-white > h6.border-bottom { font-size: 1.15rem; padding: 1.4rem 1.65rem !important; letter-spacing: .04em; }
+:root[data-accent="red"] .news-head,
+:root[data-accent="red"] .bg-white > h6.border-bottom { background-image: linear-gradient(90deg, var(--scholar-header-wash), transparent 75%); }
 :root[data-accent="red"] .bg-white > h6 a { font-family: "Lato", "Noto Sans SC", sans-serif; font-size: .75rem; letter-spacing: 0; font-weight: 400; }
 :root[data-accent="red"] .news-head .fas,
 :root[data-accent="red"] .bg-white > h6 .fa-star { font-size: .8rem; margin-right: .5rem; }
@@ -306,6 +334,10 @@
 @keyframes scholar-lake { 0%, 100% { transform: scaleX(.94); opacity: .55; } 50% { transform: scaleX(1.05); opacity: 1; } }
 @keyframes scholar-seal-in { from { opacity: 0; transform: translateY(-5px) rotate(-9deg) scale(1.12); } to { opacity: 1; transform: rotate(-5deg) scale(1); } }
 
+@media (max-width: 1359.98px) {
+    :root[data-accent="red"] .scholar-backdrop-tower { display: none; }
+    :root[data-accent="red"] .scholar-card-tower { display: block; right: 46px; bottom: 24px; width: 168px; height: 300px; -webkit-mask-size: auto 185%; mask-size: auto 185%; -webkit-mask-position: center top; mask-position: center top; opacity: .17; }
+}
 @media (max-width: 991.98px) {
     :root[data-accent="red"] .profile-card .card-body { padding-inline: 2rem !important; }
     :root[data-accent="red"] .portrait-col { width: 200px; margin-left: 1rem; }
@@ -328,6 +360,8 @@
     :root[data-accent="red"] .profile-card .latest-news .ln-text { max-width: 42vw; }
     :root[data-accent="red"] .reveal + .reveal { margin-top: 1.5rem; }
     :root[data-accent="red"] .scholar-landscape { opacity: .1; }
+    :root[data-accent="red"] .scholar-card-tower { right: -7px; bottom: 22px; width: 132px; height: 270px; opacity: .11; }
+    :root[data-accent="red"] .scholar-backdrop-waves { opacity: .1; }
     :root[data-accent="red"] .profile-watermark { background-size: 150px; background-position: right -24px top 40px; }
     :root[data-accent="red"] .news-body { padding-inline: 1rem; }
     :root[data-accent="red"] .news-head,

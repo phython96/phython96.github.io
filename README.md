@@ -34,8 +34,13 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   `terminal.css` / `terminal.js` handle the shell and `agent.css` supplies the blue
   palette. Motion honors system preferences, and JetBrains Mono is
   served locally. Other palettes retain their original document layout.
-- **Red theme** — warm paper, locally served serif headings,
-  a small red seal, and a gently animated ink landscape. Its light and dark
+- **Red theme** — layered warm paper and vermilion washes, locally served serif
+  headings, a small red seal, and a gently animated ink landscape. The Boya Tower
+  watermark preserves the proportions and roof detail of an existing PKU line
+  illustration, with a faint lake reflection. Its contours are converted to SVG;
+  source attribution and license are in `assets/images/boya-tower-LICENSE.txt`.
+  It sits in the wide page margin, moving into the profile on smaller screens;
+  decorative lake contours span the page. Its light and dark
   variants are isolated in `assets/css/scholar.css`; `assets/js/scholar.js` pauses
   background motion offscreen and honors reduced-motion preferences. The other
   accent palettes retain their existing designs.
