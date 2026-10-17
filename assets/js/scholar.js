@@ -59,3 +59,52 @@
     }
     refresh();
 })();
+
+// The reading line also works on publications and showcase pages, which have
+// no profile scene. Content resizing (including expanded news) updates its range.
+(function () {
+    'use strict';
+    var root = document.documentElement;
+    var line = document.querySelector('.scholar-reading-progress span');
+    var backdrop = document.querySelector('.scholar-backdrop');
+    if (!line) return;
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var frame = 0;
+    var active = false;
+
+    function update() {
+        frame = 0;
+        if (!active) return;
+        var scroller = document.scrollingElement || root;
+        var range = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+        var progress = range ? Math.max(0, Math.min(1, scroller.scrollTop / range)) : 0;
+        line.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
+    }
+    function schedule() {
+        if (active && !frame) frame = requestAnimationFrame(update);
+    }
+    function refresh() {
+        active = root.getAttribute('data-accent') === 'red' && !document.hidden;
+        if (backdrop) backdrop.classList.toggle('is-resting', !active || motion.matches);
+        cancelAnimationFrame(frame);
+        frame = 0;
+        if (active) schedule();
+        else line.style.removeProperty('transform');
+    }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('load', schedule, { once: true });
+    window.addEventListener('pageshow', refresh);
+    window.addEventListener('pagehide', function () {
+        active = false;
+        cancelAnimationFrame(frame);
+        frame = 0;
+        if (backdrop) backdrop.classList.add('is-resting');
+    });
+    document.addEventListener('visibilitychange', refresh);
+    if (motion.addEventListener) motion.addEventListener('change', refresh);
+    else if (motion.addListener) motion.addListener(refresh);
+    new MutationObserver(refresh).observe(root, { attributes: true, attributeFilter: ['data-accent'] });
+    if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(document.body);
+    refresh();
+})();

@@ -1,6 +1,6 @@
 {% assign publications = include.publications %}
 {% assign t = site.data.strings[site.active_lang] %}
-<div class="my-3 p-0 bg-white shadow-sm rounded-sm">
+<div class="my-3 p-0 bg-white shadow-sm rounded-sm scholar-section-card">
     <h6 class="border-bottom border-gray p-3 mb-0">
         {% if include.title %}{{ include.title }}{% else %}<i class="fas fa-star"></i> {{ t.selected_publications }}{% endif %}
         <a href="{{ 'publications' | relative_url }}">({{ t.view_all }} <i class="fas fa-angle-double-right"></i>)</a>
@@ -12,4 +12,3 @@
         <a href="{{ 'publications' | relative_url }}">{{ t.all_publications }} <i class="fas fa-angle-double-right"></i></a>
     </h6>
 </div>
-
