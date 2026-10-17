@@ -8,6 +8,19 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
 
 ## Features
 
+- **DeepSeek blue terminal theme** — the entire site lives inside one terminal
+  with a DeepSeek watermark, scrolling output, clickable navigation, and a command
+  prompt. `whoami`, `experience`, `news`, `papers`, and `projects` navigate existing
+  content; `agent` opens a conceptual workflow visualization in the same terminal.
+  The prompt supports history and Tab completion; no command executes backend code.
+  `terminal.css` / `terminal.js` handle the shell; `agent.css` / `agent.js` handle
+  the code visualization. Motion honors system preferences, and JetBrains Mono is
+  served locally. Other palettes retain their original document layout.
+- **Peking University red theme** — warm paper, locally served serif headings,
+  a small red seal, and a gently animated ink landscape. Its light and dark
+  variants are isolated in `assets/css/scholar.css`; `assets/js/scholar.js` pauses
+  background motion offscreen and honors reduced-motion preferences. The other
+  accent palettes retain their existing designs.
 - **Bilingual** — Chinese is the default language at `/`, English at `/en/`, powered by
   [jekyll-polyglot](https://github.com/untra/polyglot). Every page, including news and publication
   abstracts, has a `_zh` counterpart.

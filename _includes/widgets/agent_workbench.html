@@ -1,0 +1,38 @@
+{% comment %}A conceptual illustration, with no backend calls or claimed execution results.{% endcomment %}
+<section class="agent-workbench is-resting" data-phase="read" aria-label="{{ t.agent_demo_title }}">
+    <div class="agent-window-bar">
+        <span class="agent-window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>agent / workspace</span>
+        <span class="agent-window-mark" aria-hidden="true">&lt;/&gt;</span>
+    </div>
+    <div class="agent-editor-tabs" role="tablist" aria-label="{{ t.agent_view_label }}">
+        <button class="agent-editor-tab" id="agent-source-tab" type="button" role="tab" aria-selected="true" aria-controls="agent-source-panel" tabindex="0" disabled><span class="agent-file-icon" aria-hidden="true">py</span> agent.py <span class="agent-tab-dot" aria-hidden="true"></span></button>
+        <button class="agent-editor-tab" id="agent-diff-tab" type="button" role="tab" aria-selected="false" aria-controls="agent-diff-panel" tabindex="-1" disabled><span class="agent-file-icon" aria-hidden="true">±</span> patch.diff</button>
+    </div>
+    <div class="agent-editor-panel" id="agent-source-panel" role="tabpanel" aria-labelledby="agent-source-tab" tabindex="0">
+        <pre class="agent-code"><code><span class="agent-line"><span class="syntax-comment"># {{ t.agent_code_comment }}</span></span><span class="agent-line"><span class="syntax-keyword">async def</span> <span class="syntax-function">solve</span>(task):</span><span class="agent-line" data-code-phase="read">    context = <span class="syntax-keyword">await</span> repo.<span class="syntax-function">inspect</span>()</span><span class="agent-line" data-code-phase="plan">    plan = <span class="syntax-keyword">await</span> agent.<span class="syntax-function">plan</span>(</span><span class="agent-line" data-code-phase="plan">        task, context</span><span class="agent-line" data-code-phase="plan">    )</span><span class="agent-line" data-code-phase="edit">    patch = <span class="syntax-keyword">await</span> agent.<span class="syntax-function">edit</span>(plan)</span><span class="agent-line" data-code-phase="verify">    feedback = <span class="syntax-keyword">await</span> repo.<span class="syntax-function">verify</span>(patch)</span><span class="agent-line"> </span><span class="agent-line" data-code-phase="iterate">    <span class="syntax-keyword">while</span> feedback.needs_revision:</span><span class="agent-line" data-code-phase="iterate">        patch = <span class="syntax-keyword">await</span> agent.<span class="syntax-function">revise</span>(</span><span class="agent-line" data-code-phase="iterate">            patch, feedback</span><span class="agent-line" data-code-phase="iterate">        )</span><span class="agent-line" data-code-phase="iterate">        feedback = <span class="syntax-keyword">await</span> repo.<span class="syntax-function">verify</span>(patch)</span><span class="agent-line">    <span class="syntax-keyword">return</span> patch</span></code></pre>
+    </div>
+    <div class="agent-editor-panel" id="agent-diff-panel" role="tabpanel" aria-labelledby="agent-diff-tab" tabindex="0" hidden>
+        <pre class="agent-code agent-diff"><code><span class="agent-line syntax-comment"># {{ t.agent_diff_comment }}</span><span class="agent-line diff-hunk">@@ -1,2 +1,5 @@</span><span class="agent-line diff-remove">- result = run(plan)</span><span class="agent-line diff-remove">- return result</span><span class="agent-line diff-add">+ for step in range(budget):</span><span class="agent-line diff-add">+     result = run(plan)</span><span class="agent-line diff-add">+     if verify(result):</span><span class="agent-line diff-add">+         return result</span><span class="agent-line diff-add">+     plan = revise(plan, result)</span><span class="agent-line"> </span><span class="agent-line syntax-comment"># {{ t.agent_diff_footer }}</span></code></pre>
+    </div>
+    <div class="agent-terminal" aria-hidden="true">
+        <span class="agent-terminal-title"><span>&gt;_</span> trace</span>
+        <span class="agent-terminal-command">repo.inspect()</span><span class="agent-caret"></span>
+    </div>
+    <div class="agent-demo-heading">
+        <span><span class="agent-demo-symbol" aria-hidden="true">↻</span> {{ t.agent_demo_title }}</span>
+        <button class="agent-motion-toggle" type="button" data-pause-label="{{ t.agent_pause }}" data-play-label="{{ t.agent_play }}" aria-label="{{ t.agent_pause }}" title="{{ t.agent_pause }}" disabled><span class="agent-pause-icon" aria-hidden="true">Ⅱ</span><span class="agent-play-icon" aria-hidden="true">▷</span></button>
+    </div>
+    <div class="agent-phases" role="group" aria-label="{{ t.agent_phase_label }}">
+        <button type="button" data-agent-phase="read" aria-pressed="true" title="{{ t.agent_read }}" disabled><span>01</span>read</button>
+        <button type="button" data-agent-phase="plan" aria-pressed="false" title="{{ t.agent_plan }}" disabled><span>02</span>plan</button>
+        <button type="button" data-agent-phase="edit" aria-pressed="false" title="{{ t.agent_edit }}" disabled><span>03</span>edit</button>
+        <button type="button" data-agent-phase="verify" aria-pressed="false" title="{{ t.agent_verify }}" disabled><span>04</span>verify</button>
+        <button type="button" data-agent-phase="iterate" aria-pressed="false" title="{{ t.agent_iterate }}" disabled><span>↻</span>iterate</button>
+    </div>
+    <div class="agent-demo-caption">
+        <span class="agent-stage-caption" data-read="{{ t.agent_read }}" data-plan="{{ t.agent_plan }}" data-edit="{{ t.agent_edit }}" data-verify="{{ t.agent_verify }}" data-iterate="{{ t.agent_iterate }}">{{ t.agent_read }}</span>
+        <span class="agent-demo-note">{{ t.agent_demo_note }}</span>
+    </div>
+    <div class="agent-timeline" aria-hidden="true"><span></span></div>
+</section>

@@ -3,15 +3,35 @@
 {% assign t = site.data.strings[site.active_lang] %}
 <div class="row">
     <div class="col">
-        <div class="card border-0 shadow-sm bg-white profile-card">
+        <div class="card border-0 shadow-sm bg-white profile-card" id="about">
             <div class="profile-watermark" aria-hidden="true"></div>
+            {% include widgets/scholar_scene.html %}
+            {% include widgets/agent_scene.html %}
             <div class="card-body p-5">
-                <div class="row">
-                    <div class="col">
-                        <div class="d-flex">
-                            <div class="h1 font-weight-normal">
+                <div class="agent-only terminal-section-command" aria-hidden="true"><span>❯</span> cat profile.md</div>
+                <div class="agent-only agent-topbar">
+                    <span class="agent-path"><span aria-hidden="true">⌘</span> shaofei / research<span class="agent-path-end"> / code_agents</span></span>
+                    <span class="agent-branch"><span aria-hidden="true">⎇</span> intelligence, in the making</span>
+                </div>
+                <div class="scholar-only scholar-masthead">
+                    <span class="scholar-kicker">{{ t.scholar_kicker }}</span>
+                    <span class="scholar-edition">PEKING UNIVERSITY</span>
+                </div>
+                <div class="row profile-main">
+                    <div class="col profile-intro">
+                        <div class="agent-only agent-identity">
+                            {% if profile.portrait_url %}
+                            <a href="#" class="portrait-trigger agent-avatar" role="button" data-toggle="modal" data-target="#modal-namecard" aria-label="{{ t.namecard_hint }}" title="{{ t.namecard_hint }}">
+                                <img src="{{ profile.portrait_url | relative_url }}" alt="{{ profile.primary_name }}" width="44" height="44">
+                            </a>
+                            {% endif %}
+                            <span class="agent-identity-label"><img src="{{ '/assets/images/badges/deepseek.svg' | relative_url }}" alt="" width="25" height="25"> DEEPSEEK <span class="agent-identity-divider">/</span> CODE AGENT RESEARCH</span>
+                        </div>
+                        <div class="d-flex profile-heading">
+                            <h1 class="h1 font-weight-normal">
                                 {{ profile.primary_name }} <small>{{ profile.secondary_name }}</small>
-                            </div>
+                            </h1>
+                            <span class="scholar-only scholar-seal" aria-hidden="true">求<br>索</span>
                             {% if profile.portrait_url %}
                             <div class="ml-auto d-md-none">
                                 <a href="#" class="portrait-trigger" role="button"
@@ -51,6 +71,16 @@
                         {% if profile.cv_link %}
                             <a target="_blank" href="{{ profile.cv_link | relative_url }}"><i class="fas fa-file-alt"></i> {{ t.cv }}</a> <br/>
                         {% endif %}
+                        <div class="scholar-only scholar-actions">
+                            <a class="scholar-primary-link" href="{{ '/publications' | relative_url }}">{{ t.scholar_publications }} <span aria-hidden="true">↗</span></a>
+                            {% if site.data.display.homepage.show_news and site.news.size > 0 %}
+                            <a class="scholar-news-link" href="#news">{{ t.scholar_news }} <span aria-hidden="true">↓</span></a>
+                            {% endif %}
+                        </div>
+                        <div class="agent-only agent-actions">
+                            <a class="agent-primary-link" href="{{ '/publications' | relative_url }}"><span aria-hidden="true">&gt;_</span> {{ t.agent_research }} <span aria-hidden="true">↗</span></a>
+                            {% if profile.github %}<a class="agent-github-link" href="https://github.com/{{ profile.github }}" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> GitHub <span aria-hidden="true">↗</span></a>{% endif %}
+                        </div>
                     </div>
 
                     {% if profile.portrait_url %}
@@ -71,6 +101,11 @@
                         {% include widgets/social_icons.html %}
                     </div>
                     {% endif %}
+
+                    <div class="agent-only agent-workbench-col" id="agent-demo">
+                        <div class="terminal-section-command" aria-hidden="true"><span>❯</span> agent --visualize</div>
+                        {% include widgets/agent_workbench.html %}
+                    </div>
 
                 </div>
                 <hr class="profile-sep" />

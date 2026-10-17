@@ -1,0 +1,11 @@
+{% assign t = site.data.strings[site.active_lang] %}
+<div class="agent-only terminal-watermark" aria-hidden="true"></div>
+<div class="agent-only terminal-effects" aria-hidden="true"><span></span><span></span><span></span></div>
+<header class="agent-only terminal-chrome">
+    <div class="terminal-title">
+        <img src="{{ '/assets/images/badges/deepseek.svg' | relative_url }}" alt="" width="28" height="28">
+        <span>shaofei<span class="terminal-at">@</span>deepseek <span class="terminal-title-separator">/</span> <strong>research</strong></span>
+    </div>
+    <div class="terminal-loop-label" aria-hidden="true"><span>read()</span><i>→</i><span>plan()</span><i>→</i><span>edit()</span><i>→</i><span>verify()</span></div>
+    <span class="terminal-chrome-label">{{ t.terminal_label }}</span>
+</header>

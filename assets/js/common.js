@@ -102,8 +102,8 @@ $(function () {
         purple: "url('/assets/images/etc/purple-cai-watermark.svg')"
     };
     var WM_OP = {
-        red: { light: 0.07, dark: 0.16 },
-        blue: { light: 0.07, dark: 0.13 },
+        red: { light: 0.035, dark: 0.065 },
+        blue: { light: 0.025, dark: 0.03 },
         minecraft: { light: 0, dark: 0 },
         purple: { light: 0.075, dark: 0.12 }
     };
@@ -144,7 +144,7 @@ $(function () {
     };
     var ACCENT_GRAD = {
         purple: 'linear-gradient(135deg, #7c3aed, #db2777)',
-        red: 'linear-gradient(135deg, #a4161a, #e5383b)',
+        red: 'linear-gradient(135deg, #8e2930, #b56b53)',
         blue: 'linear-gradient(135deg, #4d6bfe, #38bdf8)',
         minecraft: 'linear-gradient(180deg, #7fbe43 0 45%, #4f8f29 45% 54%, #8b5a2b 54% 100%)'
     };

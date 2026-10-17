@@ -33,13 +33,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/assets/css/global.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/scholar.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/agent.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/terminal.css' | relative_url }}">
 </head>
 <body class="bg-light" {{ page.body_attr }}>
-    {% include navbar.html %}
-    <div class="container">
-        {{content}}
+    <div class="site-shell">
+        {% include widgets/terminal_header.html %}
+        {% include navbar.html %}
+        <main class="container site-main" id="site-content">
+            {{content}}
+        </main>
+        {% include widgets/terminal_prompt.html %}
+        {% include footer.html %}
     </div>
-    {% include footer.html %}
+    {% comment %}A modal must sit outside the terminal's scrolling/stacking frame.{% endcomment %}
+    {% if page.title == "Homepage" %}{% include widgets/namecard_modal.html %}{% endif %}
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -63,6 +72,9 @@
         });
     </script>
     <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/scholar.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/agent.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/terminal.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/bubble_visual_hash.js' | relative_url }}"></script>
 
     {% if site.analytics.vercount %}
