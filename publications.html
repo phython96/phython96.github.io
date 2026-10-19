@@ -7,10 +7,16 @@ body_attr: >-
   data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
 
+{% assign t = site.data.strings[site.active_lang] %}
 {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 
 <div class="row is-terminal-active" data-terminal-panel="papers">
     <div class="col-12 col-lg-10 papers-list">
+        <div class="voxel-only voxel-page-intro">
+            <div class="voxel-eyebrow">{{ t.voxel_world_label }} // {{ t.voxel_publications_label }}</div>
+            <h1>{{ t.voxel_publications_title }}</h1>
+            <p>{{ t.voxel_publications_description }}</p>
+        </div>
         {% for year in pubs_by_year %}
         {% assign num_papers = year.items | size %}
         <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>

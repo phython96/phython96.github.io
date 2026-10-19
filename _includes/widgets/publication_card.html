@@ -1,6 +1,14 @@
 {% assign publications = include.publications %}
 {% assign t = site.data.strings[site.active_lang] %}
-<div class="my-3 p-0 bg-white shadow-sm rounded-sm scholar-section-card">
+<div class="my-3 p-0 bg-white shadow-sm rounded-sm scholar-section-card publication-card">
+    <div class="voxel-only voxel-section-banner">
+        <span class="voxel-section-index">04</span>
+        <div>
+            <strong>{{ t.voxel_publications_label }}</strong>
+            <small>{{ t.voxel_publications_hint }}</small>
+        </div>
+        <span class="voxel-section-lamp" aria-hidden="true"></span>
+    </div>
     <h6 class="border-bottom border-gray p-3 mb-0">
         {% if include.title %}{{ include.title }}{% else %}<i class="fas fa-star"></i> {{ t.selected_publications }}{% endif %}
         <a href="{{ 'publications' | relative_url }}">({{ t.view_all }} <i class="fas fa-angle-double-right"></i>)</a>

@@ -7,6 +7,14 @@
 {% assign gi = 0 -%}
 
 <div class="my-3 news-card shadow-sm rounded-sm scholar-section-card" id="news">
+    <div class="voxel-only voxel-section-banner">
+        <span class="voxel-section-index">03</span>
+        <div>
+            <strong>{{ t.voxel_news_label }}</strong>
+            <small>{{ t.voxel_news_hint }}</small>
+        </div>
+        <span class="voxel-section-lamp" aria-hidden="true"></span>
+    </div>
     <h6 class="news-head"><i class="fas fa-rss"></i> {{ t.news }}</h6>
     <div class="news-body">
         {% for year in news_by_year %}

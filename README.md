@@ -57,6 +57,17 @@ Bilingual (Chinese / English), built with Jekyll and deployed to GitHub Pages.
   variants are isolated in `assets/css/scholar.css`; `assets/js/scholar.js` pauses
   background motion offscreen and honors reduced-motion preferences. The other
   accent palettes retain their existing designs.
+- **Minecraft theme** — an original voxel research world rather than a simple
+  green accent. A block-stepped landscape, drifting clouds, fireflies, a world
+  HUD, and a five-slot hotbar frame the profile as a player base. Experience is
+  presented as an advancement trail, news as an in-world chat log, and
+  publications as research blueprints. Surfaces use physical block depth,
+  grass-and-earth portrait framing, lantern cues, and reveal-on-scroll
+  construction motion. The light world becomes a lantern-lit cave palette in
+  dark mode. All scenery is drawn with CSS and inline SVG; no Minecraft textures,
+  characters, or logo assets are included. `assets/css/voxel.css` and
+  `assets/js/voxel.js` are scoped to `data-accent="minecraft"`, and motion
+  respects reduced-motion preferences.
 - **Bilingual** — Chinese is the default language at `/`, English at `/en/`, powered by
   [jekyll-polyglot](https://github.com/untra/polyglot). Every page, including news and publication
   abstracts, has a `_zh` counterpart.

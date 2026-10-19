@@ -1,0 +1,2204 @@
+/* The Minecraft palette: an original voxel research world.
+   Every rule is scoped to data-accent="minecraft" so the red scholar and
+   blue terminal experiences keep their own layouts and interaction models. */
+
+.voxel-only,
+.voxel-world,
+.voxel-hud,
+.voxel-hotbar {
+    display: none;
+}
+
+:root[data-accent="minecraft"] {
+    --accent: #5d9f36;
+    --accent-2: #d49b4f;
+    --accent-gradient: linear-gradient(180deg, #83c649 0 46%, #53952f 46% 55%, #8a5b2d 55% 100%);
+    --accent-soft: #6cac4230;
+    --accent-soft-2: #a8733926;
+    --bg: #dfeccf;
+    --bg-accent: linear-gradient(180deg, #bfe8ff 0 35%, #e9f3d9 74%, #d5e5bd 100%);
+    --card-bg: #fbf8e8;
+    --card-bg-elevated: #fffdf3;
+    --text: #283226;
+    --text-muted: #687261;
+    --heading: #182318;
+    --border: #54462b47;
+    --border-strong: #4d3e2580;
+    --shadow: 7px 7px 0 #31452c2e, 12px 15px 26px #31452c1c;
+    --shadow-hover: 9px 9px 0 #4e7e3538, 15px 18px 32px #31452c22;
+    --navbar-bg: #6d4b2cf5;
+    --link: #3e7f35;
+    --link-hover: #2b5f73;
+    --badge-bg: #d9ecc7;
+    --badge-text: #326226;
+    --code: #7b5a2a;
+    --pixel-line: #25321f1a;
+    --mc-sky-top: #89d9f7;
+    --mc-sky-bottom: #d7f2d0;
+    --mc-cloud: #fffef0;
+    --mc-cloud-shadow: #bad7c5;
+    --mc-mountain-far: #a9cdb7;
+    --mc-mountain-near: #70ad78;
+    --mc-ground: #5c9d3f;
+    --mc-ground-dark: #3f702c;
+    --mc-earth: #855b36;
+    --mc-earth-dark: #543c27;
+    --mc-stone: #788681;
+    --mc-panel: #f8f1d7;
+    --mc-panel-deep: #ebe1c3;
+    --mc-wood: #8b5a2b;
+    --mc-wood-light: #b77b3f;
+    --mc-wood-dark: #56371f;
+    --mc-border: #4f3a26;
+    --mc-gold: #edc56c;
+    --mc-diamond: #55cbd4;
+    --mc-redstone: #d25745;
+    --mc-lantern: #f4cb68;
+    --mc-chat: #18251de8;
+    --mc-chat-border: #8fa87666;
+    --mc-mono: "Agent Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] {
+    --accent: #8fc85a;
+    --accent-2: #efb86e;
+    --accent-soft: #8fc85a26;
+    --accent-soft-2: #d59b5026;
+    --bg: #101812;
+    --bg-accent: linear-gradient(180deg, #0a1321 0 42%, #111c16 100%);
+    --card-bg: #20261e;
+    --card-bg-elevated: #272c22;
+    --text: #e4e8d8;
+    --text-muted: #adb7a1;
+    --heading: #fff6cf;
+    --border: #e3c67542;
+    --border-strong: #e3c67570;
+    --shadow: 7px 7px 0 #050906a6, 14px 18px 30px #0000004d;
+    --shadow-hover: 9px 9px 0 #8fc85a30, 18px 22px 38px #00000059;
+    --navbar-bg: #38271df7;
+    --link: #a8db77;
+    --link-hover: #91d5e8;
+    --badge-bg: #8fc85a21;
+    --badge-text: #c2e68f;
+    --code: #efc77a;
+    --mc-sky-top: #071020;
+    --mc-sky-bottom: #111a2a;
+    --mc-cloud: #9da7bb;
+    --mc-cloud-shadow: #505d78;
+    --mc-mountain-far: #2a3948;
+    --mc-mountain-near: #1d3735;
+    --mc-ground: #35572b;
+    --mc-ground-dark: #243d21;
+    --mc-earth: #4b3829;
+    --mc-earth-dark: #2d231b;
+    --mc-stone: #3e4847;
+    --mc-panel: #24271f;
+    --mc-panel-deep: #1b1e19;
+    --mc-wood: #64432c;
+    --mc-wood-light: #8d5e39;
+    --mc-wood-dark: #37271c;
+    --mc-border: #b89a5a;
+    --mc-chat: #0b1511ed;
+    --mc-chat-border: #aac28d45;
+}
+
+:root[data-accent="minecraft"] body {
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+    padding-top: 6.35rem;
+    background: var(--bg);
+    background-image: var(--bg-accent);
+    background-attachment: fixed;
+}
+
+:root[data-accent="minecraft"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, #20321a0b 1px, transparent 1px),
+        linear-gradient(#20321a0b 1px, transparent 1px),
+        radial-gradient(ellipse at center, transparent 42%, #1a2b1820 100%);
+    background-size: 48px 48px, 48px 48px, auto;
+}
+
+:root[data-accent="minecraft"] ::selection {
+    background: #73ad4b73;
+    color: #fffbe8;
+}
+
+:root[data-accent="minecraft"] :focus-visible {
+    outline: 3px solid var(--mc-gold);
+    outline-offset: 4px;
+}
+
+:root[data-accent="minecraft"] .site-shell {
+    position: relative;
+    z-index: 2;
+}
+
+:root[data-accent="minecraft"] .container {
+    max-width: 1180px;
+}
+
+:root[data-accent="minecraft"] .site-main {
+    position: relative;
+    padding-top: 2.25rem;
+}
+
+/* -------------------------------------------------------------------------
+   Original voxel scenery
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .voxel-world {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(180deg, var(--mc-sky-top), var(--mc-sky-bottom));
+}
+
+:root[data-accent="minecraft"] .voxel-world::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .18;
+    background-image:
+        linear-gradient(90deg, #ffffff1a 1px, transparent 1px),
+        linear-gradient(#ffffff16 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, #000, transparent 72%);
+}
+
+:root[data-accent="minecraft"] .voxel-world::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, #26301a14 100%);
+}
+
+:root[data-accent="minecraft"] .voxel-sun {
+    position: absolute;
+    top: clamp(88px, 12vh, 150px);
+    right: clamp(36px, 10vw, 170px);
+    width: 64px;
+    height: 64px;
+    background: #ffe7a0;
+    box-shadow:
+        0 0 0 8px #fff2bd70,
+        0 0 0 16px #fff2bd2b,
+        -10px 10px 0 #ffe7a0;
+    opacity: .9;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-sun {
+    top: clamp(70px, 9vh, 120px);
+    right: clamp(70px, 14vw, 230px);
+    width: 42px;
+    height: 42px;
+    background: #fff2c0;
+    box-shadow:
+        0 0 0 5px #fff2c01f,
+        0 0 28px 10px #fff2c033,
+        -7px 7px 0 #dce3f0;
+    opacity: .8;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-world::before {
+    opacity: .36;
+    background-image:
+        radial-gradient(circle, #fff7d9 1px, transparent 1.6px),
+        radial-gradient(circle, #b8d5ff 1px, transparent 1.6px);
+    background-position: 0 0, 27px 19px;
+    background-size: 87px 71px, 113px 97px;
+    mask-image: linear-gradient(to bottom, #000 0, #000 58%, transparent 86%);
+}
+
+:root[data-accent="minecraft"] .voxel-cloud {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 28px);
+    grid-template-rows: repeat(2, 28px);
+    filter: drop-shadow(8px 9px 0 var(--mc-cloud-shadow));
+    opacity: .9;
+    will-change: transform;
+}
+
+:root[data-accent="minecraft"] .voxel-cloud span {
+    display: block;
+    background: var(--mc-cloud);
+}
+
+:root[data-accent="minecraft"] .voxel-cloud span:nth-child(1),
+:root[data-accent="minecraft"] .voxel-cloud span:nth-child(5),
+:root[data-accent="minecraft"] .voxel-cloud span:nth-child(7),
+:root[data-accent="minecraft"] .voxel-cloud span:nth-child(9) {
+    visibility: hidden;
+}
+
+:root[data-accent="minecraft"] .voxel-cloud--one {
+    top: 16%;
+    left: 7%;
+    transform: translate3d(calc(var(--voxel-px, 0) * -12px), calc(var(--voxel-py, 0) * 8px), 0);
+}
+
+:root[data-accent="minecraft"] .voxel-cloud--two {
+    top: 28%;
+    right: 5%;
+    transform: scale(.72) translate3d(calc(var(--voxel-px, 0) * 16px), calc(var(--voxel-py, 0) * -9px), 0);
+    opacity: .62;
+}
+
+:root[data-accent="minecraft"] .voxel-cloud--three {
+    top: 49%;
+    left: 18%;
+    transform: scale(.52) translate3d(calc(var(--voxel-px, 0) * -20px), calc(var(--voxel-py, 0) * 14px), 0);
+    opacity: .46;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-cloud {
+    opacity: .32;
+    filter: drop-shadow(8px 9px 0 var(--mc-cloud-shadow));
+}
+
+:root[data-accent="minecraft"] .voxel-landscape {
+    position: absolute;
+    left: 50%;
+    bottom: -3vh;
+    width: max(1500px, 116vw);
+    height: auto;
+    transform: translateX(-50%) translate3d(calc(var(--voxel-px, 0) * 9px), calc(var(--voxel-py, 0) * -5px), 0);
+    filter: drop-shadow(0 -8px 26px #1c3c2d16);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-landscape {
+    filter: drop-shadow(0 -10px 30px #00000040);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .terrain-fill {
+    fill: var(--mc-ground);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .terrain-shadow {
+    fill: var(--mc-ground-dark);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .earth-fill {
+    fill: var(--mc-earth);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .earth-shadow {
+    fill: var(--mc-earth-dark);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .far-mountain {
+    fill: var(--mc-mountain-far);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .near-mountain {
+    fill: var(--mc-mountain-near);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .tree-canopy {
+    fill: var(--mc-ground-dark);
+}
+
+:root[data-accent="minecraft"] .voxel-landscape .tree-trunk {
+    fill: var(--mc-wood);
+}
+
+:root[data-accent="minecraft"] .voxel-fireflies {
+    position: absolute;
+    inset: 18% 0 25%;
+    overflow: hidden;
+    opacity: .7;
+}
+
+:root[data-accent="minecraft"] .voxel-fireflies i {
+    position: absolute;
+    left: var(--fly-x);
+    top: var(--fly-y);
+    width: 5px;
+    height: 5px;
+    background: var(--mc-lantern);
+    box-shadow: 0 0 10px 2px #ffd66f4d;
+    animation: voxel-firefly var(--fly-speed, 8s) ease-in-out var(--fly-delay, 0s) infinite alternate;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-fireflies {
+    opacity: 1;
+}
+
+:root[data-accent="minecraft"] .voxel-float {
+    position: absolute;
+    width: clamp(52px, 6vw, 82px);
+    overflow: visible;
+    opacity: .84;
+    filter: drop-shadow(10px 12px 0 #21351f30) drop-shadow(0 14px 16px #21351f26);
+    will-change: transform;
+}
+
+:root[data-accent="minecraft"] .voxel-float--grass {
+    top: 37%;
+    left: 4.5%;
+    transform: rotate(-4deg) translate3d(calc(var(--voxel-px, 0) * -8px), calc(var(--voxel-py, 0) * 6px), 0);
+}
+
+:root[data-accent="minecraft"] .voxel-float--diamond {
+    top: 54%;
+    right: 4%;
+    width: clamp(44px, 5.2vw, 70px);
+    transform: rotate(5deg) translate3d(calc(var(--voxel-px, 0) * 10px), calc(var(--voxel-py, 0) * -5px), 0);
+}
+
+:root[data-accent="minecraft"] .voxel-float--logic {
+    top: 67%;
+    left: 11%;
+    width: clamp(38px, 4.2vw, 58px);
+    opacity: .7;
+    transform: rotate(3deg) translate3d(calc(var(--voxel-px, 0) * -13px), calc(var(--voxel-py, 0) * 8px), 0);
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-top {
+    fill: #85c853;
+    stroke: #3a602d;
+    stroke-width: 2;
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-left {
+    fill: #795233;
+    stroke: #3e2b1e;
+    stroke-width: 2;
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-right {
+    fill: #5c3d27;
+    stroke: #35261b;
+    stroke-width: 2;
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-speck {
+    fill: #9d7047;
+    opacity: .75;
+}
+
+:root[data-accent="minecraft"] .voxel-float--diamond .cube-top {
+    fill: #65d4d8;
+    stroke: #2c6872;
+}
+
+:root[data-accent="minecraft"] .voxel-float--diamond .cube-left {
+    fill: #47869a;
+    stroke: #27515f;
+}
+
+:root[data-accent="minecraft"] .voxel-float--diamond .cube-right {
+    fill: #346a80;
+    stroke: #203f52;
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-gem {
+    fill: #b6fbf0;
+    opacity: .78;
+}
+
+:root[data-accent="minecraft"] .voxel-float--logic .cube-top {
+    fill: #d0a164;
+    stroke: #654529;
+}
+
+:root[data-accent="minecraft"] .voxel-float--logic .cube-left {
+    fill: #795536;
+    stroke: #3d2b20;
+}
+
+:root[data-accent="minecraft"] .voxel-float--logic .cube-right {
+    fill: #57402d;
+    stroke: #30231a;
+}
+
+:root[data-accent="minecraft"] .voxel-float .cube-circuit {
+    fill: #ffdc85;
+    opacity: .9;
+    filter: drop-shadow(0 0 4px #ffd57288);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-float {
+    filter: drop-shadow(10px 12px 0 #03060480) drop-shadow(0 14px 16px #0000003b);
+}
+
+:root[data-accent="minecraft"] .voxel-paused .voxel-cloud,
+:root[data-accent="minecraft"] .voxel-paused .voxel-fireflies i,
+:root[data-accent="minecraft"] .voxel-paused .voxel-float {
+    animation-play-state: paused !important;
+}
+
+/* -------------------------------------------------------------------------
+   HUD and hotbar
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .voxel-hud {
+    display: flex;
+    position: fixed;
+    z-index: 1035;
+    top: 72px;
+    right: max(18px, calc((100vw - 1180px) / 2 - 125px));
+    flex-direction: column;
+    gap: 5px;
+    color: #f9f7df;
+    font: 500 .6rem/1.45 var(--mc-mono);
+    letter-spacing: .06em;
+    text-shadow: 2px 2px #1d281f;
+    pointer-events: none;
+}
+
+:root[data-accent="minecraft"] .voxel-hud span {
+    padding: 5px 8px;
+    border: 2px solid #33271c;
+    background: #1f2d20d9;
+    box-shadow: 3px 3px 0 #10170f66;
+}
+
+:root[data-accent="minecraft"] .voxel-hud .voxel-hud-online::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    background: #8fe463;
+    box-shadow: 0 0 8px #8fe463;
+    vertical-align: 1px;
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar {
+    display: flex;
+    position: fixed;
+    z-index: 1040;
+    left: 50%;
+    bottom: 16px;
+    align-items: stretch;
+    gap: 3px;
+    padding: 5px;
+    border: 2px solid #2e2116;
+    background: #2a2119d9;
+    box-shadow:
+        0 0 0 2px #c7a76b52,
+        6px 6px 0 #11181266;
+    transform: translateX(-50%);
+    backdrop-filter: blur(7px);
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar a {
+    position: relative;
+    display: flex;
+    width: 58px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1b1914;
+    background:
+        linear-gradient(145deg, #706351, #4c463a) padding-box,
+        repeating-linear-gradient(0deg, transparent 0 11px, #ffffff0b 11px 12px) border-box;
+    color: #e8e0c8;
+    box-shadow: inset 2px 2px #ffffff1c, inset -3px -3px #00000026;
+    transition: transform .16s ease, background-color .16s ease, color .16s ease;
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar a:hover,
+:root[data-accent="minecraft"] .voxel-hotbar a:focus-visible {
+    color: #fff7cf;
+    transform: translateY(-4px);
+    text-decoration: none;
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar a.is-active {
+    border-color: #f0d696;
+    background:
+        linear-gradient(145deg, #6eb146, #3e772c) padding-box,
+        repeating-linear-gradient(0deg, transparent 0 11px, #ffffff11 11px 12px) border-box;
+    color: #fffbe5;
+    box-shadow:
+        inset 2px 2px #ffffff32,
+        inset -3px -3px #183a1538,
+        0 0 0 2px #d6bd765e,
+        0 0 18px #8dce5966;
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar svg {
+    width: 26px;
+    height: 26px;
+    image-rendering: pixelated;
+    filter: drop-shadow(2px 2px 0 #1b2117);
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar .voxel-hotbar-label {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 11px);
+    padding: 3px 6px;
+    border: 1px solid #d9c28c66;
+    background: #182018ec;
+    color: #fff7d2;
+    font: 500 .61rem/1.35 var(--mc-mono);
+    opacity: 0;
+    transform: translate(-50%, 3px);
+    transition: opacity .15s ease, transform .15s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar a:hover .voxel-hotbar-label,
+:root[data-accent="minecraft"] .voxel-hotbar a:focus-visible .voxel-hotbar-label {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+:root[data-accent="minecraft"] .voxel-hotbar-kbd {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    color: #b8ad95;
+    font: 400 .5rem/1 var(--mc-mono);
+}
+
+/* -------------------------------------------------------------------------
+   World toolbar (the site navbar)
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .navbar {
+    min-height: 74px;
+    border: 0;
+    border-bottom: 4px solid #352619;
+    border-radius: 0;
+    background-color: #6e4c2d !important;
+    background-image:
+        linear-gradient(90deg, #ffffff08 1px, transparent 1px),
+        linear-gradient(#ffffff08 1px, transparent 1px),
+        linear-gradient(180deg, #a46e3c 0 10px, #7d542f 10px 64px, #654425 64px);
+    background-size: 32px 32px, 32px 32px, auto;
+    box-shadow:
+        0 5px 0 #263a1f66,
+        0 10px 28px #21321e33;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+:root[data-accent="minecraft"] .navbar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, #6eaa49 0 18px, #5a923b 18px 36px);
+    border-bottom: 3px solid #314629;
+}
+
+:root[data-accent="minecraft"] .navbar-brand strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    background: none;
+    color: #fff6d4;
+    -webkit-text-fill-color: currentColor;
+    font-family: "Raleway", "Noto Sans SC", sans-serif;
+    font-size: 1.12rem;
+    font-weight: 900;
+    letter-spacing: .045em;
+    text-shadow: 3px 3px 0 #3b2a1b;
+}
+
+:root[data-accent="minecraft"] .navbar-brand strong::before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    background:
+        linear-gradient(180deg, #89c75a 0 31%, #5d9f36 31% 48%, #7b5331 48% 100%);
+    box-shadow:
+        inset 3px 3px #ffffff32,
+        inset -3px -3px #2c351f38,
+        4px 4px #382819;
+    transform: rotate(-2deg);
+}
+
+:root[data-accent="minecraft"] .navbar .nav-link {
+    margin-inline: 2px;
+    padding: .55rem .82rem !important;
+    border: 1px solid transparent;
+    color: #f0e4c8 !important;
+    font: 600 .82rem/1.5 "Raleway", "Noto Sans SC", sans-serif;
+    text-shadow: 2px 2px #3d291c;
+}
+
+:root[data-accent="minecraft"] .navbar .nav-link:hover {
+    border-color: #d9bd7a52;
+    background: #ffffff0d;
+    color: #fff8d7 !important;
+}
+
+:root[data-accent="minecraft"] .navbar-brand {
+    margin-right: auto;
+}
+
+:root[data-accent="minecraft"] .navbar-toggler,
+:root[data-accent="minecraft"] .navbar-nav > .nav-item:not(:last-child) {
+    display: none !important;
+}
+
+:root[data-accent="minecraft"] .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    justify-content: flex-end;
+}
+
+:root[data-accent="minecraft"] .navbar-nav {
+    width: auto;
+    margin-left: auto !important;
+}
+
+:root[data-accent="minecraft"] .navbar-nav > .nav-item:last-child {
+    margin: 0 !important;
+}
+
+:root[data-accent="minecraft"] .navbar .nav-item.active .nav-link {
+    border-color: #ecd58e8a;
+    background: #2a2116b3;
+    box-shadow:
+        inset 2px 2px #ffffff17,
+        inset -2px -2px #00000038;
+    color: #fff6c6 !important;
+}
+
+:root[data-accent="minecraft"] .navbar .nav-item.active .nav-link::after {
+    display: none;
+}
+
+:root[data-accent="minecraft"] .navbar-toggler {
+    border: 2px solid #e6d09a66;
+    border-radius: 0;
+    background: #2a1c12;
+    color: #fff1c9;
+}
+
+:root[data-accent="minecraft"] .accent-picker {
+    gap: 6px;
+    margin-left: 8px;
+}
+
+:root[data-accent="minecraft"] .accent-dot {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #3b2a1d;
+    border-radius: 0;
+    box-shadow: inset 2px 2px #ffffff2b, 2px 2px #2c1e13;
+}
+
+:root[data-accent="minecraft"] .accent-dot.active {
+    border-color: #f3dc9e;
+    box-shadow:
+        0 0 0 2px #4f341f,
+        0 0 0 3px #e8d49c,
+        inset 2px 2px #ffffff31,
+        2px 2px #2c1e13;
+}
+
+:root[data-accent="minecraft"] .theme-toggle {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #e7d19970;
+    border-radius: 0;
+    background: #291b11;
+    color: #ffebae;
+    box-shadow: 3px 3px #1c130c;
+}
+
+:root[data-accent="minecraft"] .theme-toggle:hover {
+    border-color: #f3d98f;
+    background: #4a321d;
+    color: #fff4c7;
+}
+
+/* -------------------------------------------------------------------------
+   Surface construction
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .site-main .card,
+:root[data-accent="minecraft"] .news-card,
+:root[data-accent="minecraft"] .my-0.bg-white,
+:root[data-accent="minecraft"] .my-3.bg-white {
+    position: relative;
+    border: 3px solid var(--mc-border) !important;
+    border-radius: 0 !important;
+    background-color: var(--mc-panel) !important;
+    background-image:
+        linear-gradient(90deg, #4d3b2510 1px, transparent 1px),
+        linear-gradient(#4d3b2510 1px, transparent 1px),
+        linear-gradient(135deg, #ffffff1a, transparent 65%) !important;
+    background-size: 24px 24px, 24px 24px, auto !important;
+    box-shadow:
+        inset 4px 4px 0 #ffffff52,
+        inset -4px -4px 0 #6b543218,
+        7px 7px 0 #31422b38,
+        14px 18px 28px #25351f1c !important;
+    transition: transform .2s cubic-bezier(.2, .75, .3, 1), box-shadow .2s ease, background-color .2s ease;
+}
+
+:root[data-accent="minecraft"] .site-main .card::after,
+:root[data-accent="minecraft"] .news-card::after,
+:root[data-accent="minecraft"] .my-0.bg-white::after,
+:root[data-accent="minecraft"] .my-3.bg-white::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 13px;
+    height: 13px;
+    border-right: 3px solid #6b50314a;
+    border-bottom: 3px solid #6b50314a;
+    pointer-events: none;
+}
+
+:root[data-accent="minecraft"] .site-main .card:hover {
+    transform: translate(-2px, -2px);
+    border-color: var(--mc-border) !important;
+    box-shadow:
+        inset 4px 4px 0 #ffffff61,
+        inset -4px -4px 0 #6b54321d,
+        5px 5px 0 #3b55333f,
+        10px 13px 22px #25351f1a !important;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .site-main .card,
+:root[data-theme="dark"][data-accent="minecraft"] .news-card,
+:root[data-theme="dark"][data-accent="minecraft"] .my-0.bg-white,
+:root[data-theme="dark"][data-accent="minecraft"] .my-3.bg-white {
+    background-image:
+        linear-gradient(90deg, #e9cf7920 1px, transparent 1px),
+        linear-gradient(#e9cf7920 1px, transparent 1px),
+        linear-gradient(135deg, #ffffff08, transparent 65%) !important;
+    background-size: 24px 24px, 24px 24px, auto !important;
+    box-shadow:
+        inset 4px 4px 0 #ffffff0d,
+        inset -4px -4px 0 #00000028,
+        7px 7px 0 #0306049e,
+        14px 18px 30px #0000004d !important;
+}
+
+/* -------------------------------------------------------------------------
+   Profile: spawn camp
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .voxel-only {
+    display: block;
+}
+
+:root[data-accent="minecraft"] .profile-card {
+    overflow: hidden;
+    border-top: 12px solid var(--mc-ground) !important;
+    border-bottom-color: var(--mc-earth-dark) !important;
+}
+
+:root[data-accent="minecraft"] .profile-card::before {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    top: -9px;
+    height: 6px;
+    background:
+        repeating-linear-gradient(90deg, #9bd365 0 12px, #7eb94f 12px 24px, #68a941 24px 36px),
+        #75b24a;
+    border-bottom: 3px solid #46782f;
+}
+
+:root[data-accent="minecraft"] .profile-card .card-body {
+    padding: 1.2rem 2.5rem 2rem !important;
+}
+
+:root[data-accent="minecraft"] .profile-card .profile-watermark {
+    display: none;
+}
+
+:root[data-accent="minecraft"] .voxel-profile-ribbon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 -2.5rem 1.65rem;
+    padding: .62rem 1rem;
+    border-top: 2px solid #3d2b1d;
+    border-bottom: 2px solid #3d2b1d;
+    background:
+        linear-gradient(90deg, #c5a26a 1px, transparent 1px),
+        linear-gradient(#c5a26a 1px, transparent 1px),
+        linear-gradient(180deg, #9b6b3b, #744b2a);
+    background-size: 28px 28px, 28px 28px, auto;
+    color: #fff3c8;
+    font: 500 .62rem/1.4 var(--mc-mono);
+    letter-spacing: .11em;
+    text-shadow: 2px 2px #3b291c;
+}
+
+:root[data-accent="minecraft"] .voxel-profile-ribbon::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 5px;
+    height: 18px;
+    background: var(--mc-lantern);
+    box-shadow: 0 0 10px #f1cb6d8a;
+    transform: translateY(-50%);
+}
+
+:root[data-accent="minecraft"] .voxel-profile-ribbon > span:first-child {
+    padding-left: 19px;
+}
+
+:root[data-accent="minecraft"] .voxel-online {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #dcf9c0;
+}
+
+:root[data-accent="minecraft"] .voxel-online::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: #94e065;
+    box-shadow: 0 0 8px #94e065;
+}
+
+:root[data-accent="minecraft"] .profile-heading {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+:root[data-accent="minecraft"] .profile-card .h1 {
+    margin: .2rem 0 1rem;
+    color: var(--heading);
+    font-family: "Raleway", "Noto Sans SC", sans-serif;
+    font-size: clamp(2.55rem, 4.5vw, 3.9rem);
+    font-weight: 900;
+    letter-spacing: -.045em;
+    line-height: 1.12;
+    text-shadow: 3px 3px 0 #b6c9a0;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .profile-card .h1 {
+    text-shadow: 3px 3px 0 #0d120e;
+}
+
+:root[data-accent="minecraft"] .profile-card .h1 small {
+    display: inline-block;
+    margin-left: .65rem;
+    padding: .3rem .48rem;
+    border: 2px solid var(--border-strong);
+    background: #ffffff4a;
+    color: var(--text-muted);
+    font: 500 .75rem/1.2 var(--mc-mono);
+    letter-spacing: .03em;
+    text-shadow: none;
+    vertical-align: .72rem;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .profile-card .h1 small {
+    background: #0000002b;
+}
+
+:root[data-accent="minecraft"] .profile-card .text-profile-position {
+    gap: .4rem;
+    padding: .48rem .68rem;
+    border: 2px solid #78624345;
+    background: #fffdf5a1;
+    color: var(--text);
+    font-size: .78rem;
+    line-height: 1.75;
+    box-shadow: inset 3px 3px #ffffff59;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .profile-card .text-profile-position {
+    background: #0b0d0a48;
+    border-color: #dec27536;
+    box-shadow: inset 3px 3px #ffffff08;
+}
+
+:root[data-accent="minecraft"] .profile-card .positions-list {
+    flex-direction: column;
+    gap: .15rem;
+}
+
+:root[data-accent="minecraft"] .profile-card .position-sep {
+    display: none;
+}
+
+:root[data-accent="minecraft"] .profile-card .inline-badge {
+    width: 18px;
+    height: 18px;
+    border-radius: 0;
+    image-rendering: auto;
+}
+
+:root[data-accent="minecraft"] .profile-card .gs-cite {
+    border: 0;
+    background: none;
+    padding: 0;
+    font-family: var(--mc-mono);
+}
+
+:root[data-accent="minecraft"] .profile-card .text-profile-bio {
+    max-width: 74ch;
+    margin-top: 1.2rem !important;
+    color: var(--text);
+    font-size: .9rem;
+    line-height: 1.9;
+}
+
+:root[data-accent="minecraft"] .profile-card .text-profile-bio p {
+    margin-bottom: 1rem;
+}
+
+:root[data-accent="minecraft"] .profile-card .text-profile-bio b {
+    color: var(--heading);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #7ebd4f99;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+:root[data-accent="minecraft"] .profile-card .profile-sep {
+    border-color: var(--border);
+    border-width: 2px 0 0;
+    border-style: dashed;
+}
+
+:root[data-accent="minecraft"] .profile-card .research-interests {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-label {
+    color: var(--text-muted);
+    font: 500 .63rem/1.4 var(--mc-mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tag {
+    position: relative;
+    margin: 0;
+    padding: .4rem .58rem .4rem 1.7rem;
+    border: 2px solid #5d5038;
+    border-radius: 0;
+    background: #d2e5bd;
+    color: #2f5228;
+    font: 600 .7rem/1.3 var(--mc-mono);
+    box-shadow: inset 2px 2px #ffffff7d, 3px 3px #3e4f3429;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tag::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    background: #5f9f3c;
+    box-shadow: inset 2px 2px #a5df76, inset -2px -2px #37682d;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tag:nth-child(2)::before {
+    background: #4ba4aa;
+    box-shadow: inset 2px 2px #82e0df, inset -2px -2px #2f6f78;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tag:nth-child(3)::before {
+    background: #bf7b45;
+    box-shadow: inset 2px 2px #e7b274, inset -2px -2px #7c4e2f;
+}
+
+:root[data-accent="minecraft"] .profile-card .ri-tag:nth-child(4)::before {
+    background: #7b87b5;
+    box-shadow: inset 2px 2px #b7c1e7, inset -2px -2px #4e577c;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .profile-card .ri-tag {
+    background: #2e3d29;
+    color: #dceec9;
+    border-color: #8ba56b70;
+}
+
+:root[data-accent="minecraft"] .profile-card .latest-news {
+    padding: .55rem .75rem;
+    border: 2px dashed #7e694a57;
+    background: #fff9e58c;
+    color: var(--text-muted);
+    font-size: .75rem;
+}
+
+:root[data-accent="minecraft"] .profile-card .ln-label {
+    color: var(--link);
+    font-family: var(--mc-mono);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .profile-card .latest-news {
+    background: #0c100c59;
+}
+
+/* Portrait as a physical grass-and-earth block. */
+:root[data-accent="minecraft"] .portrait-col {
+    width: 230px;
+    margin: .15rem 0 0 1.75rem;
+}
+
+:root[data-accent="minecraft"] .portrait-col .portrait-trigger {
+    position: relative;
+    display: block;
+    margin: .35rem .35rem 1.45rem;
+    padding: 12px 12px 17px;
+    border: 3px solid #453120;
+    background:
+        linear-gradient(180deg, #8ccc5b 0 7px, #5c9938 7px 12px, #78512f 12px 100%);
+    box-shadow:
+        inset 3px 3px #ffffff37,
+        inset -3px -3px #3c291d4d,
+        7px 8px #30422859,
+        12px 14px 22px #24341f2a;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+:root[data-accent="minecraft"] .portrait-col .portrait-trigger::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 8px;
+    right: -12px;
+    bottom: -12px;
+    height: 24px;
+    background:
+        repeating-linear-gradient(90deg, #6f4c2e 0 19px, #604129 19px 38px);
+    border: 2px solid #402b1d;
+    transform: skewX(-34deg);
+    transform-origin: left top;
+}
+
+:root[data-accent="minecraft"] .portrait-col .portrait-trigger:hover {
+    transform: translate(-2px, -3px);
+    box-shadow:
+        inset 3px 3px #ffffff44,
+        inset -3px -3px #3c291d4d,
+        9px 10px #30422862,
+        15px 18px 27px #24341f34;
+}
+
+:root[data-accent="minecraft"] .profile-card .portrait-img {
+    display: block;
+    width: 100%;
+    border: 2px solid #3b2b1e !important;
+    border-radius: 0 !important;
+    padding: 0;
+    filter: saturate(.92) contrast(1.03);
+    image-rendering: auto;
+}
+
+:root[data-accent="minecraft"] .portrait-divider {
+    height: 3px;
+    margin: .2rem 0 .85rem;
+    background: linear-gradient(90deg, var(--mc-ground), transparent);
+}
+
+:root[data-accent="minecraft"] .portrait-divider span {
+    display: none;
+}
+
+:root[data-accent="minecraft"] .portrait-tagline {
+    color: var(--text-muted);
+    font: 500 .67rem/1.65 var(--mc-mono);
+}
+
+:root[data-accent="minecraft"] .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: .9rem;
+}
+
+:root[data-accent="minecraft"] .social-icons a {
+    display: inline-flex;
+    width: 34px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #5b4933;
+    background: #dfe8cd;
+    color: #365c31;
+    box-shadow: inset 2px 2px #ffffff6e, 2px 2px #35462f29;
+}
+
+:root[data-accent="minecraft"] .social-icons a:hover {
+    background: #c9dfb5;
+    color: #234c2e;
+    transform: translate(-1px, -1px);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .social-icons a {
+    background: #2b3526;
+    border-color: #8a9d704d;
+    color: #c5dfad;
+}
+
+/* -------------------------------------------------------------------------
+   Section banners
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .voxel-section-banner {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    margin: -.15rem 0 1.2rem;
+    padding: .72rem .9rem;
+    border: 2px solid #5b4a35;
+    background:
+        linear-gradient(90deg, #4c3a2917 1px, transparent 1px),
+        linear-gradient(#4c3a2917 1px, transparent 1px),
+        linear-gradient(180deg, #e0d3b3, #c9b992);
+    background-size: 20px 20px, 20px 20px, auto;
+    color: #3b3022;
+    box-shadow: inset 3px 3px #ffffff47, 4px 4px #33412621;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-section-banner {
+    border-color: #9a855b;
+    background:
+        linear-gradient(90deg, #f0da9c14 1px, transparent 1px),
+        linear-gradient(#f0da9c14 1px, transparent 1px),
+        linear-gradient(180deg, #383b30, #2b2f27);
+    background-size: 20px 20px, 20px 20px, auto;
+    color: #f0e3be;
+    box-shadow: inset 3px 3px #ffffff0e, 4px 4px #00000042;
+}
+
+:root[data-accent="minecraft"] .voxel-section-index {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #3e4e303d;
+    background: var(--mc-ground);
+    color: #fffce9;
+    font: 700 .7rem/1 var(--mc-mono);
+    box-shadow: inset 3px 3px #ffffff30, inset -3px -3px #2c522443;
+}
+
+:root[data-accent="minecraft"] .voxel-section-banner strong {
+    display: block;
+    margin-bottom: .14rem;
+    font-family: "Raleway", "Noto Sans SC", sans-serif;
+    font-size: .92rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+}
+
+:root[data-accent="minecraft"] .voxel-section-banner small {
+    display: block;
+    color: var(--text-muted);
+    font: 400 .62rem/1.45 var(--mc-mono);
+}
+
+:root[data-accent="minecraft"] .voxel-section-lamp {
+    width: 15px;
+    height: 22px;
+    margin-left: auto;
+    background:
+        linear-gradient(180deg, #74502d 0 3px, #ffd87a 3px 19px, #74502d 19px);
+    border: 2px solid #4b3826;
+    box-shadow: 0 0 12px #f4cb6870;
+}
+
+/* -------------------------------------------------------------------------
+   Experience as an advancement trail
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] #experience {
+    scroll-margin-top: 95px;
+}
+
+:root[data-accent="minecraft"] #experience .card-body {
+    padding: 1.45rem 1.6rem 1.65rem !important;
+}
+
+:root[data-accent="minecraft"] .exp-section-title {
+    margin: .15rem 0 .85rem;
+    padding: .48rem .65rem;
+    border-left: 5px solid var(--mc-ground);
+    background: #e0e9d1;
+    color: #294526;
+    font: 700 .76rem/1.4 var(--mc-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .exp-section-title {
+    background: #2d3828;
+    color: #d5ebc1;
+}
+
+:root[data-accent="minecraft"] .exp-list,
+:root[data-accent="minecraft"] .award-list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+:root[data-accent="minecraft"] .exp-list::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    background: repeating-linear-gradient(180deg, #7c8b67 0 8px, transparent 8px 13px);
+}
+
+:root[data-accent="minecraft"] .exp-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: .72rem;
+    margin: 0 0 .7rem;
+    padding: .62rem .68rem .62rem .5rem;
+    border: 2px solid transparent;
+    background: #fffdf389;
+    box-shadow: 3px 3px #4758411c;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .exp-item {
+    background: #0b0f0b4f;
+    box-shadow: 3px 3px #0000002e;
+}
+
+:root[data-accent="minecraft"] .exp-item:hover {
+    border-color: #7e9c6770;
+    background: #f3f8e6;
+    transform: translateX(2px);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .exp-item:hover {
+    background: #263224;
+}
+
+:root[data-accent="minecraft"] .exp-logo {
+    z-index: 1;
+    width: 31px;
+    height: 31px;
+    padding: 5px;
+    border: 2px solid #66563f;
+    border-radius: 0;
+    background: #f0e6cc;
+    object-fit: contain;
+    box-shadow: inset 2px 2px #ffffff70, 3px 3px #2d392621;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .exp-logo {
+    border-color: #a28c65;
+    background: #242a20;
+}
+
+:root[data-accent="minecraft"] .exp-head {
+    gap: .25rem .7rem;
+}
+
+:root[data-accent="minecraft"] .exp-name {
+    color: var(--heading);
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+:root[data-accent="minecraft"] .exp-sub {
+    margin-top: .15rem;
+    color: var(--text-muted);
+    font-size: .72rem;
+    line-height: 1.65;
+}
+
+:root[data-accent="minecraft"] .exp-date {
+    padding: 2px 5px;
+    border: 1px solid #6d775a50;
+    border-radius: 0;
+    background: #e9efd7;
+    color: #526341;
+    font: 500 .57rem/1.5 var(--mc-mono);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .exp-date {
+    background: #313a2a;
+    color: #bdcdaa;
+}
+
+:root[data-accent="minecraft"] .award-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .8rem;
+    margin-bottom: .48rem;
+    padding: .52rem .6rem .52rem 1.9rem;
+    border: 1px solid #6f684945;
+    background: #f3eed889;
+    font-size: .72rem;
+    line-height: 1.55;
+}
+
+:root[data-accent="minecraft"] .award-item::before {
+    content: "";
+    position: absolute;
+    left: .65rem;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-radius: 0;
+    background: var(--mc-gold);
+    box-shadow: inset 2px 2px #fff4bd, inset -2px -2px #9b6c35;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .award-item {
+    background: #141a124f;
+    border-color: #c4a86137;
+}
+
+:root[data-accent="minecraft"] .award-date {
+    flex: 0 0 auto;
+    padding: 1px 4px;
+    border: 0;
+    background: transparent;
+    color: #9a6c35;
+    font: 600 .6rem/1.4 var(--mc-mono);
+}
+
+/* -------------------------------------------------------------------------
+   News as the world chat log
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .news-card {
+    overflow: hidden;
+    border-color: #25372a !important;
+    background-color: var(--mc-chat) !important;
+    background-image:
+        linear-gradient(90deg, #b9cc9510 1px, transparent 1px),
+        linear-gradient(#b9cc9510 1px, transparent 1px) !important;
+    background-size: 28px 28px, 28px 28px !important;
+    color: #e7edda;
+    box-shadow:
+        inset 4px 4px #ffffff0b,
+        inset -4px -4px #00000042,
+        7px 7px #15201675,
+        14px 18px 28px #1b2a1c26 !important;
+}
+
+:root[data-accent="minecraft"] .news-card .voxel-section-banner {
+    margin: 0;
+    border: 0;
+    border-bottom: 2px solid var(--mc-chat-border);
+    background:
+        linear-gradient(90deg, #a9c18411 1px, transparent 1px),
+        linear-gradient(#a9c18411 1px, transparent 1px),
+        #26392ad9;
+    background-size: 22px 22px, 22px 22px, auto;
+    color: #edf5de;
+    box-shadow: none;
+}
+
+:root[data-accent="minecraft"] .news-head {
+    margin: 0;
+    padding: .85rem 1.1rem !important;
+    border-bottom: 2px solid var(--mc-chat-border);
+    background: #0f1b14a3;
+    color: #cbe5b4;
+    font: 500 .68rem/1.4 var(--mc-mono);
+    letter-spacing: .1em;
+}
+
+:root[data-accent="minecraft"] .news-head .fas {
+    color: #93d269;
+}
+
+:root[data-accent="minecraft"] .news-body {
+    padding: 1rem 1.2rem .35rem;
+}
+
+:root[data-accent="minecraft"] .news-year {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: .8rem;
+    margin-bottom: .6rem;
+    padding: .55rem 0;
+}
+
+:root[data-accent="minecraft"] .news-year + .news-year {
+    border-top: 1px dashed #b8ca9e2c;
+}
+
+:root[data-accent="minecraft"] .news-year-label {
+    display: inline-block;
+    flex: 0 0 auto;
+    align-self: start;
+    width: max-content;
+    margin: .2rem 0 .55rem;
+    padding: 2px 6px;
+    border: 1px solid #a6ba8a3b;
+    background: #0b130e66;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: #9cba88;
+    -webkit-text-fill-color: currentColor;
+    font: 500 .62rem/1.45 var(--mc-mono);
+}
+
+:root[data-accent="minecraft"] .news-list {
+    margin: 0;
+    padding: 0;
+}
+
+:root[data-accent="minecraft"] .news-item {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+    gap: .7rem;
+    align-items: start;
+    min-width: 0;
+    margin: 0;
+    padding: .62rem .7rem;
+    border-left: 3px solid transparent;
+    color: #e6eedc;
+    transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+:root[data-accent="minecraft"] .news-item:hover {
+    border-left-color: #8fca63;
+    background: #d8efbf0c;
+    transform: translateX(2px);
+}
+
+:root[data-accent="minecraft"] .news-dot {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 8px;
+    height: 8px;
+    margin-top: .55rem;
+    border-radius: 0;
+    background: #9adb69;
+    box-shadow: 0 0 0 3px #6ea94828, 0 0 10px #9adb6952;
+    transform: none;
+}
+
+:root[data-accent="minecraft"] .news-text {
+    color: #edf3e5;
+    font-family: var(--mc-mono);
+    font-size: .72rem;
+    line-height: 1.68;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+:root[data-accent="minecraft"] .news-text b,
+:root[data-accent="minecraft"] .news-text strong {
+    color: #ffe19b;
+    font-weight: 500;
+}
+
+:root[data-accent="minecraft"] .news-date {
+    color: #91aa82;
+    font: 400 .6rem/1.8 var(--mc-mono);
+    white-space: nowrap;
+}
+
+:root[data-accent="minecraft"] .news-toggle {
+    margin: .3rem 1.2rem 1rem;
+    padding: .48rem .72rem;
+    border: 2px solid #8ca87554;
+    background: #1c2b20d9;
+    color: #cce3b7;
+    font: 500 .67rem/1.35 var(--mc-mono);
+    box-shadow: inset 2px 2px #ffffff0c, 3px 3px #0610085c;
+}
+
+:root[data-accent="minecraft"] .news-toggle:hover {
+    border-color: #b5d68f78;
+    background: #2b412f;
+    color: #f1f8e7;
+}
+
+:root[data-accent="minecraft"] .news-card:not(.expanded) .news-extra {
+    display: none !important;
+}
+
+:root[data-accent="minecraft"] .news-card.expanded .news-year.news-extra {
+    display: grid;
+    animation: voxel-log-in .32s ease both;
+}
+
+:root[data-accent="minecraft"] .news-card.expanded .news-item.news-extra {
+    display: grid;
+    animation: voxel-log-in .32s ease both;
+}
+
+@keyframes voxel-log-in {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* -------------------------------------------------------------------------
+   Publications as research blueprints
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .papers-list {
+    max-width: calc(100% - 165px);
+}
+
+:root[data-accent="minecraft"] .papers-list > h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    margin: 1.35rem 0 .9rem;
+    padding: .55rem .85rem;
+    border: 3px solid #493621;
+    background:
+        linear-gradient(90deg, #c9a86d1c 1px, transparent 1px),
+        linear-gradient(#c9a86d1c 1px, transparent 1px),
+        linear-gradient(180deg, #a37242, #78502e);
+    background-size: 20px 20px, 20px 20px, auto;
+    color: #fff2c3;
+    font: 900 1.1rem/1 var(--mc-mono);
+    letter-spacing: .1em;
+    box-shadow: inset 3px 3px #ffffff1b, 5px 5px #2b352236;
+    text-shadow: 2px 2px #3a2819;
+}
+
+:root[data-accent="minecraft"] .papers-list > h2::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--mc-gold);
+    box-shadow: inset 2px 2px #fff0b8, inset -2px -2px #9b6d33;
+    transform: rotate(45deg);
+}
+
+:root[data-accent="minecraft"] .publication-row {
+    position: relative;
+    border-color: #77644838 !important;
+    transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+:root[data-accent="minecraft"] .publication-row:hover {
+    z-index: 1;
+    background: #ffffff5e;
+    box-shadow: inset 5px 0 var(--mc-ground);
+    transform: translateX(3px);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .publication-row:hover {
+    background: #ffffff0a;
+}
+
+:root[data-accent="minecraft"] .publication-thumbnail {
+    padding: .95rem 1rem !important;
+}
+
+:root[data-accent="minecraft"] .publication-thumbnail img,
+:root[data-accent="minecraft"] .publication-thumbnail svg {
+    border: 2px solid #57422d;
+    border-radius: 0 !important;
+    box-shadow:
+        inset 3px 3px #ffffff2b,
+        4px 4px #33432825;
+}
+
+:root[data-accent="minecraft"] .publication-body {
+    padding: .9rem 1.2rem .9rem .4rem !important;
+}
+
+:root[data-accent="minecraft"] .pub-title {
+    color: var(--heading);
+    font-family: "Raleway", "Noto Sans SC", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    line-height: 1.5;
+}
+
+:root[data-accent="minecraft"] .publication-row .small {
+    color: var(--text-muted);
+    font-size: .72rem;
+    line-height: 1.62;
+}
+
+:root[data-accent="minecraft"] .pub-venue,
+:root[data-accent="minecraft"] .pub-venue i {
+    color: #3d6e36;
+    font-family: var(--mc-mono);
+    font-style: normal;
+}
+
+:root[data-accent="minecraft"] .abstract-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: .65rem;
+}
+
+:root[data-accent="minecraft"] .abstract-links a {
+    display: inline-block;
+    padding: .25rem .48rem;
+    border: 2px solid #5a4b35;
+    border-radius: 0;
+    background: #dde7cd;
+    color: #315e2e;
+    font: 500 .64rem/1.3 var(--mc-mono);
+    box-shadow: inset 2px 2px #ffffff69, 2px 2px #33442929;
+}
+
+:root[data-accent="minecraft"] .abstract-links a:hover {
+    background: #cbe2b7;
+    color: #214c2a;
+    transform: translate(-1px, -1px);
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .abstract-links a {
+    border-color: #8b9e6f66;
+    background: #2c4029;
+    color: #d7ecc2;
+}
+
+:root[data-accent="minecraft"] .bg-white > h6.border-bottom {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-bottom: 2px solid #68563b3d !important;
+    background:
+        linear-gradient(90deg, #4a39251a 1px, transparent 1px),
+        linear-gradient(#4a39251a 1px, transparent 1px),
+        linear-gradient(90deg, #9c754a24, transparent 75%);
+    background-size: 24px 24px, 24px 24px, auto;
+    color: #435538;
+    font: 800 .9rem/1.4 var(--mc-mono);
+    letter-spacing: .03em;
+}
+
+:root[data-accent="minecraft"] .bg-white > h6.border-bottom a {
+    margin-left: auto;
+    padding: .2rem .42rem;
+    border: 1px solid #6c71534d;
+    background: #ffffff48;
+    color: #47733c;
+    font: 500 .63rem/1.4 var(--mc-mono);
+}
+
+:root[data-accent="minecraft"] .publication-card > h6.text-right {
+    border-top: 2px dashed #6a5d4438;
+}
+
+:root[data-accent="minecraft"] .publication-card > h6.text-right a {
+    display: inline-block;
+    padding: .35rem .55rem;
+    border: 2px solid #5c513c;
+    background: #dfeacd;
+    color: #365f31;
+    font: 500 .66rem/1.4 var(--mc-mono);
+    box-shadow: inset 2px 2px #ffffff6b, 2px 2px #33432829;
+}
+
+:root[data-accent="minecraft"] #navbar-year {
+    top: 94px !important;
+    gap: 6px;
+    padding: 9px !important;
+    border: 3px solid #493620;
+    background:
+        linear-gradient(90deg, #c59f6721 1px, transparent 1px),
+        linear-gradient(#c59f6721 1px, transparent 1px),
+        linear-gradient(180deg, #9e7041, #76502f);
+    background-size: 24px 24px, 24px 24px, auto;
+    box-shadow:
+        inset 3px 3px #ffffff1c,
+        inset -3px -3px #00000021,
+        5px 5px #26352143;
+}
+
+:root[data-accent="minecraft"] #navbar-year .nav-link {
+    border: 2px solid #5039235e;
+    border-radius: 0;
+    background: #2c2117b3;
+    color: #e8d7b2;
+    font: 500 .72rem/1.4 var(--mc-mono);
+    text-align: center;
+    box-shadow: inset 2px 2px #ffffff0d;
+}
+
+:root[data-accent="minecraft"] #navbar-year .nav-link:hover,
+:root[data-accent="minecraft"] #navbar-year .nav-link.active {
+    border-color: #f0d698;
+    background: #53763fb8;
+    color: #fff7d1;
+    box-shadow:
+        inset 2px 2px #ffffff1d,
+        0 0 12px #90c86b42;
+}
+
+/* Dedicated publication index heading. */
+:root[data-accent="minecraft"] .voxel-page-intro {
+    position: relative;
+    margin: 0 0 1.4rem;
+    padding: 1.2rem 1.35rem 1.25rem;
+    overflow: hidden;
+    border: 3px solid var(--mc-border);
+    background:
+        linear-gradient(90deg, #4b382317 1px, transparent 1px),
+        linear-gradient(#4b382317 1px, transparent 1px),
+        linear-gradient(120deg, #f8f0d8, #e7dec5);
+    background-size: 24px 24px, 24px 24px, auto;
+    box-shadow:
+        inset 4px 4px #ffffff6b,
+        inset -4px -4px #5b432515,
+        7px 7px #31432a38;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-page-intro {
+    background:
+        linear-gradient(90deg, #f0d58613 1px, transparent 1px),
+        linear-gradient(#f0d58613 1px, transparent 1px),
+        linear-gradient(120deg, #292a21, #20241e);
+    background-size: 24px 24px, 24px 24px, auto;
+    box-shadow:
+        inset 4px 4px #ffffff0d,
+        inset -4px -4px #00000025,
+        7px 7px #0306049e;
+}
+
+:root[data-accent="minecraft"] .voxel-page-intro::before {
+    content: "01";
+    position: absolute;
+    right: 1.1rem;
+    top: .65rem;
+    color: #6d714b;
+    font: 900 4rem/1 var(--mc-mono);
+    opacity: .12;
+}
+
+:root[data-accent="minecraft"] .voxel-page-intro .voxel-eyebrow {
+    color: var(--link);
+    font: 600 .62rem/1.5 var(--mc-mono);
+    letter-spacing: .14em;
+}
+
+:root[data-accent="minecraft"] .voxel-page-intro h1 {
+    margin: .25rem 0 .35rem;
+    font-family: "Raleway", "Noto Sans SC", sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -.04em;
+    text-shadow: 3px 3px 0 #bbc8a2;
+}
+
+:root[data-theme="dark"][data-accent="minecraft"] .voxel-page-intro h1 {
+    text-shadow: 3px 3px 0 #0c110d;
+}
+
+:root[data-accent="minecraft"] .voxel-page-intro p {
+    max-width: 70ch;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: .8rem;
+    line-height: 1.75;
+}
+
+/* -------------------------------------------------------------------------
+   Footer and modal
+   ------------------------------------------------------------------------- */
+:root[data-accent="minecraft"] .site-shell > .footer {
+    position: relative;
+    margin-top: 3rem;
+    padding: 2.4rem 0 7rem;
+    border-top: 5px solid #3a2b1c;
+    background:
+        linear-gradient(90deg, #6d482c 0 18px, #7d5632 18px 36px),
+        linear-gradient(180deg, #8d623a, #6a4729);
+    background-size: 36px 100%, auto;
+    color: #e4d3b0;
+    box-shadow: 0 -6px 0 #2940267a;
+}
+
+:root[data-accent="minecraft"] .footer .text-muted {
+    color: #d6c8ab !important;
+}
+
+:root[data-accent="minecraft"] .footer a {
+    color: #fff0bd;
+}
+
+:root[data-accent="minecraft"] .namecard {
+    border: 3px solid var(--mc-border);
+    border-radius: 0;
+    background-color: var(--mc-panel);
+    box-shadow:
+        inset 4px 4px #ffffff47,
+        8px 8px #1b261b8c,
+        0 24px 60px #111a1266;
+}
+
+:root[data-accent="minecraft"] .namecard-banner {
+    height: 88px;
+    background:
+        linear-gradient(90deg, #ffffff10 1px, transparent 1px),
+        linear-gradient(#ffffff10 1px, transparent 1px),
+        linear-gradient(180deg, #89c957 0 46%, #588e38 46% 58%, #755031 58% 100%);
+    background-size: 24px 24px, 24px 24px, auto;
+}
+
+:root[data-accent="minecraft"] .namecard-avatar {
+    border-radius: 0;
+    background: var(--mc-panel);
+    box-shadow:
+        0 0 0 3px #4d3923,
+        5px 5px #2b35222e;
+}
+
+:root[data-accent="minecraft"] .namecard-avatar img {
+    border-radius: 0;
+}
+
+:root[data-accent="minecraft"] .namecard-close {
+    border: 2px solid #f1d99873;
+    border-radius: 0;
+    background: #2e2114b3;
+}
+
+:root[data-accent="minecraft"] .namecard-tags .ri-tag {
+    border: 1px solid #6a5a40;
+    border-radius: 0;
+    background: #e0ead0;
+    color: #365c31;
+    font-family: var(--mc-mono);
+}
+
+/* -------------------------------------------------------------------------
+   Block-reveal motion
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+    :root[data-accent="minecraft"] .voxel-cloud--one {
+        animation: voxel-cloud-drift 22s ease-in-out infinite alternate;
+    }
+    :root[data-accent="minecraft"] .voxel-cloud--two {
+        animation: voxel-cloud-drift 29s ease-in-out -9s infinite alternate-reverse;
+    }
+    :root[data-accent="minecraft"] .voxel-fireflies i {
+        animation: voxel-firefly var(--fly-speed, 8s) ease-in-out var(--fly-delay, 0s) infinite alternate;
+    }
+    :root[data-accent="minecraft"] .voxel-float--grass {
+        animation: voxel-float-a 7s ease-in-out -2s infinite alternate;
+    }
+    :root[data-accent="minecraft"] .voxel-float--diamond {
+        animation: voxel-float-b 8.5s ease-in-out -5s infinite alternate;
+    }
+    :root[data-accent="minecraft"] .voxel-float--logic {
+        animation: voxel-float-c 7.7s ease-in-out -3s infinite alternate;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar {
+        animation: voxel-hotbar-in .55s cubic-bezier(.2, .8, .25, 1) both;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar a:nth-child(2) { animation: voxel-slot-in .42s .08s both; }
+    :root[data-accent="minecraft"] .voxel-hotbar a:nth-child(3) { animation: voxel-slot-in .42s .14s both; }
+    :root[data-accent="minecraft"] .voxel-hotbar a:nth-child(4) { animation: voxel-slot-in .42s .2s both; }
+    :root[data-accent="minecraft"] .voxel-hotbar a:nth-child(5) { animation: voxel-slot-in .42s .26s both; }
+}
+
+@keyframes voxel-cloud-drift {
+    from { margin-left: -10px; }
+    to { margin-left: 18px; }
+}
+
+@keyframes voxel-firefly {
+    0% { transform: translate3d(0, 7px, 0); opacity: .25; }
+    45% { opacity: .95; }
+    100% { transform: translate3d(18px, -21px, 0); opacity: .4; }
+}
+
+@keyframes voxel-float-a {
+    from { margin-top: -5px; }
+    to { margin-top: 7px; }
+}
+
+@keyframes voxel-float-b {
+    from { margin-top: 5px; }
+    to { margin-top: -8px; }
+}
+
+@keyframes voxel-float-c {
+    from { margin-left: -4px; }
+    to { margin-left: 6px; }
+}
+
+@keyframes voxel-hotbar-in {
+    from { opacity: 0; transform: translate(-50%, 22px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes voxel-slot-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes voxel-build {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(.985);
+        clip-path: inset(0 0 42% 0);
+    }
+    58% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1);
+        clip-path: inset(0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+        clip-path: inset(0);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root[data-accent="minecraft"] .voxel-surface:not(.voxel-surfaced) {
+        opacity: .2;
+    }
+    :root[data-accent="minecraft"] .voxel-surface.voxel-surfaced {
+        animation: voxel-build .58s cubic-bezier(.2, .75, .2, 1) both;
+        animation-delay: var(--voxel-build-delay, 0ms);
+    }
+}
+
+/* -------------------------------------------------------------------------
+   Responsive world
+   ------------------------------------------------------------------------- */
+@media (max-width: 1199.98px) {
+    :root[data-accent="minecraft"] .voxel-hud {
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) {
+    :root[data-accent="minecraft"] .profile-card .card-body {
+        padding-inline: 1.5rem !important;
+    }
+    :root[data-accent="minecraft"] .voxel-profile-ribbon {
+        margin-inline: -1.5rem;
+    }
+    :root[data-accent="minecraft"] .portrait-col {
+        width: 196px;
+        margin-left: 1.1rem;
+    }
+    :root[data-accent="minecraft"] .papers-list {
+        max-width: 100%;
+    }
+    :root[data-accent="minecraft"] .papers-index {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    :root[data-accent="minecraft"] body {
+        padding-top: 5.75rem;
+    }
+    :root[data-accent="minecraft"] .site-main {
+        padding-top: 1.35rem;
+    }
+    :root[data-accent="minecraft"] .site-shell > .footer {
+        padding-bottom: 7.4rem;
+    }
+    :root[data-accent="minecraft"] .navbar {
+        min-height: 64px;
+    }
+    :root[data-accent="minecraft"] .navbar-brand strong {
+        font-size: .98rem;
+    }
+    :root[data-accent="minecraft"] .navbar-brand strong::before {
+        width: 18px;
+        height: 18px;
+    }
+    :root[data-accent="minecraft"] .voxel-cloud {
+        grid-template-columns: repeat(5, 18px);
+        grid-template-rows: repeat(2, 18px);
+        filter: drop-shadow(5px 6px 0 var(--mc-cloud-shadow));
+    }
+    :root[data-accent="minecraft"] .voxel-cloud--two {
+        opacity: .48;
+    }
+    :root[data-accent="minecraft"] .voxel-cloud--three {
+        display: none;
+    }
+    :root[data-accent="minecraft"] .voxel-float {
+        display: none;
+    }
+    :root[data-accent="minecraft"] .voxel-sun {
+        width: 42px;
+        height: 42px;
+        top: 106px;
+        right: 26px;
+        box-shadow:
+            0 0 0 6px #fff2bd57,
+            -7px 7px 0 #ffe7a0;
+    }
+    :root[data-accent="minecraft"] .profile-card .card-body {
+        padding: .65rem 1rem 1.5rem !important;
+    }
+    :root[data-accent="minecraft"] .voxel-profile-ribbon {
+        gap: .5rem;
+        margin: 0 -1rem 1.15rem;
+        padding: .55rem .7rem;
+        font-size: .52rem;
+    }
+    :root[data-accent="minecraft"] .voxel-profile-ribbon .voxel-ribbon-world {
+        display: none;
+    }
+    :root[data-accent="minecraft"] .profile-card .h1 {
+        font-size: clamp(2rem, 10.5vw, 2.65rem);
+        letter-spacing: -.055em;
+    }
+    :root[data-accent="minecraft"] .profile-card .h1 small {
+        display: block;
+        width: max-content;
+        margin: .7rem 0 0;
+        font-size: .62rem;
+        vertical-align: 0;
+    }
+    :root[data-accent="minecraft"] .profile-card .text-profile-position {
+        font-size: .71rem;
+    }
+    :root[data-accent="minecraft"] .profile-card .text-profile-bio {
+        font-size: .82rem;
+        line-height: 1.82;
+    }
+    :root[data-accent="minecraft"] .profile-card .research-interests {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .55rem;
+    }
+    :root[data-accent="minecraft"] .profile-card .ri-tag {
+        padding: .34rem .45rem .34rem 1.5rem;
+        font-size: .64rem;
+    }
+    :root[data-accent="minecraft"] .profile-card .latest-news {
+        width: 100%;
+        margin-top: .8rem;
+    }
+    :root[data-accent="minecraft"] .voxel-section-banner {
+        gap: .6rem;
+        padding: .58rem .65rem;
+    }
+    :root[data-accent="minecraft"] .voxel-section-banner strong {
+        font-size: .78rem;
+    }
+    :root[data-accent="minecraft"] .voxel-section-banner small {
+        font-size: .55rem;
+    }
+    :root[data-accent="minecraft"] .voxel-section-index {
+        width: 29px;
+        height: 29px;
+        font-size: .61rem;
+    }
+    :root[data-accent="minecraft"] #experience .card-body {
+        padding: 1rem !important;
+    }
+    :root[data-accent="minecraft"] .news-body {
+        padding-inline: .65rem;
+    }
+    :root[data-accent="minecraft"] .news-item {
+        grid-template-columns: 10px minmax(0, 1fr);
+        gap: .5rem;
+        padding: .55rem .35rem;
+    }
+    :root[data-accent="minecraft"] .news-year {
+        grid-template-columns: 2.8rem minmax(0, 1fr);
+        gap: .45rem;
+    }
+    :root[data-accent="minecraft"] .news-date {
+        grid-column: 2;
+        margin-top: -.25rem;
+        font-size: .54rem;
+    }
+    :root[data-accent="minecraft"] .publication-thumbnail {
+        display: none;
+    }
+    :root[data-accent="minecraft"] .publication-body {
+        padding: .8rem 1rem !important;
+    }
+    :root[data-accent="minecraft"] .pub-title {
+        font-size: .9rem;
+    }
+    :root[data-accent="minecraft"] .papers-list > h2 {
+        margin-top: 1rem;
+        font-size: .92rem;
+    }
+    :root[data-accent="minecraft"] .voxel-page-intro {
+        padding: 1rem;
+    }
+    :root[data-accent="minecraft"] .voxel-page-intro h1 {
+        font-size: 2rem;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar {
+        bottom: 9px;
+        gap: 2px;
+        padding: 4px;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar a {
+        width: 51px;
+        height: 48px;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar svg {
+        width: 23px;
+        height: 23px;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar-kbd {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    :root[data-accent="minecraft"] .voxel-hotbar a {
+        width: 46px;
+        height: 44px;
+    }
+    :root[data-accent="minecraft"] .voxel-hotbar svg {
+        width: 21px;
+        height: 21px;
+    }
+    :root[data-accent="minecraft"] .voxel-section-lamp {
+        display: none;
+    }
+    :root[data-accent="minecraft"] .news-text {
+        font-size: .66rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root[data-accent="minecraft"] *,
+    :root[data-accent="minecraft"] *::before,
+    :root[data-accent="minecraft"] *::after {
+        scroll-behavior: auto !important;
+    }
+    :root[data-accent="minecraft"] .voxel-cloud,
+    :root[data-accent="minecraft"] .voxel-fireflies i,
+    :root[data-accent="minecraft"] .voxel-float,
+    :root[data-accent="minecraft"] .voxel-hotbar,
+    :root[data-accent="minecraft"] .voxel-hotbar a {
+        animation: none !important;
+    }
+}

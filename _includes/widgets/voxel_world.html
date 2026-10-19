@@ -1,0 +1,128 @@
+{% assign voxel_t = site.data.strings[site.active_lang] %}
+{% assign voxel_neutral_url = page.url | remove_first: '/en' %}
+<div class="voxel-world" aria-hidden="true">
+    <div class="voxel-sun"></div>
+    <div class="voxel-cloud voxel-cloud--one">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="voxel-cloud voxel-cloud--two">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="voxel-cloud voxel-cloud--three">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="voxel-fireflies">
+        <i style="--fly-x: 8%; --fly-y: 62%; --fly-delay: -2s; --fly-speed: 8s"></i>
+        <i style="--fly-x: 18%; --fly-y: 39%; --fly-delay: -5s; --fly-speed: 11s"></i>
+        <i style="--fly-x: 79%; --fly-y: 53%; --fly-delay: -1s; --fly-speed: 9s"></i>
+        <i style="--fly-x: 91%; --fly-y: 31%; --fly-delay: -7s; --fly-speed: 12s"></i>
+        <i style="--fly-x: 69%; --fly-y: 25%; --fly-delay: -4s; --fly-speed: 10s"></i>
+        <i style="--fly-x: 38%; --fly-y: 18%; --fly-delay: -8s; --fly-speed: 13s"></i>
+    </div>
+    <svg class="voxel-float voxel-float--grass" viewBox="0 0 100 100" aria-hidden="true">
+        <path class="cube-top" d="M50 2 98 26 50 50 2 26z"/>
+        <path class="cube-left" d="M2 26 50 50v48L2 74z"/>
+        <path class="cube-right" d="M98 26 50 50v48l48-24z"/>
+        <path class="cube-speck" d="M20 31h13v8H20zm47 9h11v9H67zM17 54h14v12H17zm51 8h12v11H68z"/>
+    </svg>
+    <svg class="voxel-float voxel-float--diamond" viewBox="0 0 100 100" aria-hidden="true">
+        <path class="cube-top" d="M50 2 98 26 50 50 2 26z"/>
+        <path class="cube-left" d="M2 26 50 50v48L2 74z"/>
+        <path class="cube-right" d="M98 26 50 50v48l48-24z"/>
+        <path class="cube-gem" d="m27 35 8-5 8 5-8 6zm31 9 9-6 7 5-8 6zM17 56l9-6 8 5-8 6zm49 8 8-5 8 5-8 6z"/>
+    </svg>
+    <svg class="voxel-float voxel-float--logic" viewBox="0 0 100 100" aria-hidden="true">
+        <path class="cube-top" d="M50 2 98 26 50 50 2 26z"/>
+        <path class="cube-left" d="M2 26 50 50v48L2 74z"/>
+        <path class="cube-right" d="M98 26 50 50v48l48-24z"/>
+        <path class="cube-circuit" d="M19 39h18v5H19zm49 11h14v5H68zM16 58h25v5H16zm45 12h19v5H61zM32 34h5v31h-5zm39 4h5v31h-5z"/>
+    </svg>
+    <svg class="voxel-landscape" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMax slice" focusable="false">
+        <!-- Block-stepped horizon, drawn from scratch rather than using game textures. -->
+        <g class="far-mountain" opacity=".66">
+            <path d="M0 445V365h58v-48h42v-38h44v-55h52v48h41v35h56v58h62v-52h36v-41h48v-37h57v45h41v39h54v52h69v-63h40v-43h49v-36h55v39h45v47h57v56h72v-50h39v-34h49v-44h58v50h43v35h50v56h56v-38h43v-31h51v-41h57v52h44v53h55v53h66v41H0z"/>
+        </g>
+        <g class="near-mountain" opacity=".78">
+            <path d="M0 493v-47h84v-31h62v-49h65v41h71v-62h68v38h56v44h88v-38h66v-51h72v67h63v42h72v-31h63v-58h73v46h66v52h77v-45h72v-39h68v55h75v44h67v-42h74v48h92v57H0z"/>
+        </g>
+        <g class="terrain-shadow" opacity=".66">
+            <path d="M0 551h1600v149H0z"/>
+        </g>
+        <g class="terrain-fill">
+            <path d="M0 518h1600v32H0z"/>
+        </g>
+        <g class="earth-fill">
+            <path d="M0 550h1600v58H0z"/>
+        </g>
+        <g class="earth-shadow" opacity=".72">
+            <path d="M0 608h1600v92H0z"/>
+        </g>
+        <g opacity=".23">
+            <path class="terrain-shadow" d="M0 550h86v-18H0zM164 550h74v-28h-74zM403 550h112v-13H403zM708 550h88v-31h-88zM1012 550h117v-20h-117zM1360 550h91v-34h-91z"/>
+            <path class="earth-shadow" d="M0 608h147v24H0zM279 608h93v33h-93zM599 608h125v18H599zM928 608h86v39h-86zM1193 608h127v22h-127zM1472 608h128v36h-128z"/>
+        </g>
+        <g class="tree-trunk">
+            <path d="M118 430h28v96h-28zM124 408h16v24h-16zM1448 455h31v91h-31zM1455 430h17v28h-17z"/>
+        </g>
+        <g class="tree-canopy">
+            <path d="M80 366h104v28H80zM72 394h120v28H72zM90 422h84v28H90zM118 450h28v22h-28z"/>
+            <path d="M1408 382h110v30h-110zM1398 412h130v28h-130zM1418 440h90v30h-90zM1448 470h28v20h-28z"/>
+        </g>
+        <g fill="#ffffff" opacity=".13">
+            <path d="M0 518h1600v5H0z"/>
+            <path d="M96 550h1600v4H96z"/>
+        </g>
+    </svg>
+</div>
+
+<div class="voxel-hud" aria-hidden="true">
+    <span>{{ voxel_t.voxel_world_label | default: 'OVERWORLD' }}</span>
+    <span>SEED // {{ voxel_t.voxel_seed | default: 'AGENT-0426' }}</span>
+    <span>DAY 428 / {{ voxel_t.voxel_research_mode | default: 'RESEARCH' }}</span>
+    <span class="voxel-hud-online">{{ voxel_t.voxel_online | default: 'ONLINE' }}</span>
+</div>
+
+<nav class="voxel-hotbar" aria-label="{{ voxel_t.voxel_hotbar_label | default: 'Voxel research world navigation' }}">
+    <a href="{{ '/' | relative_url }}" data-voxel-target="top" aria-label="{{ voxel_t.voxel_nav_profile | default: 'Profile' }}">
+        <span class="voxel-hotbar-kbd">1</span>
+        <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">
+            <path fill="currentColor" d="M8 3h8v2h2v2h2v6h-2v2h-2v2h2v4H6v-4h2v-2H6v-2H4V7h2V5h2V3zm2 4v2H8v2h2v2h4v-2h2V9h-2V7h-4zm0 8v4h4v-4h-4z"/>
+        </svg>
+        <span class="voxel-hotbar-label">{{ voxel_t.voxel_nav_profile | default: 'Profile' }}</span>
+    </a>
+    <a href="{{ '/#experience' | relative_url }}" data-voxel-target="experience" aria-label="{{ voxel_t.voxel_nav_path | default: 'Advancements' }}">
+        <span class="voxel-hotbar-kbd">2</span>
+        <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">
+            <path fill="currentColor" d="M4 17h5v3H4v-3zm5-5h5v3H9v-3zm5-5h5v3h-5V7zm2-4h3v2h-3V3zm0 10h6v3h-6v-3zm-13 5h2v2H3v-2zM8 9h2v2H8V9zm5-7h2v2h-2V2z"/>
+        </svg>
+        <span class="voxel-hotbar-label">{{ voxel_t.voxel_nav_path | default: 'Advancements' }}</span>
+    </a>
+    <a href="{{ '/publications' | relative_url }}" data-voxel-target="papers" data-voxel-page="papers" aria-label="{{ voxel_t.voxel_nav_blueprints | default: 'Publications' }}">
+        <span class="voxel-hotbar-kbd">3</span>
+        <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">
+            <path fill="currentColor" d="M4 3h11v2h2v2h2v14H4V3zm3 3v12h9V8h-2V6H7zm2 3h5v2H9V9zm0 4h5v2H9v-2z"/>
+        </svg>
+        <span class="voxel-hotbar-label">{{ voxel_t.voxel_nav_blueprints | default: 'Publications' }}</span>
+    </a>
+    <a href="{{ '/#news' | relative_url }}" data-voxel-target="news" aria-label="{{ voxel_t.voxel_nav_log | default: 'World log' }}">
+        <span class="voxel-hotbar-kbd">4</span>
+        <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">
+            <path fill="currentColor" d="M3 5h16v2h2v8h-2v2H9l-4 4v-4H3V5zm3 3v6h10V8H6zm2 1h6v2H8V9z"/>
+        </svg>
+        <span class="voxel-hotbar-label">{{ voxel_t.voxel_nav_log | default: 'World log' }}</span>
+    </a>
+    {% if site.active_lang == "en" %}
+    <a data-language-switch {% static_href %}href="{{ voxel_neutral_url }}"{% endstatic_href %} aria-label="中文">
+    {% else %}
+    <a data-language-switch href="/en{{ voxel_neutral_url }}" aria-label="English">
+    {% endif %}
+        <span class="voxel-hotbar-kbd">5</span>
+        <svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">
+            <path fill="currentColor" d="M8 3h8v2h3v3h2v8h-2v3h-3v2H8v-2H5v-3H3V8h2V5h3V3zm0 3H6v3H5v6h1v3h2v2h8v-2h2v-3h1V9h-1V6h-2V5H8v1zm-1 4h3v2h2V9h2v3h2v2h-3v2h2v2h-2v-2h-2v-3H8v2H6v-2h1V10z"/>
+        </svg>
+        <span class="voxel-hotbar-label">{% if site.active_lang == "en" %}中文{% else %}English{% endif %}</span>
+    </a>
+</nav>

@@ -7,6 +7,11 @@
             <div class="profile-watermark" aria-hidden="true"></div>
             {% include widgets/scholar_scene.html %}
             <div class="card-body p-5">
+                <div class="voxel-only voxel-profile-ribbon">
+                    <span>{{ t.voxel_profile_label }}</span>
+                    <span class="voxel-ribbon-world">{{ t.voxel_world_name }}</span>
+                    <span class="voxel-online">{{ t.voxel_online }}</span>
+                </div>
                 <div class="scholar-only scholar-masthead">
                     <span class="scholar-kicker">{{ t.scholar_kicker }}</span>
                     <span class="scholar-edition">PEKING UNIVERSITY</span>
