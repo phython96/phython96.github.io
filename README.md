@@ -170,8 +170,16 @@ Ordering is driven by `date`, newest first. The most recent entry is also surfac
   are highlighted), `cover` (thumbnail URL), `links` (`Paper:` / `Code:` / `Page:` / `Video:` …)
 - `abstract` and `abstract_zh`, plus optional `pub_last` for badge markup
   (e.g. `Spotlight`, `Oral`, `Top 6.2%`)
+- Optional `pub_status` / `pub_status_zh` explicitly distinguish accepted work
+  from published proceedings.
+- For collective-author reports, `authors` can retain the official team name and
+  `highlight_authors` lists verified members to show in an explicit "including"
+  note. An `Authors` link can point to the report's full author list.
 
 See any existing file for the exact shape.
+
+The [2026 publication audit](docs/publication-audit-2026-10-19.md) records the
+sources, version merges, and Google Scholar access limitation for the latest update.
 
 **Switching profile text** — edit both `_data/profile.yml` (English) and `_data/profile_zh.yml`
 (Chinese). They are independent files, so a wording or photo change usually needs to be made twice.
